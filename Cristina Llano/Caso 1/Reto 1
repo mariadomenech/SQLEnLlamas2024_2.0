@@ -1,0 +1,9 @@
+select cust.customer_id
+, sum(coalesce(menu.price,0)) as price_total
+from SQL_EN_LLAMAS_ALUMNOS.case01.customers cust
+left join SQL_EN_LLAMAS_ALUMNOS.case01.sales sales
+	on cust.customer_id = sales.customer_id
+left join SQL_EN_LLAMAS_ALUMNOS.case01.menu menu
+	on menu.product_id = sales.product_id
+group by cust.customer_id
+order by 1;
