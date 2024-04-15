@@ -1,6 +1,6 @@
 select
-	customers.customer_id as cliente,
-	isnull(sum(menu.price), 0) as importe_total
+	customers.customer_id,
+	isnull(sum(menu.price), 0) as total_gastado
 from
 	case01.sales sales
 join
