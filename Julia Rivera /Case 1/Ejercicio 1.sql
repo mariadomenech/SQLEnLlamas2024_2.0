@@ -33,4 +33,5 @@ Aun así te voy a dar dos tips:
 		tabla CUSTOMERS podemos ir a la de SALES con un LEFT JOIN y seguidamente a la de MENU con un LEFT JOIN. 
 		+ De esta forma ya tenemos todas las columnas ligadas en una sola dirección (LEFT) desde la tabla principal (CUSTOMERS).
 
+
 */
