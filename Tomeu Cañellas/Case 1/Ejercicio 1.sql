@@ -10,4 +10,5 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[sales] sales
 LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] menu
 	ON sales.product_id = menu.product_id
 --Agrupamos por cliente para obtener el total gastado por cada uno
-GROUP BY customers.customer_id;
+GROUP BY customers.customer_id
+ORDER BY customers.customer_id;
