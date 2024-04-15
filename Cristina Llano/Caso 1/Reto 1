@@ -7,3 +7,18 @@ left join SQL_EN_LLAMAS_ALUMNOS.case01.menu menu
 	on menu.product_id = sales.product_id
 group by cust.customer_id
 order by 1;
+
+/*
+Comentarios Bea.
+Todo correcto!
+
+Resultado: OK
+Código: OK
+Legibilidad: OK 
+
+Muy bueno el detalle de usar left joins y no full outer joins. Teniendo en cuenta la cantidad de datos que se manejan en este ejercicio no tiene importancia usar uno u otro, 
+pero usar un full outer join sin necesidad nunca es recomendable.       
+Además, genial la salida mostrando todos los clientes aunque no hayan realizado ninguna compra y sustituyendo los nulos por cero.
+
+Este primer ejecicio es sencillito (ya se irá complicando un poquito), pero sirve para ir conociendo los puntos que queremos evaluar  
+*/
