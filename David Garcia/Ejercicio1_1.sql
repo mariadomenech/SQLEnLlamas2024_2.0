@@ -1,6 +1,6 @@
 select
  c.customer_id,
-	coalesce(sum(price),0) as total
+ coalesce(sum(price),0) as total
 from case01.customers c
 left join case01.sales s
 on c.customer_id=s.customer_id
