@@ -9,3 +9,10 @@ LEFT JOIN
     case01.menu m ON s.PRODUCT_ID = m.PRODUCT_ID
 GROUP BY 
     c.CUSTOMER_ID;
+
+
+/********************************************/
+/*************COMENTARIO DANI****************/
+/********************************************/
+/* Resultado correcto, buen manejo de NULLS, me gusta el enfoque usando COALESCE, buena legibilidad de código 
+y buen uso de JOINS. Enhorabuena!*/
