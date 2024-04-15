@@ -12,3 +12,19 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] menu
 --Agrupamos por cliente para obtener el total gastado por cada uno
 GROUP BY customers.customer_id
 ORDER BY customers.customer_id;
+
+/*
+Comentarios Alex.
+ 
+Resultado: Correcto
+Código: Correcto
+Legibilidad: Correcto
+
+Todo genial:
+ - Buen uso del ISNULL (también valdría COALESCE) en lugar de un CASE.
+ - Bien los comentarios del código.
+ - Muy bien el tratamiento de los nulos y contar con todos los customers.
+ - Bien el renombrado y los alias de las tablas y bien la indentación.
+
+Empezamos fácil, mucho ánimo con los siguientes! :)
+*/
