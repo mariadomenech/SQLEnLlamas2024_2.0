@@ -7,3 +7,22 @@ FROM CASE01.MENU M
   RIGHT JOIN CASE01.CUSTOMERS C
   ON C.CUSTOMER_ID = S.CUSTOMER_ID
 GROUP BY C.CUSTOMER_ID;
+
+
+/*
+Comentarios Bea.
+Todo correcto!
+
+Resultado: OK
+Código: OK
+Legibilidad: OK.  
+
+Muy bueno el detalle de usar right join y no full outer joins. Teniendo en cuenta la cantidad de datos que se manejan en este ejercicio no tiene importancia usar uno u otro, 
+pero usar un full outer join sin necesidad nunca es recomendable.       
+Además, genial la salida mostrando todos los clientes aunque no hayan realizado ninguna compra y sustituyendo los nulos por cero.
+Como comentarios personales:
+  - Intentaría incluir un orden en la salida (aunque en este caso tengamos muy pocas líneas como resultado, buscamos que sea lo más general y extrapolable posible).
+  - La legibilidad es algo un poco subjetivo y como lo has hecho está perfecto, pero si te sirve mi opinión yo no tabularía las filas de los joins (quedándose al mismo nivel del select, from y group by).
+
+Este primer ejecicio es sencillito (ya se irá complicando un poquito), pero sirve para ir conociendo los puntos que queremos evaluar  
+*/
