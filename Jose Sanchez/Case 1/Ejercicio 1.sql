@@ -7,3 +7,12 @@ FROM
     LEFT JOIN case01.menu as menu ON menu.product_id = sales.product_id
 GROUP BY
     customers.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+
+Perfecto Jose!!
+
+*/
