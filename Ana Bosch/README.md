@@ -20,10 +20,14 @@ Si tienes alguna duda o necesitas ayuda con los ejercicios, no dudes en pedirnos
 
 ## ✍️ Para escribir tus soluciones
 
-Dentro de tu carpeta, en la esquina superior derecha, tienes un botón para crear un nuevo archivo. 
+Dentro de tu carpeta, en la esquina superior derecha, tienes un botón para crear un nuevo archivo.
+
 ![image](https://github.com/mariadomenech/SQLEnLlamas2024_2.0/assets/156344357/22599bd4-08e0-433f-bfd6-0879ddeb4e84)
+
 Clicka ahí y dentro de este, donde aparece "Name your file" escribe el Caso en el que estás un "/" y el ejercicio que estás haciendo. Te ponemos un ejemplo:
+
 ![image](https://github.com/mariadomenech/SQLEnLlamas2024_2.0/assets/156344357/5a191898-8bc5-4de1-a155-66149d3e5c98)
+
 ![image](https://github.com/mariadomenech/SQLEnLlamas2024_2.0/assets/156344357/0fcb30da-273d-4f38-801a-093cca1c07b7)
 
 ## 🌟 Mensaje de Motivación
