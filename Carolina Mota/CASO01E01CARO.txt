@@ -1,0 +1,10 @@
+SELECT
+	C.customer_id,
+	SUM(ISNULL(price, 0))
+FROM case01.sales A
+INNER JOIN case01.menu B
+	ON (A.product_id=B.product_id)
+RIGHT JOIN case01.customers C
+	ON (A.customer_id=C.customer_id)
+GROUP BY C.customer_id
+ORDER BY C.customer_id;
