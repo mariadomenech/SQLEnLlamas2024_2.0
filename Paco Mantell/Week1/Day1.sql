@@ -7,3 +7,9 @@ LEFT JOIN case01.sales B
 LEFT JOIN case01.menu C
 	ON B.product_id = C.product_id
 GROUP BY A.customer_id;
+
+
+/************************************************/
+/***************COMENTARIO DANIEL****************/
+/*Resultado correcto, buen uso de LEFT JOINS para un correcto cruce de tablas, bien contemplado el caso de que el resultado sea NULL. Como pequeño consejo 
+te diría de indentar mejor los atributos que seleccionamos para que se pueda leer mas fácilmente */
