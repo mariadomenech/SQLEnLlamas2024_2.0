@@ -1,6 +1,6 @@
 SELECT 
 	customers.customer_id,
-	COALESCE(COUNT(distinct sales.order_date), 0) AS NUM_VISITAS
+	COUNT(distinct sales.order_date) AS NUM_VISITAS
 FROM 
 	case01.customers customers
 LEFT JOIN 
