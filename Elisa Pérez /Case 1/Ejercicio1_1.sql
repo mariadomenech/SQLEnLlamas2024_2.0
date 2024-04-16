@@ -18,6 +18,6 @@ JOIN case01.menu M
 GROUP BY S.customer_id
 
 Solo faltaría implementar al cliente que falta, ten en cuenta que también hay que unir bien las tablas, confío en que podrás!.
-Para tratar campos nulos puedes probar IFNULL(), NVL() por ejemplo ya que Josep en este caso quiere ver un 0 y no NULL en el campo
+Para tratar campos nulos puedes probar IFNULL(), NVL(), aunque en SQLServer (donde estamos haciendo los ejercicios) se usaría ISNULL() por ejemplo ya que Josep en este caso quiere ver un 0 y no NULL en el campo
 A mí personalmente me gusta poner los agregados y funciones en Mayusc. y los atributos en minusc, ya que mejora la legibilidad
-pero eso es gusto propio. Ánimo Elisa que seguro lo consigues! Cualquier duda me tienes a tu disposición*/
+pero eso es gusto propio. Ánimo Elisa que seguro lo consigues!. Intenta plasmas la corrección bajo este comentario. Cualquier duda me tienes a tu disposición*/
