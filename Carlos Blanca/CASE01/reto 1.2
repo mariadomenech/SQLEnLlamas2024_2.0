@@ -3,3 +3,19 @@ SELECT C.CUSTOMER_ID AS CLIENTE
 FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS C
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES S ON C.CUSTOMER_ID = S.CUSTOMER_ID
 GROUP BY C.CUSTOMER_ID;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto! Solo separaría el ON del join para hacer el código un poco más legible
+
+      SELECT C.CUSTOMER_ID AS CLIENTE
+            ,COUNT(DISTINCT S.ORDER_DATE) AS DIAS_HA_VISITADO_EL_RESTAURANTE
+      FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS C
+      LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES S
+            ON C.CUSTOMER_ID = S.CUSTOMER_ID
+      GROUP BY C.CUSTOMER_ID;
+
+*/
