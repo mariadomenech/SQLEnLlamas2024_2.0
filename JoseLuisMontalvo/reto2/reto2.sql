@@ -1,3 +1,4 @@
+/***** Número de visitas por cliente *****/
 select cust.customer_id as Cliente
       ,count(distinct sal.order_date) as N_Visitas
          from case01.customers cust
