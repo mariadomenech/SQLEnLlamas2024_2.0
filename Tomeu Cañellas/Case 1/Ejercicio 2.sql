@@ -10,3 +10,13 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[sales] sales
 GROUP BY customers.customer_id
 --Ordenamos por cliente
 ORDER BY customers.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Todo perfecto, nada que añadir :)
+Mucha suerte en el siguiente!
+
+*/
