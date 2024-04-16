@@ -22,3 +22,5 @@ LEFT JOIN case01.sales s
 GROUP BY c.customer_id;
 
 */
+
+/*Para cambiar el nombre del commit*/
