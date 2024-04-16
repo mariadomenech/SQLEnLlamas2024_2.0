@@ -8,3 +8,23 @@ FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS C
 LEFT OUTER JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES S ON C.customer_id = S.customer_id
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.MENU M ON S.product_id = M.product_id
 GROUP BY C.CUSTOMER_ID;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto! El case lo sustituiría por la función ISNULL para asi hacer más corto el código:
+
+ 	CONCAT(ISNULL(SUM(M.PRICE), 0), '€') as SE_HA_GASTADO_EN_TOTAL
+Sobre la legibilidad (es un tema mas personal y no hay una única forma correcto) solo pondria los ONs de los joins una línea por debajo y tabulada, para hacerlo mas visible y evitar que el código se extienda
+hacia el lateral:
+
+	FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS C
+	LEFT OUTER JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES S 
+ 		ON C.customer_id = S.customer_id
+	LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.MENU M 
+ 		ON S.product_id = M.product_id
+	GROUP BY C.CUSTOMER_ID;
+
+*/
