@@ -57,7 +57,27 @@ FROM SQL_EN_LLAMAS.case01.customers c
 LEFT JOIN GroupedOrders g 
 	ON c.CUSTOMER_ID = g.CUSTOMER_ID
 ORDER BY c.CUSTOMER_ID;
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+Te añado un ejemplo de como sería obtener los mismos resultados sin necesidad de tantas CTE`s:
 
+WITH PrimerPedido AS (
+    SELECT customer_id, 
+    MIN(order_date) as PrimerFecha
+    FROM SQL_EN_LLAMAS.CASE01.SALES
+    GROUP BY customer_id
+)
 
-
+SELECT  members.customer_id ,
+        LISTAGG(distinct COALESCE(menu.product_name, 'No ha hecho pedidos'), ',') as product_name
+FROM SQL_EN_LLAMAS.CASE01.CUSTOMERS
+LEFT JOIN PrimerPedido pp 
+    ON customers.customer_id = pp.customer_id
+LEFT JOIN SQL_EN_LLAMAS.CASE01.SALES 
+    ON customers.customer_id = sales.customer_id
+    AND pp.PrimerFecha = sales.order_date
+LEFT JOIN SQL_EN_LLAMAS.CASE01.MENU 
+    ON sales.product_id = menu.product_id;
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 Ánimo Ismael! Este es el camino!*/
