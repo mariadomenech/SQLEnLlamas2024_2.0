@@ -31,31 +31,31 @@ el alias no debería ser tan determinante. En cuanto a lo mencionado anteriormen
 
 WITH RankedOrders AS (
     SELECT	s.CUSTOMER_ID, 
-			m.PRODUCT_NAME,
-			RANK() OVER(PARTITION BY s.CUSTOMER_ID ORDER BY s.ORDER_DATE) as rn
+		m.PRODUCT_NAME,
+		RANK() OVER(PARTITION BY s.CUSTOMER_ID ORDER BY s.ORDER_DATE) as rn
     FROM SQL_EN_LLAMAS.case01.sales s
 	JOIN SQL_EN_LLAMAS.case01.menu m 
-			ON s.PRODUCT_ID = m.PRODUCT_ID
+		ON s.PRODUCT_ID = m.PRODUCT_ID
 ),
 
 DistinctOrders AS (
-    SELECT DISTINCT CUSTOMER_ID,
-					PRODUCT_NAME
+    SELECT DISTINCT	CUSTOMER_ID,
+			PRODUCT_NAME
     FROM RankedOrders
     WHERE rn = 1
 ),
 
 GroupedOrders AS (
     SELECT	CUSTOMER_ID, 
-			STRING_AGG(PRODUCT_NAME, ', ') WITHIN GROUP (ORDER BY PRODUCT_NAME) as Products
+		STRING_AGG(PRODUCT_NAME, ', ') WITHIN GROUP (ORDER BY PRODUCT_NAME) as Products
     FROM DistinctOrders
     GROUP BY CUSTOMER_ID
 )
 SELECT	c.CUSTOMER_ID,
-		COALESCE(g.Products, 'SIN PEDIDO') AS Primer_Producto_Pedido
+	COALESCE(g.Products, 'SIN PEDIDO') AS Primer_Producto_Pedido
 FROM SQL_EN_LLAMAS.case01.customers c
 LEFT JOIN GroupedOrders g 
-		ON c.CUSTOMER_ID = g.CUSTOMER_ID
+	ON c.CUSTOMER_ID = g.CUSTOMER_ID
 ORDER BY c.CUSTOMER_ID;
 
 
