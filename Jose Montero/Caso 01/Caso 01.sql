@@ -17,13 +17,13 @@ Legibilidad: OK. Esto es más subjetivo, pero creo que el código puede presenta
 */
 
 select	
-	clientes.customer_id cliente,
-	sum(isnull(precios.price,0)) as precio_total
+    clientes.customer_id cliente,
+    sum(isnull(precios.price,0)) as precio_total
 from case01.sales ventas
 right join case01.customers clientes
-	on ventas.customer_id=clientes.customer_id
+    on ventas.customer_id=clientes.customer_id
 left join case01.menu precios
-       on precios.product_id=ventas.product_id
+    on precios.product_id=ventas.product_id
 group by clientes.customer_id
 order by clientes.customer_id;
 
