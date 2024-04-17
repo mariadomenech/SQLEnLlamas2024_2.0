@@ -1,4 +1,4 @@
- /*** Cúal son los primeros productos consumidos por el cliente ****/
+ /*** Cuales son los primeros productos consumidos por el cliente ****/
  select Cliente as Cliente,
         string_agg (Primer_producto,',') as Primer_producto
  from  (select  distinct cust.customer_id as Cliente,
