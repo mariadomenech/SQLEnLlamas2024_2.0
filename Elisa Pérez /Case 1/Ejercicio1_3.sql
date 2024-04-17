@@ -23,7 +23,7 @@ GROUP BY customer_id;
 /* Resultado correcto!, me gusta el enfoque de la subconsulta en vez de CTE´s, muy buena Elisa!. 
 Sin embargo hay algunos detallitos que mejorar, el primero confío en que ha sido un error
 accidental al indentar la línea tras el RANK() OVER..., el otro es mas importante y es sobre el 
-cruce de tablas. En este caso estás partiendo de la tabla SALES, luego haces JOIN (= FULL OUTER JOIN)
+cruce de tablas. En este caso estás partiendo de la tabla SALES, luego haces JOIN (= INNER JOIN)
 a la tabla MENU y por ultimo desde SALES tambien haces RIGHT JOIN a la tabla CUSTOMERS. El apuntado
 de SALES a CUSTOMERS está bien enfocado, sin embargo aunque en este caso te de el resultado esperado
 si haces un FULL OUTER JOIN a una tabla con un volumen de datos considerable te dará problemas, el
