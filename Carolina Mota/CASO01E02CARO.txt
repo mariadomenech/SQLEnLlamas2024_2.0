@@ -1,0 +1,8 @@
+SELECT 
+	B.customer_id, 
+	COUNT(DISTINCT order_date) AS diasdevisita
+FROM case01.sales A
+RIGHT JOIN case01.customers B
+	ON(A.customer_id=B.customer_id)
+GROUP BY B.customer_id
+ORDER BY B.customer_id;
