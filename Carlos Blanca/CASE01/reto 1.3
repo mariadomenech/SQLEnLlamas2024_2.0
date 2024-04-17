@@ -1,0 +1,14 @@
+SELECT C.CUSTOMER_ID AS CLIENTE
+      ,SQ.PRODUCTOS AS PRIMER_PRODUCTO
+FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS C
+LEFT OUTER JOIN /*con este outer join sacamos el cliente D que no ha ido nunca al restaurante*/
+    /*La subquery saca todos los productos que ha pedido cada cliente y que estan registrados en la tabla SALES*/
+    (SELECT S.CUSTOMER_ID
+           ,M.PRODUCT_NAME AS PRODUCTOS
+           ,ROW_NUMBER() OVER (PARTITION BY S.CUSTOMER_ID ORDER BY S.ORDER_DATE) AS ROWNUMBER /*asigna un rownumber a cada producto que ha pedido el cliente empezando por el mas antiguo*/
+        FROM
+            SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES S
+           ,SQL_EN_LLAMAS_ALUMNOS.CASE01.MENU M 
+		WHERE S.PRODUCT_ID = M.PRODUCT_ID
+    ) AS SQ 
+	ON C.CUSTOMER_ID = SQ.CUSTOMER_ID AND SQ.ROWNUMBER = 1; /*filtramos por el rownumber=1 que es el producto mas antiguo que pidio el cliente (el primero)*/
