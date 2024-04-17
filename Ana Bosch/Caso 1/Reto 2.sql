@@ -7,3 +7,13 @@ left join case01.sales pedidos
 	on clientes.customer_id = pedidos.customer_id
 group by clientes.customer_id
 order by 2 desc;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Todo perfecto! Estos primeros son muy sencillos para calentar, pronto empezará lo entretenido :)
+Mucha suerte en el siguiente!
+
+*/
