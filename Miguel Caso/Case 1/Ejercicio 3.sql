@@ -15,3 +15,15 @@ FROM CTE
 WHERE SEQ = 1
 GROUP BY cliente
 ORDER BY cliente;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto
+CÓDIGO: Correcto
+LEGIBILIDAD: Correcta
+
+Perfecto Miguel!!!
+
+*/
