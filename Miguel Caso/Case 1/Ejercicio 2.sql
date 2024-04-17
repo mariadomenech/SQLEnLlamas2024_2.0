@@ -3,7 +3,8 @@ SELECT
     COUNT (DISTINCT b.order_date) AS num_dias
 FROM SQL_EN_LLAMAS_ALUMNOS.CASE01.CUSTOMERS a
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.CASE01.SALES b ON a.customer_id = b.customer_id
-GROUP BY a.customer_id;
+GROUP BY a.customer_id
+ORDER BY num_dias DESC;
 
 /*********************************************************/
 /***************** COMENTARIO IRENE **********************/
