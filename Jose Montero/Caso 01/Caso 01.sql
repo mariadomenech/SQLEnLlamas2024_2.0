@@ -29,6 +29,6 @@ order by clientes.customer_id;
 
 /*
 Además, me ha gustado que nombres las columnas y ordenes la salida (recuerda que la ordenación es ascendente por defecto, así que no hace falta indicarlo).
-Como detalle a comentar, si bien es cierto que la función de agregación SUM no tiene en cuenta los nulos, sería más correcto limpiar los nulos antes de la suma,
-es decir, sum(isnull(precios.price,0)) en lugar de isnull(sum(price),0).
+Como detalle a comentar, si bien es cierto que la función de agregación SUM no tiene en cuenta los nulos, personalmente considero más correcto limpiar
+los nulos antes de la suma, es decir, sum(isnull(precios.price,0)) en lugar de isnull(sum(price),0).
 */
