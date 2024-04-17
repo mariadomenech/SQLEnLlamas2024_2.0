@@ -1,4 +1,4 @@
--- ¿Cuántos días ha visitado el restaurante cada cliente?
+-- RETO 2: ¿Cuántos días ha visitado el restaurante cada cliente?
 
 select clientes.customer_id
 	,count(distinct order_date) as visitas
