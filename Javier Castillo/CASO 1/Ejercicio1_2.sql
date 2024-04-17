@@ -26,7 +26,7 @@ FROM [SQL_EN_LLAMAS_ALUMNOS].[case01].[customers] AS C
 LEFT OUTER JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[sales] AS S
     ON C.customer_id=S.customer_id
 GROUP BY C.customer_id
-ORDER BY DIAS_VISITADOS DESC,CLIENTE;
+ORDER BY DIAS_VISITADOS DESC, CLIENTE;
 
 /*
 Además, me ha gustado que ordenes la salida. ¡Enhorabuena!
