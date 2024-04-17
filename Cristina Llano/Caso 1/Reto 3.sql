@@ -17,3 +17,18 @@ LEFT JOIN
 	AND cust.customer_id = venta.customer_id
 GROUP BY cust.customer_id
 ORDER BY 1 ;
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Todo correcto, enhorabuena!!
+
+Resultado: OK
+Código: OK
+Legibilidad: OK
+
+Un par de detalles que me han gustado mucho es la utilización de STRING_AGG para hacer la salida de la query más limpia y de RANK para que muestre si hay empates entre productos.
+
+*/
