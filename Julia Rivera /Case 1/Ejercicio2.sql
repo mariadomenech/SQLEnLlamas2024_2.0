@@ -10,3 +10,12 @@ LEFT JOIN [case01].[sales] S
 	ON C.CUSTOMER_ID = S.CUSTOMER_ID
 GROUP BY C.CUSTOMER_ID
 ORDER BY VISITAS DESC;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+
+Perfecto Julia!!!
+
+*/
