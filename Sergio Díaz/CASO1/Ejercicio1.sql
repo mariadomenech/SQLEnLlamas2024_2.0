@@ -1,5 +1,5 @@
 /* Alumno: Sergio Díaz */
-/* CASO 1: Total de cada cliente en el restaurante */
+/* CASO 1 - Ejercicio 1: Total de cada cliente en el restaurante */
 
 SELECT 
    A.customer_id as 'DES_CLIENTE',
