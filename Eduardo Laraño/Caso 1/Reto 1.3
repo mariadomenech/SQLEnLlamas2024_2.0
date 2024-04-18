@@ -19,3 +19,66 @@ RIGHT JOIN CASE01.CUSTOMERS C
   ON S.CUSTOMER_ID = C.CUSTOMER_ID) PED
  GROUP BY PED.CLIENTE
  ORDER BY PED.CLIENTE;
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+Resultado: OK
+Código: OK.
+Legibilidad: Podría mejorarse la legibilidad con algunas tabulaciones (no tengas miedo de hacer varias si es necesario), porque a primera vista parece que cueste leerlo.
+            Te dejo como lo haría yo: 
+
+            SELECT 
+                PED.CLIENTE CLIENTE,
+                STRING_AGG(PED.PRODUCTO, ', ') PRODUCTO
+            FROM
+                (SELECT  
+                    DISTINCT C.CUSTOMER_ID CLIENTE,
+                    ISNULL(M.PRODUCT_NAME,'') PRODUCTO
+                FROM CASE01.SALES S
+                JOIN (SELECT 
+                          S.CUSTOMER_ID CLIENTE,
+                          MIN(S.ORDER_DATE) FECHA_PRIMER_PEDIDO
+                      FROM CASE01.SALES S
+                      GROUP BY 
+                          S.CUSTOMER_ID
+                     ) FP
+                  ON S.ORDER_DATE = FP.FECHA_PRIMER_PEDIDO
+                  AND S.CUSTOMER_ID = FP.CLIENTE
+                JOIN CASE01.MENU M
+                  ON S.PRODUCT_ID = M.PRODUCT_ID
+                RIGHT JOIN CASE01.CUSTOMERS C
+                  ON S.CUSTOMER_ID = C.CUSTOMER_ID
+                ) PED
+             GROUP BY PED.CLIENTE
+             ORDER BY PED.CLIENTE;
+
+Un detalle que me han gustado mucho es la utilización de STRING_AGG para hacer la salida de la query más limpia.
+Otra forma de plantearlo sería utilizando la función de ventana RANK para hacer un ranking entre los pedidos de cada cliente y obtener el primero.
+ 
+  Te dejo como sería por si no conocías esta función:
+            SELECT
+                  A.customer_id
+                , A.first_order_date
+                , LISTAGG(DISTINCT A.product_name ||' (' || ranking ||')', ', ')  AS orders_placed
+            FROM (
+                SELECT 
+                      sales.customer_id
+                    , menu.product_name
+                    , sales.order_date as first_order_date
+                    , RANK() OVER (PARTITION BY sales.customer_id ORDER BY sales.order_date asc) AS ranking       
+                FROM case01.members
+                LEFT JOIN case01.sales
+                    ON members.customer_id = sales.customer_id
+                INNER JOIN case01.menu
+                    ON sales.product_id = menu.product_id
+                ) A
+            WHERE A.ranking = 1
+            GROUP BY A.customer_id, A.first_order_date
+            ORDER BY A.customer_id;
+
+*/
