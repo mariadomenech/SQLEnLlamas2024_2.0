@@ -7,12 +7,12 @@
 SELECT 
 	CUSTOMER_ID CLIENTE, 
 	COUNT(DISTINCT VISITA) TOTAL_VISITA, 
-	COUNT(DISTINCT ORDER_DATE) TOTAL_VISITA_CON_COMPRA 
+	COUNT(DISTINCT FECHA_VISITA_CON_COMPRA) TOTAL_VISITA_CON_COMPRA 
 FROM(
 	SELECT 
 		A.CUSTOMER_ID, 
 		A.JOIN_DATE, 
-		B.ORDER_DATE VISITA_CON_COMPRA,
+		B.ORDER_DATE FECHA_VISITA_CON_COMPRA,
 		-- Visitas con compra y sin compra:
 			-- Como hay que contar las fechas en las que el cliente ha hecho una compra más la fecha en la que se inscribió, se construye un campo que aunará ambas fechas
 		CASE WHEN A.JOIN_DATE = B.ORDER_DATE OR A.JOIN_DATE <> B.ORDER_DATE THEN B.ORDER_DATE  	--> Si compra cuando se registra O si compra en una fecha distinta de cuando se registra, nos quedamos con la fecha de compra
