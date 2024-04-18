@@ -17,3 +17,4 @@ WHERE RANK = 1;
 
 
 //como aclaración se coje el producto con un menor id si existen productos con fechas de pedido similares ya que ambos se pidieron el mismo día
+// además muestro un null cuando no tiene productos en lugar de vacio
