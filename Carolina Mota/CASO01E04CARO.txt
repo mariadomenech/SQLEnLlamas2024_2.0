@@ -1,0 +1,29 @@
+
+SELECT TOP (1)
+	product_name,
+	COUNT(A.product_id) Nveces
+FROM case01.sales A
+INNER JOIN case01.menu B
+	ON(A.product_id=B.product_id)
+GROUP BY product_name
+ORDER BY COUNT(A.product_id) DESC
+;
+
+SELECT 
+	product_name,
+	COUNT(A.product_id) Nveces
+FROM case01.sales A
+INNER JOIN case01.menu B
+	ON(A.product_id=B.product_id)
+GROUP BY product_name
+HAVING 
+	COUNT(A.product_id) IN (
+				SELECT MAX(MX) 
+				FROM (
+					SELECT 
+					COUNT(product_id) MX
+					FROM case01.sales
+					GROUP BY product_id
+					) A
+				);
+
