@@ -1,0 +1,15 @@
+/*
+ * Para ordenar los pedidos por fecha ascendente seguiré los siguientes pasos:
+ * 	1. Crearé el campo ORDEN_PEDIDO a través de la función de ranking "ROW_NUMBER"
+ * 	2. Filtraré la query final por ORDEN_PEDIDO = 1 para quedarme con los primeros pedidos. 
+ * NOTA: En el paso 2 aplico el "ISNULL" sobre ORDEN_PEDIDO para no perder la traza de los clientes que nunca han comprado, en cuyo caso se indicará un "n/a"
+ * */
+SELECT 
+	A.CUSTOMER_ID CLIENTE, 
+	ISNULL(PRODUCT_NAME, 'n/a') PRIMER_PEDIDO
+FROM (SELECT CUSTOMER_ID FROM CASE01.CUSTOMERS) A
+LEFT JOIN (SELECT PRODUCT_ID, CUSTOMER_ID, ORDER_DATE, ROW_NUMBER() OVER(PARTITION BY CUSTOMER_ID ORDER BY ORDER_DATE) ORDEN_PEDIDO FROM CASE01.SALES) B ON A.CUSTOMER_ID = B.CUSTOMER_ID
+LEFT JOIN (SELECT PRODUCT_ID, PRODUCT_NAME FROM CASE01.MENU) C ON B.PRODUCT_ID = C.PRODUCT_ID 
+WHERE ISNULL(B.ORDEN_PEDIDO,1) = 1
+ORDER BY 1
+;
