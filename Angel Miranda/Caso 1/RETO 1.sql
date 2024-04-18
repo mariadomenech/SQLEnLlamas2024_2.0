@@ -6,3 +6,13 @@ FROM	CASE01.SALES A
 	RIGHT OUTER JOIN CASE01.CUSTOMERS C
 		ON A.CUSTOMER_ID=C.CUSTOMER_ID
 GROUP BY C.CUSTOMER_ID;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO!
+
+*/
