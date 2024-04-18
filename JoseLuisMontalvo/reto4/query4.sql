@@ -1,7 +1,7 @@
 /****** Cual es el producto más solicitado y el nº de veces solicitado ********/
 
 select Ranking.Producto_mas_solicitado
-      ,Numero_solicitudes from ( select men.product_name as Producto_mas_solicitado,
+      ,Ranking.Numero_solicitudes from ( select men.product_name as Producto_mas_solicitado,
                                                  count(*) as Numero_solicitudes,
 												 RANK() OVER (ORDER BY count(*) DESC) as Rango
 			                     from case01.sales sal
