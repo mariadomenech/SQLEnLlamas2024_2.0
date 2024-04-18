@@ -14,5 +14,5 @@ FROM (
 	JOIN case01.menu menu -- Entendemos que el plato más pedido tiene ventas, por eso no hacemos left con el menu
 		ON sales.product_id = menu.product_id
 	GROUP BY product_name
-	) principal
-WHERE ranking = 1 -- Filtramos para quedarnos con el primero
+	) principal -- query principal para obtener las ventas de los platos y su ranking
+WHERE ranking = 1 -- Filtramos para quedarnos con el primero (más vendido)
