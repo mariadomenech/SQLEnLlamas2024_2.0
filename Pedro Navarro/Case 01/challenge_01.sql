@@ -34,3 +34,21 @@ GROUP BY c.customer_id;
 
 SELECT *
 FROM TOTAL_SPENT_PER_TOTAL_CUSTOMER;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+
+Resultado: Correcto.
+
+Código: Correcto. Bien partiendo de la de customers para obtener a todos los clientes independientemente de si han comprado o no
+y bien tratado el uso de los nulos con ISNULL.
+
+Legibilidad: Perfecta. Da gusto leer código así.
+
+Muy buen trabajo, además, has querido presentar una solución más compleja lo cual está perfecto, aunque como estos primeros retos
+son muy sencillos, no hace falta complicar en exceso lo que ya es fácil de por si jeje.
+
+*/
