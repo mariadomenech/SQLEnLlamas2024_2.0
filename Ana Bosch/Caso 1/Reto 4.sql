@@ -15,4 +15,5 @@ where rank = 1
 order by 1 asc
 
 /* Esta solución tiene en cuenta los casos en los que varios productos tengan el mismo número de pedidos, 
-permitiendo que salgan como resultado de la consulta todos ellos */
+permitiendo que salgan como resultado de la consulta todos ellos. Teniendo en cuenta esos casos, se ordena
+la consulta por nombre de producto */
