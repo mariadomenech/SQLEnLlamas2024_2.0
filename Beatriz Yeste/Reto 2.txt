@@ -1,3 +1,9 @@
+/*
+ * Como no se especifica en el ejercicio qué es una visita, voy a crear dos campos:
+ * 	- TOTAL_VISITA: contará como visita tanto las fechas en que el cliente compra (order_date) como la fecha en que se suscribe (join_date)
+ * 	- TOTAL_VISITA_CON_COMPRA: contará como visita solo las fechas en que el cliente compra
+ * */
+
 SELECT 
 	CUSTOMER_ID CLIENTE, 
 	COUNT(DISTINCT VISITA) TOTAL_VISITA, 
@@ -6,11 +12,12 @@ FROM(
 	SELECT 
 		A.CUSTOMER_ID, 
 		A.JOIN_DATE, 
-		B.ORDER_DATE,
+		B.ORDER_DATE VISITA_CON_COMPRA,
 		-- Visitas con compra y sin compra:
 			-- Como hay que contar las fechas en las que el cliente ha hecho una compra más la fecha en la que se inscribió, se construye un campo que aunará ambas fechas
 		CASE WHEN A.JOIN_DATE = B.ORDER_DATE OR A.JOIN_DATE <> B.ORDER_DATE THEN B.ORDER_DATE  	--> Si compra cuando se registra O si compra en una fecha distinta de cuando se registra, nos quedamos con la fecha de compra
-			WHEN B.ORDER_DATE IS NULL THEN A.JOIN_DATE END VISITA 								--> Si se registra y no compra, nos quedamos con la fecha de cuando se registra para contabilizarlo como visita
+			WHEN B.ORDER_DATE IS NULL THEN A.JOIN_DATE 											--> Si se registra y no compra, nos quedamos con la fecha de cuando se registra para contabilizarlo como visita
+		END VISITA
 	FROM ( SELECT CUSTOMER_ID, JOIN_DATE FROM CASE01.CUSTOMERS ) A
 	LEFT JOIN ( SELECT CUSTOMER_ID, ORDER_DATE FROM CASE01.SALES ) B ON A.CUSTOMER_ID = B.CUSTOMER_ID
 ) VISITAS
