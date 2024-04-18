@@ -2,7 +2,7 @@ SELECT
 	c.customer_id,
         
 	COALESCE(m.product_name,
-        'SIN pedido') AS 'pedido'
+        'sin pedido') AS 'pedido'
 FROM case01.customers c
 LEFT
 JOIN (
