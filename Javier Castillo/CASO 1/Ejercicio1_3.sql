@@ -19,3 +19,16 @@ FROM PRODUCTOS_PEDIDOS
   WHERE RN = 1
 GROUP BY CLIENTE
 ORDER BY CLIENTE;
+
+
+/*
+Corrección Pablo: Todo perfecto.
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Buen uso de la función de ventana RANK() para obtener el primer producto pedido por el cliente (haya empate o no).
+Legibilidad: OK. El código es perfectamente legible, aunque podrías haber tabulado las columnas del select final.
+
+Además, me ha gustado que agrupes los productos de un mismo cliente mediante la función STRING_AGG.
+
+¡Enhorabuena!
+*/
