@@ -9,3 +9,15 @@ GROUP BY
     menu.product_name
 ORDER BY
     units_sold DESC;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto
+CÓDIGO: Correcto
+LEGIBILIDAD: Correcta
+
+Perfecto Jose!!!
+
+*/
