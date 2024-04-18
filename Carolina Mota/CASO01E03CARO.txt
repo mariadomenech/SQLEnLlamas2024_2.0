@@ -1,0 +1,18 @@
+SELECT
+	customer_id,
+	product_name 
+FROM
+	(SELECT 
+		customer_id,
+		product_id,
+		DENSE_RANK() OVER (partition by customer_id ORDER BY order_date) AS primero
+	FROM case01.sales 
+	GROUP BY 
+		customer_id,
+		order_date,
+		product_id
+	) A
+INNER JOIN case01.menu B
+	ON(A.product_id=B.product_id)
+WHERE primero=1
+ORDER BY customer_id;
