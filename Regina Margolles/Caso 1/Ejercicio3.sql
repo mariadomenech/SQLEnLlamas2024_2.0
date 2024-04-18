@@ -15,3 +15,13 @@
 		  ) as t 
 	where t.order_date = t.min_order_date or t.order_date is null
 	group by t.customer_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO!
+
+*/
