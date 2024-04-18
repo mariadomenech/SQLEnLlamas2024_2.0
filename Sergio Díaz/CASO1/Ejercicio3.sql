@@ -19,11 +19,11 @@ FROM (
 		GROUP BY customers.customer_id
 			,sales_detail.fecha_min
 		) B --Query para obtener min fecha por cliente
-	LEFT JOIN case01.sales A ON A.customer_id = B.DES_CLIENTE
+	LEFT JOIN case01.sales A ON A.customer_id = B.DES_CLIENTE --Join para obtener los productos en la primera fecha de cada cliente
 		AND A.order_date = B.primera_fecha
 	GROUP BY B.des_cliente
 		,A.product_id
-	) principal --Join para obtener los productos en la primera fecha de cada cliente
+	) principal 
 LEFT JOIN case01.menu --Join para obtener los nombres de los id de producto
 	ON menu.product_id = principal.id_producto
 GROUP BY principal.CLIENTE;
