@@ -40,3 +40,11 @@ GROUP BY A.CUSTOMER_ID
 ORDER BY 1
 ;
 
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Perfecto! Buen detalle agrupar los distintos resultados de un mismo cliente.
+
+*/
