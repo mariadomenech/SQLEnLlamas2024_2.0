@@ -16,3 +16,14 @@ INNER JOIN case01.menu B
 	ON(A.product_id=B.product_id)
 WHERE primero=1
 ORDER BY customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+El resultado es correcto, aunque se podría mejorar un poco la salida de la query usando la función string_agg:
+
+	STRING_AGG(product_name, ', ')
+
+*/
