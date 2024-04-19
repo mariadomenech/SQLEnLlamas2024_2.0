@@ -17,3 +17,15 @@ where rank = 1
 group by subselect.customer_id
 order by 1
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto, la idea del ejercicio era usar un RANK O DENSE_RANK y el STRING_AGG mas el tratamiento de los nulos y lo has tenido en cuenta
+así que genial.
+
+Personalmente prefiero las CTEs a las subconsultas, pero es algo totalmente subjetivo y, en casos sencillos como este, la legibilidad
+es la misma.
+
+*/
