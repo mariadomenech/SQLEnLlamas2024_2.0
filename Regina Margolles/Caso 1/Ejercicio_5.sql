@@ -18,5 +18,5 @@ from
 			left join case01.menu as m
 			  on s.product_id = m.product_id
 		group by c.customer_id, m.product_id, m.product_name, m.price
-		 ) as t
-		  )as t2;
+		) as t
+	)as t2;
