@@ -28,4 +28,4 @@ ON (sales.product_id = menu.product_id)
 RIGHT JOIN case01.customers customers
 ON (sales.customer_id = customers.customer_id)
 GROUP BY customers.customer_id
-ORDER BY total_chupipuntos DESC
+ORDER BY total_chupipuntos DESC;
