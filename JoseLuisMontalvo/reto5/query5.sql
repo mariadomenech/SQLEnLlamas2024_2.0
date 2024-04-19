@@ -11,14 +11,13 @@
    set @productomultiplicador = 1 ;  --- Producto multiplicador el sushi
 
    select Cliente,    
-         sum(Puntos) as Puntos_totales from (
-									        select cust.customer_id as Cliente,
-														case when sal.product_id=@productomultiplicador then sum(isnull(men.price,0) * @puntosxeuros * @multiplicadorx2)  
-															  else sum(isnull(men.price,0) * @puntosxeuros )   
-														end as Puntos
-											 from case01.customers cust
-												 left join case01.sales sal on sal.customer_id=cust.customer_id
-												 left join case01.menu men on men.product_id=sal.product_id
-									         group by cust.customer_id ,sal.product_id)
-                                            as Calcula_Puntos
+         sum(Puntos) as Puntos_totales
+	   from (select cust.customer_id as Cliente,
+			case when sal.product_id=@productomultiplicador then sum(isnull(men.price,0) * @puntosxeuros * @multiplicadorx2)  
+			  else sum(isnull(men.price,0) * @puntosxeuros )   
+			end as Puntos
+		 from case01.customers cust
+		      left join case01.sales sal on sal.customer_id=cust.customer_id
+		      left join case01.menu men on men.product_id=sal.product_id
+		      group by cust.customer_id ,sal.product_id) as Calcula_Puntos
 group by Cliente;
