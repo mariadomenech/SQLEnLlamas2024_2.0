@@ -1,9 +1,9 @@
 Select 
          distinct(t2.customer_id),
-		     SUM(ISNULL(t2.semi_total_points,0)) over (partition by t2.customer_id) as total_points
+	 SUM(ISNULL(t2.semi_total_points,0)) over (partition by t2.customer_id) as total_points
 from
 	(Select  t.customer_id,
-			case when t.product_id = 1 then t.product_type_number*price*2*10 else t.product_type_number*price* 10 end as semi_total_points
+		case when t.product_id = 1 then t.product_type_number*price*2*10 else t.product_type_number*price* 10 end as semi_total_points
 	from   
 		(Select 
 			 c.customer_id,
