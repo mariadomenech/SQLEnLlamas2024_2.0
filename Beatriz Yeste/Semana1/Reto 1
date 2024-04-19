@@ -5,3 +5,23 @@ LEFT JOIN (SELECT PRODUCT_ID, PRICE FROM CASE01.MENU) C ON B.PRODUCT_ID = C.PROD
 GROUP BY A.CUSTOMER_ID 
 ORDER BY 1
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! Se podría mejorar un poco la legibilidad del código, separando los campos del select y las condiciones de los cruces:
+
+    SELECT 
+          A.CUSTOMER_ID CLIENTE
+        , ISNULL(SUM(C.PRICE),0) GASTO_TOTAL
+    FROM (SELECT CUSTOMER_ID FROM CASE01.CUSTOMERS) A
+    LEFT JOIN (SELECT PRODUCT_ID, CUSTOMER_ID FROM CASE01.SALES) B 
+        ON A.CUSTOMER_ID = B.CUSTOMER_ID
+    LEFT JOIN (SELECT PRODUCT_ID, PRICE FROM CASE01.MENU) C 
+        ON B.PRODUCT_ID = C.PRODUCT_ID 
+    GROUP BY A.CUSTOMER_ID 
+    ORDER BY 1
+
+*/
