@@ -19,6 +19,6 @@ sin embargo mejoraría un poco la legibilidad. Ten en cuenta que cuando hacemos
 varios agregados o directamente seleccionamos varios atributos en la misma línea 
 dificultamos la interpretación y lectura del código y eso nos puede presentar 
 problemas a la hora de detectar posibles errores, aunque sean sintácticos. 
-Te animo a usar IFF en casos de casuísticas sencillas, CASE lo podemos usar a la
+Te animo a usar IIF en casos de casuísticas sencillas, CASE lo podemos usar a la
 hora tener diferentes condicionantes o una única casuística mas compleja. 
 Ánimo Ismael, sé que puedes, a por todas!*/
