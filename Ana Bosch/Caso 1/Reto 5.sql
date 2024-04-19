@@ -12,3 +12,14 @@ left join case01.menu menu
 	on sales.product_id = menu.product_id
 group by customers.customer_id
 order by 2 desc
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Corectísimo. Nada que añadir en ningún apartado, este era más fácil incluso que el de ayer.
+La semana que viene empieza lo divertido y tengo ganas de ver tus soluciones :)
+Gracias por dedicarle tu tiempo y llevarlo al día, mucho ánimo con los siguientes y a disfrutarlo!!
+
+*/
