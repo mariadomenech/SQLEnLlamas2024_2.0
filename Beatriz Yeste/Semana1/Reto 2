@@ -37,3 +37,12 @@ FROM (
 GROUP BY CUSTOMER_ID 
 ORDER BY 2 DESC
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! Buen detalle el añadir al resultado ambos puntos de vista (visitas con y sin comprar).
+
+*/
