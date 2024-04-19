@@ -27,3 +27,30 @@ El resultado es correcto, aunque se podría mejorar un poco la salida de la quer
 	STRING_AGG(product_name, ', ')
 
 */
+/*********************************************************/
+/***************** CORREGIDO *********************/
+/*********************************************************/
+/*
+SELECT
+	customer_id,
+	ISNULL(STRING_AGG(product_name, ', '),'nada')AS productos
+FROM
+	(SELECT 
+		C.customer_id,
+		product_id,
+		DENSE_RANK() OVER (partition by C.customer_id ORDER BY order_date) AS primero
+	FROM case01.sales A
+	RIGHT JOIN case01.customers C
+	ON(A.customer_id=C.customer_id)
+	GROUP BY 
+		C.customer_id,
+		order_date,
+		product_id
+	) A
+LEFT JOIN case01.menu B
+	ON(A.product_id=B.product_id)
+WHERE primero=1
+GROUP BY customer_id
+ORDER BY customer_id;
+*/
+
