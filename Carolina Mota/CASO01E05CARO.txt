@@ -15,3 +15,12 @@ RIGHT JOIN case01.customers C
 	ON(A.customer_id=C.customer_id)
 GROUP BY C.customer_id
 ORDER BY C.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
