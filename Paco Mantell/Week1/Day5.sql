@@ -16,3 +16,19 @@ LEFT JOIN case01.menu C
 GROUP BY A.customer_id, C.product_name) A
 GROUP BY customer_id
 ORDER BY total_points DESC
+
+
+/*************************************/
+/*********COMENTARIO DANI*************/
+/*************************************/
+/*Resultado incorrecto, el sushi como producto otorga el doble de puntos
+que el resto, para calcular dichos puntos tenemos que tener en cuenta que
+cada euro gastado equivale a diez puntos (por ahí ya tenemos indicadores) y
+luego en el caso del sushi esos puntos se duplican. En tus resultados 
+obtenemos unas cifras mas bajas de lo esperado, además tanto el cliente 
+A como B tienen ambos los mismos puntos, así como chivatillo te digo
+que tienen cifras distintas. Te animo a que le des un par de vueltas y me 
+pongas la corrección mas abajo de este comentario, además también te animo 
+a que lo intentes hacer usando una CTE en vez de subconsulta, al final
+las CTE nos dan muchísimas ventajas frente a las subconsultas. Ánimo Paco, sé 
+que puedes con esto y con mucho mas! a por todas!!*/
