@@ -27,3 +27,12 @@ JOIN case01.sales s
 LEFT
 JOIN case01.menu m
     ON FirstProducts.product_id = m.product_id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+El resultado no es del todo correcto, ya que al quedarte con el MIN del producto, no sacas posibles empates. La forma más sencilla de sacarlo es mediantes la funcion RANK(), échale un vistazo!
+
+*/
