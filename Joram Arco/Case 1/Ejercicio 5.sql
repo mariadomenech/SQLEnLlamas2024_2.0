@@ -16,3 +16,16 @@ FROM (
 	) consulta
 GROUP BY customer_id
 ORDER BY total_chupipuntos DESC;
+
+
+/* Otra forma de obtener el mismo resultado con menor código */
+SELECT
+	customers.customer_id,
+	COALESCE(SUM(menu.price * CASE WHEN sales.product_id = 1 THEN 20 ELSE 10 end), 0) as total_chupipuntos
+FROM case01.sales sales
+JOIN case01.menu menu
+ON (sales.product_id = menu.product_id)
+RIGHT JOIN case01.customers customers
+ON (sales.customer_id = customers.customer_id)
+GROUP BY customers.customer_id
+ORDER BY total_chupipuntos DESC
