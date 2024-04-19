@@ -9,3 +9,16 @@ LEFT JOIN
     case01.menu m ON m.PRODUCT_ID = s.PRODUCT_ID
 GROUP BY 
     c.CUSTOMER_ID;
+
+
+/***********************************/
+/********COMENTARIO DANI************/
+/***********************************/
+/* Resultado correcto, buen manejo de nulos usando COALESCE, buen manejo de lógica,
+sin embargo mejoraría un poco la legibilidad. Ten en cuenta que cuando hacemos
+varios agregados o directamente seleccionamos varios atributos en la misma línea 
+dificultamos la interpretación y lectura del código y eso nos puede presentar 
+problemas a la hora de detectar posibles errores, aunque sean sintácticos. 
+Te animo a usar IFF en casos de casuísticas sencillas, CASE lo podemos usar a la
+hora tener diferentes condicionantes o una única casuística mas compleja. 
+Ánimo Ismael, sé que puedes, a por todas!*/
