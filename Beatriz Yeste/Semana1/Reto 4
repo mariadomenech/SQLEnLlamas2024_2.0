@@ -1,0 +1,19 @@
+SELECT concat('El producto más vendido es: ', UPPER(PRODUCT_NAME), ', que ha sido pedido ', NUM_PEDIDOS, ' veces') "¿Cuál es el producto más vendido?"
+FROM(
+	SELECT  MAX(PRODUCT_ID) PRODUCTOS, MAX(CUENTA_PRODUCTOS) NUM_PEDIDOS
+	FROM (
+		SELECT 
+			PRODUCT_ID,
+			COUNT(PRODUCT_ID) CUENTA_PRODUCTOS
+		FROM CASE01.SALES
+		GROUP BY PRODUCT_ID
+	) X
+)A
+INNER JOIN (
+			SELECT 
+				PRODUCT_ID, 
+				PRODUCT_NAME 
+			FROM CASE01.MENU
+			) B 
+	ON A.PRODUCTOS = B.PRODUCT_ID 
+;
