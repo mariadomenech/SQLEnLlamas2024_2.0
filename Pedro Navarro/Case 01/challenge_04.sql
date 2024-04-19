@@ -1,5 +1,5 @@
 -- RETO 4. ¿CUÁL ES EL PRODUCTO MÁS PEDIDO DEL MENÚ Y CUANTAS VECES HA SIDO PEDIDO?
--- SOLUCIÓN 1: DOS CTES USANDO TOP-COUNT
+-- SOLUCIÓN 1: DOS CTES USANDO TOP-COUNT (registra más de un producto vendido)
 ;WITH
 
 	MAX_SALES_VALUE AS (
@@ -7,8 +7,7 @@
 			COUNT(product_id) AS max_total_sales
 		FROM SQL_EN_LLAMAS_ALUMNOS.case01.sales
 		GROUP BY product_id
-		ORDER BY COUNT(product_id) DESC
-
+		ORDER BY max_total_sales
 	)
 
 	,MOST_SELLED_PRODUCTS AS (
@@ -20,7 +19,6 @@
 			ON s.product_id = m.product_id
 		GROUP BY m.product_name
 		HAVING COUNT(m.product_name) = (SELECT max_total_sales FROM MAX_SALES_VALUE)
-
 	)
 
 SELECT *
@@ -40,7 +38,6 @@ FROM MOST_SELLED_PRODUCTS;
 		LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case01.menu AS m
 			ON s.product_id = m.product_id
 		GROUP BY m.product_name
-
 	)
 
 	,MOST_SELLED_PRODUCTS AS (
@@ -49,7 +46,6 @@ FROM MOST_SELLED_PRODUCTS;
 			,total_sales
 		FROM PRODUCT_SALES_DESC_RANKING
 		WHERE max_total_sales = 1
-
 	)
 
 SELECT *
