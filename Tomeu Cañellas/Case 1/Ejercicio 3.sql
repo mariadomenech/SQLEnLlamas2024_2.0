@@ -15,3 +15,15 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] menu
 	ON part.product_id = menu.product_id
 WHERE part.ranking = 1 -- Filtramos solo los primeros pedidos de cada cliente en la subconsulta 'part'
 GROUP BY part.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto, el uso del STRING_AGG, el tratamiento de nulos y la limpieza.
+Personalmente prefiero el uso de CTEs a subconsultas, pero es totalmente subjetivo, y en casos sencillos como este la legibilidad es la misma
+pero lo dicho, sigue estando igual de bien.
+Ánimo con el siguiente! :)
+
+*/
