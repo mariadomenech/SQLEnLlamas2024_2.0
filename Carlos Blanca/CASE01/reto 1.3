@@ -12,3 +12,14 @@ LEFT OUTER JOIN /*con este outer join sacamos el cliente D que no ha ido nunca a
 		WHERE S.PRODUCT_ID = M.PRODUCT_ID
     ) AS SQ 
 	ON C.CUSTOMER_ID = SQ.CUSTOMER_ID AND SQ.ROWNUMBER = 1; /*filtramos por el rownumber=1 que es el producto mas antiguo que pidio el cliente (el primero)*/
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+El resultado no es del todo correcto, ya que al hacer uso de ROW_NUMBER() no puedes identificar empates. En este caso, usando RANK() sacamos para el cliente A los productos sushi y curry.
+
+A modo de detalle, al tener varios productos para un mismo cliente podemos agrupar esos resultados con la funcion STRING_AGG.
+
+*/
