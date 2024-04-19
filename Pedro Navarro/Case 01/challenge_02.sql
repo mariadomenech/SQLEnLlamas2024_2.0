@@ -32,3 +32,11 @@ GROUP BY c.customer_id;
 
 SELECT *
 FROM TOTAL_DAYS_VISITED_PER_TOTAL_CUSTOMER;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+Perfecto Pedro! A seguir así!
+*/
