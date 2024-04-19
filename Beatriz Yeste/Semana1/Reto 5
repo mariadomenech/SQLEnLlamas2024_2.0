@@ -1,0 +1,43 @@
+/*
+ *  1 - Obtener el gasto de cada cliente (producto - pago) y calcular los puntos asociados. La información de los puntos se almacenará en el campo NUM_PUNTOS
+ *  2 - Agrupar por cliente los puntos totales
+*/
+SELECT 
+	CUSTOMER_ID "Cliente",
+	ISNULL(SUM(NUM_PUNTOS),0) "Puntos acumulados:"
+FROM(
+SELECT 
+	A.CUSTOMER_ID,
+	C.PRODUCT_NAME,
+	SUM(PRICE) IMP_PAGADO,
+	CASE WHEN C.PRODUCT_ID = 1 THEN SUM(C.PRICE)*20
+		ELSE SUM(C.PRICE)* 10 END NUM_PUNTOS
+FROM (
+	SELECT 
+		CUSTOMER_ID, 
+		JOIN_DATE
+	FROM CASE01.CUSTOMERS
+		) A
+LEFT JOIN (
+			SELECT 
+				PRODUCT_ID, 
+				CUSTOMER_ID 
+			FROM CASE01.SALES
+		) B 
+	ON A.CUSTOMER_ID = B.CUSTOMER_ID
+LEFT JOIN (
+			SELECT 
+				PRODUCT_ID,
+				PRODUCT_NAME,
+				PRICE 
+			FROM CASE01.MENU
+		) C 
+	ON B.PRODUCT_ID = C.PRODUCT_ID 
+GROUP BY 
+	A.CUSTOMER_ID,
+	C.PRODUCT_NAME,
+	C.PRODUCT_ID
+) PUNTOS
+GROUP BY CUSTOMER_ID
+ORDER BY 1
+;
