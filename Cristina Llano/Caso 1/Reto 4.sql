@@ -51,3 +51,19 @@ FROM
 	GROUP BY  menu.product_name
 ) base
 WHERE ventas=1;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Resultado correcto, enhorabuena Cristina!
+
+Resultado: OK
+Código: En este caso la opciones más correcta es la opción 1 y 2.2 (el uso de RANK sería correto porque proporciona el mismo valor numérico para valores equivalentes)
+	ya que de esta forma se identifican los empates; sin embargo, con la opción TOP solo nos quedamos con el primer resultado y no sabemos si hay empates o no entre productos más pedidos.
+Legibilidad: OK. 
+
+
+*/
