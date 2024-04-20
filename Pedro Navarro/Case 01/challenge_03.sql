@@ -63,3 +63,19 @@ FROM FIRST_PRODUCTS_PER_TOTAL_CUSTOMERS;
 
 SELECT *
 FROM FIRST_PRODUCTS_PER_TOTAL_CUSTOMERS;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+Todo perfecto Pedro! 
+
+La idea es que se usara RANK() o DENSE_RANK() para tratar los empates 
+como en el caso del cliente A y usar STRING_AGG para mostrar la salida de una forma más limpia.
+
+Esta primera semana son bastante sencillos los retos y algo me dice que tienes experiencia con SQL jeje.
+
+Poco más te puedo decir, a seguir así!
+
+*/
