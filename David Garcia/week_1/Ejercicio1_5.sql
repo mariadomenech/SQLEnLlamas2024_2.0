@@ -16,3 +16,15 @@ from(
 ) as puntos_compra
 group by customer_id
 
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Todo correcto, enhorabuenaa!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK. 
+
+*/
