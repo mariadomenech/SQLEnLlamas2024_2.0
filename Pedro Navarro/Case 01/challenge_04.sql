@@ -50,3 +50,15 @@ FROM MOST_SELLED_PRODUCTS;
 
 SELECT *
 FROM MOST_SELLED_PRODUCTS;
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+Genial el aportar dos soluciones diferentes, pero cuidado:
+Mientras que la solución 2 si da el resultado correcto, la primera da justo lo contrario 
+y es que estoy seguro de que ha sido un pequeño despiste, faltaría que el order by max_total_sales
+fuera descendiente ya que por defecto es ascendente.
+
+Quitando ese pequeño despiste, todo genial como siempre, a seguir así!
+*/
