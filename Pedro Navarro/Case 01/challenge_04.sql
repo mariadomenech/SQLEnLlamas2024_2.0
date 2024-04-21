@@ -7,7 +7,7 @@
 			COUNT(product_id) AS max_total_sales
 		FROM SQL_EN_LLAMAS_ALUMNOS.case01.sales
 		GROUP BY product_id
-		ORDER BY max_total_sales
+		ORDER BY max_total_sales DESC
 	)
 
 	,MOST_SELLED_PRODUCTS AS (
@@ -61,4 +61,10 @@ y es que estoy seguro de que ha sido un pequeño despiste, faltaría que el orde
 fuera descendiente ya que por defecto es ascendente.
 
 Quitando ese pequeño despiste, todo genial como siempre, a seguir así!
+*/
+
+/*
+Tienes razón, Manu! Ya he corregido el despiste. Muchas gracias!
+El caso es que tenía puesto "ORDER BY COUNT(product_id) DESC" (lo puedes comprobar en la primera versión del archivo),
+lo cambié para que fuese con el alias "ORDER BY max_total_sales" y se me pasó ponerle el DESC.
 */
