@@ -47,6 +47,10 @@ ORDER BY 1
 /*********************************************************/
 /*
 
-Resultado correcto! A modo de detalle, el campo IMP_PAGADO no se utiliza en ningún punto del código, por lo que te lo podrías ahorrar.
+Resultado correcto! A modo de detalle:
+
+- El campo IMP_PAGADO no se utiliza en ningún punto del código, por lo que te lo podrías ahorrar.
+- Los joins al no hacer ninguna transformación sobre los campos de la tabla puedes sacar la tabla sin más y así evitas extender el código (aunque si es verdad que, en tablas extensas, no viene mal limitar 
+  lo que tomamos de ellas).
 
 */
