@@ -1,0 +1,5 @@
+--Ejercicio 2 - ¿CUANTOS DÍAS HA VISITADO EL RESTAURANTE CADA CLIENTE?
+
+select cus.customer_id, count (DISTINCT order_date) as Dias_visitados from case01.customers cus
+		left join case01.sales sal on cus.customer_id = sal.customer_id
+group by cus.customer_id;
