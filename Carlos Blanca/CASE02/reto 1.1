@@ -1,0 +1,15 @@
+SELECT RO.RUNNER_ID
+      ,SUM(CASE 
+              WHEN TRY_CAST(REPLACE(REPLACE(ro.distance, ' ', ''), 'km', '') AS FLOAT) IS NOT NULL 
+              THEN TRY_CAST(REPLACE(REPLACE(ro.distance, ' ', ''), 'km', '') AS FLOAT)
+              ELSE 0
+           END) AS DISTANCIA_ACUMULADA_POR_RUNNER
+      ,CAST(AVG(CASE 
+              WHEN TRY_CAST(REPLACE(REPLACE(ro.distance, ' ', ''), 'km', '') AS FLOAT) IS NOT NULL 
+                   AND TRY_CAST(REPLACE(REPLACE(ro.duration, ' ', ''), 'minutes', '') AS FLOAT) IS NOT NULL
+              THEN TRY_CAST(REPLACE(REPLACE(ro.distance, ' ', ''), 'km', '') AS FLOAT) /           --KM LOS DIVIDIMOS ENTRE RESULTADO DE
+			     ((TRY_CAST(REPLACE(REPLACE(ro.duration, ' ', ''), 'minutes', '') AS FLOAT) / 60)) --MINUTOS / 60 PARA PASARLOS A HORAS
+              ELSE NULL
+           END) AS DECIMAL(5,2)) AS MEDIA_VELOCIDAD_KMH
+FROM SQL_EN_LLAMAS_ALUMNOS.CASE02.RUNNER_ORDERS RO
+GROUP BY RO.RUNNER_ID;
