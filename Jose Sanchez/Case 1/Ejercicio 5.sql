@@ -18,3 +18,16 @@ FROM
         LEFT JOIN CTE ON CTE.customer_id = customers.customer_id
 GROUP BY
         customers.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto
+CÓDIGO: Correcto --> No sabía yo que se podía hacer ese "=" en el select, pero algo que he aprendido hoy jeje.
+                        No obstante, creo que sería mejor que si durante todo el código usas "as", mantengas ese formato.
+LEGIBILIDAD: Correcta
+
+Perfecto Jose!!!
+
+*/
