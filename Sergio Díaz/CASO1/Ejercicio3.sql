@@ -27,3 +27,17 @@ FROM (
 LEFT JOIN case01.menu --Join para obtener los nombres de los id de producto
 	ON menu.product_id = principal.id_producto
 GROUP BY principal.CLIENTE;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO! También se podría haber hecho por medio de un RANK() ordenando por la fecha de pedido.
+
+En cuanto a las tabulaciones y salto de líneas de las condiciones ON, me resultan más legibles si les añades un salto de línea. Pero esto es personal.
+
+Me gusta que hayas trabajado en la limpieza del resultado final con una función para poder poner la primera letra de cada palabra en mayúsculas.
+
+*/
