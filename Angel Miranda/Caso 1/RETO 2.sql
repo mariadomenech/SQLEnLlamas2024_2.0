@@ -6,3 +6,15 @@ FROM	CASE01.CUSTOMERS A
 	LEFT OUTER JOIN CASE01.MENU C
 		ON B.PRODUCT_ID=C.PRODUCT_ID
 GROUP BY A.CUSTOMER_ID;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+Guay! Aunque el último LEFT JOIN es prescindible. 
+En una base de datos con una volumetría tan pobre como la que estamos trabajando no tiene impacto en la CPU, 
+pero pensando en optimizar el código lo quitaría.
+
+*/
