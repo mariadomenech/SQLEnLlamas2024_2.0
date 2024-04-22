@@ -12,3 +12,13 @@ SELECT
 FROM TABLA_PEDIDOS A
 JOIN CASE01.MENU B ON A.PRODUCT_ID = B.PRODUCT_ID
 WHERE ORDEN = 1;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO! Con el RANK tienes en cuenta posibles empates.
+
+*/
