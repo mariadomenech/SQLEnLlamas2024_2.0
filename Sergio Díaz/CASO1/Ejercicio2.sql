@@ -13,3 +13,13 @@ GROUP BY
    A.customer_id
 ORDER BY 
    TOTAL_DIAS DESC; --Ordenamos por numero de dias desc
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+Perfecto!
+
+*/
