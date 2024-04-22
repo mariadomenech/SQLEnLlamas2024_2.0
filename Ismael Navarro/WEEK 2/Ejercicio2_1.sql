@@ -17,7 +17,9 @@ RunnerOrdersWithSpeed AS (
         COALESCE(SUM(cleaned_distance), 0) as total_distance,
         SUM(cleaned_duration) as total_hours,
 		-- si cleaned_duration es mayor que 0 se divide, sino se toma como NULL
-        AVG(CASE WHEN cleaned_duration > 0 THEN cleaned_distance/cleaned_duration ELSE NULL END) as avg_speed_km_h
+        AVG(CASE WHEN cleaned_duration > 0 
+		THEN cleaned_distance/cleaned_duration 
+		ELSE NULL END) as avg_speed_km_h
     FROM CleanedRunnerOrders
     GROUP BY runner_id
 )
