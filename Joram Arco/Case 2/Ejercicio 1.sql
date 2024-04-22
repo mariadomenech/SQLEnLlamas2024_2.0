@@ -1,4 +1,4 @@
-WITH runner_orders AS(
+WITH runner_orders_temp AS(
 	SELECT
 		runner_id,
 		order_id,
@@ -16,7 +16,7 @@ SELECT
 	COALESCE(SUM(distance),0) as distancia_acumulada_km, --Evitamos los nulos poniendo un 0 en su lugar
 	ROUND(COALESCE(AVG( CASE WHEN duration > 0 THEN distance/duration
 						ELSE NULL END), 0), 4) as velocidad_promedio_km_h --Redondeamos a 4 decimales y evitamos la división por 0
-FROM runner_orders runner_orders
+FROM runner_orders_temp runner_orders
 RIGHT JOIN case02.runners runners
 		ON (runner_orders.runner_id = runners.runner_id)
 
