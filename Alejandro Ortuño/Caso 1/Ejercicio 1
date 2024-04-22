@@ -4,3 +4,25 @@ select cus.customer_id, isnull(sum(price),0) as Total_Price from case01.customer
 		left join case01.sales sal on cus.customer_id = sal.customer_id
 		left join case01.menu men on sal.product_id = men.product_id
 group by cus.customer_id;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+El resultado es correcto y el código también está perfecto pero la legibilidad creo que se podría mejorar. Si tienes varios campos
+en el SELECT intenta que no vayan en la misma linea para poder tener bien controlados cuales y cuántos son, sus alias en caso de tenerlos, etc.
+Y con el FROM algo parecido, cada tabla en una linea y el ON de cada JOIN indentado. Te pongo un ejemplo de cómo lo haría yo para darle mejor
+legibilidad:
+
+select cus.customer_id, 
+	isnull(sum(price),0) as Total_Price 
+from case01.customers cus
+left join case01.sales sal 
+	on cus.customer_id = sal.customer_id
+left join case01.menu men 
+	on sal.product_id = men.product_id
+group by cus.customer_id;
+
+Aún así está genial y me alegro de que hayas podido empezar con el reto. Mucho ánimo con los siguientes! :)
+
+*/
