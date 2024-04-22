@@ -13,3 +13,11 @@ LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case01.sales AS s
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case01.menu AS m
 	ON s.product_id = m.product_id
 GROUP BY c.customer_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+Todo perfecto, enhorabuena! A por el CASO 2!
+*/
