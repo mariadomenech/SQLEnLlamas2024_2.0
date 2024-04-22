@@ -17,3 +17,12 @@ INNER JOIN (
 			) B 
 	ON A.PRODUCTOS = B.PRODUCT_ID 
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! Tambien podría resolverse haciendo uso de la funcion RANK().
+
+*/
