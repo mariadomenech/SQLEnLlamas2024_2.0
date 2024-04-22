@@ -41,3 +41,12 @@ GROUP BY
 GROUP BY CUSTOMER_ID
 ORDER BY 1
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! A modo de detalle, el campo IMP_PAGADO no se utiliza en ningún punto del código, por lo que te lo podrías ahorrar.
+
+*/
