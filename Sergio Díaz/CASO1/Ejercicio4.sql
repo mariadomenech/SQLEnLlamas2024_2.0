@@ -16,3 +16,13 @@ FROM (
 	GROUP BY product_name
 	) principal -- query principal para obtener las ventas de los platos y su ranking
 WHERE ranking = 1 -- Filtramos para quedarnos con el primero (más vendido)
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO! Con el RANK tienes en cuenta posibles empates.
+
+*/
