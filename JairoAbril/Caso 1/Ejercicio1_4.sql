@@ -18,3 +18,14 @@ SELECT
     Num_Pedidos_Totales
 FROM Ranking_Productos 
 WHERE Ranking = 1;
+
+/*
+Corrección Pablo: Todo perfecto.
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Buen uso de la función de ventana RANK() para obtener el producto más vendido (haya empate o no), aunque podrías 
+haberte ahorrado una CTE aplicando el RANK() directamente en la primera con ORDER BY COUNT(*) DESC dentro de la función de ventana.
+Legibilidad: OK. El código es perfectamente legible..
+
+¡Enhorabuena!
+*/
