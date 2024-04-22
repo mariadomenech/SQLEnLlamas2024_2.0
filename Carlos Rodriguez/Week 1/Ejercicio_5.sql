@@ -14,3 +14,12 @@ LEFT JOIN (
 ) AS AUX ON AUX.CUSTOMER_ID = C.CUSTOMER_ID
 GROUP BY C.CUSTOMER_ID
 ORDER BY C.CUSTOMER_ID;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
