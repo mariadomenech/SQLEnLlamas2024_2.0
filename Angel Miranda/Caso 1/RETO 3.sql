@@ -14,3 +14,13 @@ SELECT
 FROM TABLA_ORDENES
 WHERE ORDEN = 1
 GROUP BY CUSTOMER_ID
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO! Me gusta que hayas recuqrrido a un RANK(), queda más simplificado el código que por subconsulta.
+
+*/
