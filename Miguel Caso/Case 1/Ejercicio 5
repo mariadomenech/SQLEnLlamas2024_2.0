@@ -1,9 +1,0 @@
-WITH dinero_gastado AS (
-    SELECT s.customer_id, m.product_name, CASE m.product_name WHEN 'sushi' THEN m.price * 20 ELSE m.price * 10 END AS puntos
-    FROM SQL_EN_LLAMAS.CASE01.SALES s
-    JOIN SQL_EN_LLAMAS.CASE01.MENU m ON s.product_id = m.product_id)
-SELECT c.customer_id, COALESCE(SUM (puntos),0)
-    FROM CASE01.CUSTOMERS c
-    LEFT JOIN dinero_gastado d ON c.customer_id  = d.customer_id
-    GROUP BY c.customer_id;
-
