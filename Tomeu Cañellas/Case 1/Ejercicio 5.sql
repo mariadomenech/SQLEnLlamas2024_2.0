@@ -3,7 +3,7 @@ SELECT  customers.customer_id,
         --Aplicamos la lógica de puntos, si es NULL sustituimos por 0
         SUM(
             ISNULL(CASE WHEN menu.product_id = 1 THEN menu.price * 2 * 10
-	                    ELSE menu.price * 10 END, 0)
+	                ELSE menu.price * 10 END, 0)
             ) AS total_points		
 from [SQL_EN_LLAMAS_ALUMNOS].[case01].[customers] customers
 --Usamos LEFT JOIN para incluir los clientes sin ningún pedido
