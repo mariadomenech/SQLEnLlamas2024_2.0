@@ -22,3 +22,22 @@ FROM
 		ON VE.PRODUCT_ID = ME.PRODUCT_ID) T_2
 GROUP BY T_2.CLIENTE
 ORDER BY T_2.CLIENTE;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO! También se podría haber hecho por medio de un RANK() ordenando por la fecha de pedido.
+
+En cuanto a las tabulaciones de la línea 16 a 22 las editaría un poco para una mejor legibilidad:
+
+			ON T_1.CLIENTE = VE.CUSTOMER_ID
+			AND T_1.PRIMERA_FECHA = VE.ORDER_DATE
+		RIGHT JOIN [CASE01].[CUSTOMERS] CLI
+			ON T_1.CLIENTE = CLI.CUSTOMER_ID 
+		LEFT JOIN [CASE01].[MENU] ME
+			ON VE.PRODUCT_ID = ME.PRODUCT_ID) T_2
+
+*/
