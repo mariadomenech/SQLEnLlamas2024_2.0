@@ -6,3 +6,18 @@ FROM [CASE01].[SALES] VE
 	ON VE.PRODUCT_ID = ME.PRODUCT_ID
 GROUP BY ME.PRODUCT_NAME
 ORDER BY PEDIDOS DESC;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+
+/* 
+
+Resultado OK!
+
+Como consejo: El top 1 solo te va a devolver un único resultado o línea, ¿qué ocurre si existe empate en el número de veces pedido dos productos? 
+Habría que usar la función RANK(), que si para una misma partición, dos valores son iguales al ordenarlos, tienen el mismo rango o número y 
+nos permite sacar más de un producto en caso de empate.
+
+*/
