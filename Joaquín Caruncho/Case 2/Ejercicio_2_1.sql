@@ -20,8 +20,8 @@ from
 			, a.order_id
 			, cast (replace(a.distance, 'km','') as decimal (16,4)) as distancia
 			,cast(coalesce(trim(replace(replace (replace(a.duration, 'minutes',''),'mins',''), 'minute','')   ),0)as float) /60 as  duracion_horas
-			,cast(coalesce(trim(replace(replace (replace(a.duration, 'minutes',''),'mins',''), 'minute','')   ),0)as float)  as  duracion_min
-			, duration
+			
+			
 
 		FROM 
 			CASE02.runners r
@@ -40,3 +40,4 @@ group by a.runner_id, order_id
 )a
 group by a.runner_id
 order by a.runner_id;
+
