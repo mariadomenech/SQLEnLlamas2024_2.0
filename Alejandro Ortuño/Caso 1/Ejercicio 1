@@ -1,4 +1,4 @@
-Ejercicio 1 - ¿CUÁNTO HA GASTADO EN TOTAL CADA CLIENTE EN EL RESTAURANTE?
+--Ejercicio 1 - ¿CUÁNTO HA GASTADO EN TOTAL CADA CLIENTE EN EL RESTAURANTE?
 
 select cus.customer_id, isnull(sum(price),0) as Total_Price from case01.customers cus
 		left join case01.sales sal on cus.customer_id = sal.customer_id
