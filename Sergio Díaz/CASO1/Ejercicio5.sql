@@ -13,3 +13,13 @@ LEFT JOIN case01.sales SALES ON CUSTOMERS.customer_id = SALES.customer_id --Left
 LEFT JOIN case01.menu MENU 
 	ON SALES.product_id = MENU.product_id 
 GROUP BY CUSTOMERS.customer_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/* 
+
+PERFECTO!
+
+*/
