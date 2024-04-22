@@ -3,3 +3,25 @@
 select cus.customer_id, count (DISTINCT order_date) as Dias_visitados from case01.customers cus
 		left join case01.sales sal on cus.customer_id = sal.customer_id
 group by cus.customer_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+La solución es correcta y el código también. El punto del ejercicio era contar las fechas distintas y agrupar por customer
+así que todo perfecto. Bien también el uso de alias. 
+En cuanto a la legibilidad te diría lo mismo que en el ejercicio 1, separar los campos del SELECT y ordenar un poco las tablas 
+del FROM e indentar la unión entre ellas:
+
+select cus.customer_id, 
+	count (DISTINCT order_date) as Dias_visitados 
+from case01.customers cus
+left join case01.sales sal 
+	on cus.customer_id = sal.customer_id
+group by cus.customer_id;
+
+Mucho ánimo con los siguientes!!
+
+*/
