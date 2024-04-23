@@ -16,3 +16,16 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] menu
 GROUP BY customers.customer_id
 --Ordenamos por cliente
 ORDER BY 1;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*******************************************************/
+/* 
+
+Resultado y código: PERFECTO!
+
+Legibilidad: Ok!
+
+*/
