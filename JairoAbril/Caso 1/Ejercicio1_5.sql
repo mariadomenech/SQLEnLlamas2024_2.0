@@ -11,3 +11,15 @@ LEFT JOIN
     case01.menu MENU ON SALES.PRODUCT_ID = MENU.PRODUCT_ID
 GROUP BY 
     CUST.CUSTOMER_ID;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*******************************************************/
+/* 
+
+Resultado y código: PERFECTO!
+
+Legibilidad: Ok!
+
+*/
