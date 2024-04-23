@@ -29,3 +29,7 @@ RIGHT JOIN case01.customers customers
 ON (sales.customer_id = customers.customer_id)
 GROUP BY customers.customer_id
 ORDER BY total_chupipuntos DESC;
+
+/*COMENTARIOS JUANPE
+TODO CORRECTO. Me gusta ambas opciones una algrano y la otra teniendo en cuenta que estás teniendo en cuenta otros posibles casos con el else 0 como bien comentas y me gusta también que uses el id en lugar del literal numérico pues los campos char mp siempre es lo mejor.
+*/
