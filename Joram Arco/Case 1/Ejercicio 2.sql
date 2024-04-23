@@ -11,3 +11,6 @@ GROUP BY
 ORDER BY
 	CUSTOMER_ID ASC;
 -- Según SQL Query Comparison Tool el orden sería así, pero vería más lógico mostrar el orden según el número de visitas :)
+
+/*COMENTARIOS JUANPE*/
+/*Solución, código y limpieza todo OK. Efectivamente ordenar alfabeticamente cuando buscas un número de visitas tiene poco sentido*/
