@@ -13,3 +13,14 @@ group by c.customer_id
 order by 1
 
 --Intento tabularlo según las correcciones pero cuando lo subo cambia por completo y tengo que arreglarlo sobre la marcha :(
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*******************************************************/
+/* 
+
+Resultado y código: PERFECTO!
+
+Legibilidad: Mil gracias, mucho mejor!
+
+*/
