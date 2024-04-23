@@ -32,3 +32,23 @@ pongas la corrección mas abajo de este comentario, además también te animo
 a que lo intentes hacer usando una CTE en vez de subconsulta, al final
 las CTE nos dan muchísimas ventajas frente a las subconsultas. Ánimo Paco, sé 
 que puedes con esto y con mucho mas! a por todas!!*/
+
+WITH CTE_POINTS AS (
+	SELECT product_id,
+	product_name,
+	price,
+	CASE WHEN product_id = 1 THEN price * 20
+	ELSE price * 10
+	END points
+	FROM case01.menu
+)
+
+SELECT A.customer_id,
+ISNULL(SUM(C.points),0) points
+FROM case01.customers A
+LEFT JOIN case01.sales B
+	ON A.customer_id=B.customer_id
+LEFT JOIN CTE_POINTS C
+	ON B.product_id=C.product_id
+GROUP BY A.customer_id
+ORDER BY points DESC;
