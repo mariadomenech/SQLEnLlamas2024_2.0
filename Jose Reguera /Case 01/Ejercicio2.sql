@@ -5,3 +5,6 @@ from [case01].[customers] a
 			on a.customer_id=b.customer_id
 group by a.customer_id
 order by 	DiasVisitados	desc
+
+/*COMENTARIOS JUANPE*/
+/*Solución, código y limpieza todo OK*/
