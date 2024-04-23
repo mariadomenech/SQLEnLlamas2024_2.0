@@ -5,3 +5,6 @@ select cust.customer_id as Cliente
          left join case01.sales sal
 	     on sal.customer_id=cust.customer_id
 group by cust.customer_id;
+
+/*COMENTARIOS JUANPE*/
+/*Solución, código y limpieza todo OK*/
