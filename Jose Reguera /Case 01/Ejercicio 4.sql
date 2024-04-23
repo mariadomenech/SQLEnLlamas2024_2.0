@@ -14,3 +14,6 @@ from
 	 group by b.product_name
 	 ) AA
 	 where AA.Ranking_conteo=1
+/*COMENTARIOS JUANPE
+
+TODO CORRECTO. Aunque si me aceptas un consejo no es recomendable dejar saltos de linea en el código*/
