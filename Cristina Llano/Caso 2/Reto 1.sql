@@ -41,6 +41,10 @@ Resultado correcto Cristina, enhorabuena!!
 Resultado: OK
 Código: Yo no incluiría la restricción "AND reparto.tiempo_total_hora > 0" porque con ella no vamos a mostrar la demás información de ese repartidor 
 	(es decir, tampoco vamos a mostrar la información de la distancia acumulada).
+	En este caso, controlas los nulos en la velocidad promedio, pero podríamos haber distinguido cuando cleaned_duration es mayor o menor que 0
+	y hacer la media (la funcion AVG omite los valores nulos):
+		,CAST(COALESCE(AVG(CASE WHEN cleaned_duration > 0  THEN cleaned_distance/cleaned_duration 
+					ELSE NULL END),0) AS DECIMAL(4,2)) AS velocidad_promedio
 Legibilidad: OK.
 
 
