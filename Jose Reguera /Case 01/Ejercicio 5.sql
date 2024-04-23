@@ -15,3 +15,4 @@ from
 
 group by AA.NombreCliente
 order by AA.NombreCliente asc
+/*Comentarios Juanpe: Todo correcto*/
