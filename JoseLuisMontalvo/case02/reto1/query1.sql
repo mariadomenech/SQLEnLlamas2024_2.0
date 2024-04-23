@@ -1,3 +1,7 @@
+-- Reto 1-
+/* Cual es la distancia acumulada de cada runner y la velocidad promedio en KM/H */
+
+---- Tabla auxiliar para limpieza y cálculo de datos.
 with Auxiliar as (
 select runner_id,order_id,sum(
                       case 
