@@ -9,3 +9,6 @@ select Ranking.Producto_mas_solicitado
 								 on sal.product_id=men.product_id
                                  group by men.product_name) as Ranking
 where Ranking.Rango=1;
+/*COMENTARIOS JUANPE
+
+TODO CORRECTO*/
