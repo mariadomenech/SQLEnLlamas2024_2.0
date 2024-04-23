@@ -29,3 +29,19 @@ FROM
 		AND reparto.tiempo_total_hora > 0 -- Excluimos valor cero para no dividir por él
 	GROUP BY run.runner_id
 ) FINAL ;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Todo correcto Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha gustado el detalle de controlar los casos en los que la duración pueda venir a 0 (aunque sería un problema con la calidad de los datos)
+
+*/
