@@ -36,12 +36,12 @@ FROM
 /*********************************************************/
 /*
 
-Todo correcto Cristina, enhorabuena!!
+Resultado correcto Cristina, enhorabuena!!
 
 Resultado: OK
-Código: OK.
+Código: Yo no incluiría la restricción "AND reparto.tiempo_total_hora > 0" porque con ella no vamos a mostrar la demás información de ese repartidor 
+	(es decir, tampoco vamos a mostrar la información de la distancia acumulada).
 Legibilidad: OK.
 
-Me ha gustado el detalle de controlar los casos en los que la duración pueda venir a 0 (aunque sería un problema con la calidad de los datos)
 
 */
