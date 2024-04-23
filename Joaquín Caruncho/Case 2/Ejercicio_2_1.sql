@@ -1,7 +1,7 @@
 select 
 	a.runner_id
 	, sum(a.distancia_acumulada) as distancia
-	, case when (count(distinct a.order_id) )<>0 then  sum(a.velocidad_media) / (count(distinct a.order_id) ) else 0 end as velocidad_promedio
+	, cast(case when (count(distinct a.order_id) )<>0 then  sum(a.velocidad_media) / (count(distinct a.order_id) ) else 0 end as decimal(16,2))as velocidad_promedio
 from
 (
 select
@@ -27,4 +27,3 @@ group by a.runner_id, order_id
 )a
 group by a.runner_id
 order by a.runner_id;
-
