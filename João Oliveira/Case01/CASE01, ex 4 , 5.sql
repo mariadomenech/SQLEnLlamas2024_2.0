@@ -1,5 +1,5 @@
 
--- Question 4: �Cu�l es el producto m�s pedido del men� y cu�ntas veces ha sido pedido?
+-- Question 4: ¿Cuál es el producto más pedido del menú y cuántas veces ha sido pedido?
 
 select TOP 1
     a.product_id,
@@ -9,14 +9,28 @@ LEFT JOIN case01.sales b on a.product_id = b.product_id
 group by a.product_id
 order by number_orders desc;
 
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
 
+/* 
+
+Resultado OK!
+
+Como consejo: El top 1 solo te va a devolver un único resultado o línea, ¿qué ocurre si existe empate entre dos productos en el número de veces que se han pedido? 
+Haría uso de la función RANK(), por ejemplo, que si para una misma partición, dos valores son iguales al ordenarlos, tienen el mismo rango o número y 
+nos permite sacar más de un producto en caso de empate.
+
+Legibilidad: Ok. Esto es subjetivo, pero yo metería un salto de línea a las condiciones ON.
+
+*/
 
 /*
--- Question 5: Josep quiere repartir tarjetas de fidelizaci�n a sus clientes. 
+-- Question 5: Josep quiere repartir tarjetas de fidelización a sus clientes. 
 
 	Si cada euro gastado equivale a 10 puntos y el sushi tiene un multiplicador de x2 puntos, 
 	
-	�Cu�ntos puntos tendr�a cada cliente?
+	¿Cuántos puntos tendría cada cliente?
 
 	*/
 
@@ -40,5 +54,17 @@ RIGHT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[customers] y on y.customer_id = x.c
 group by y.customer_id
 order by total_points desc
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*******************************************************/
+/* 
+
+Resultado y código: PERFECTO!
+
+Legibilidad: Ok. Esto es subjetivo, pero yo metería un salto de línea a las condiciones ON.
+
+*/
 
 
