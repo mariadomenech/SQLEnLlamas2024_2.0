@@ -19,3 +19,7 @@ where
 	primero = 1
 order by 
 	a.cliente;
+
+/*COMENTARIOS JUANJPE
+Incorrecto en el caso del A se buscaba los dos platos, que pidio en el primer pedido, pues la pregunta era cual es primer "producto" y dentro de cada pedido no hay información para decir cual de los dos se pidió primero.
+Realmente te has dado cuenta pero has decidido sacar solo 1. La idea del ejercio era sacar todos y luego dejar una fila por cliente con la función STRING_AGG.*/
