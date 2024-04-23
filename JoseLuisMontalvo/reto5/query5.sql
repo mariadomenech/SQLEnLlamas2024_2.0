@@ -21,3 +21,5 @@
 		      left join case01.menu men on men.product_id=sal.product_id
 		      group by cust.customer_id ,sal.product_id) as Calcula_Puntos
 group by Cliente;
+/*COMENTARIOS JUANPE:
+TODO CORRECTO Y MUY ORIGINAL USANDO LOS DECLARE Y SET PARA TENER TUS PARAMETROS MÁS CONTROLADOS Y ASÍ PODER CAMBIARLOS CON MUCHAS MÁS FACILIDAD SI SE REQUIERE*/
