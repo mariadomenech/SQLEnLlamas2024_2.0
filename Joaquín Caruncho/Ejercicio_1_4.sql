@@ -25,6 +25,7 @@ from
 	)b
 	where 
 		b.mas_pedido = 1
-
+/*COMENTARIOS JUANPE
+Todo correcto aunque si me admites un consejo, no es recomendable en el código dejar saltos de lineas*/
 
 
