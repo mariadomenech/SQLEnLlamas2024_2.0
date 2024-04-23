@@ -10,3 +10,5 @@ cli.customer_id as cliente
 group by cli.customer_id
 order by cli.customer_id
 ;
+/*COMENTARIOS JUANPE
+TODO CORRECTO.*/
