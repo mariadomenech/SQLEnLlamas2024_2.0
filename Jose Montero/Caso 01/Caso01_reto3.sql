@@ -16,3 +16,15 @@ from (
 		on c.customer_id=v.customer_id) s 
 group by	Cliente
 order by	1
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/********************************************************/
+/* 
+
+PERFECTO!! También se podría haber hecho por medio de un RANK() ordenando por la fecha de pedido.
+
+Legibilidad: OK. Pero mismo comentario sobre las tabulaciones de los ejericios anteriores.
+
+
+*/
