@@ -7,3 +7,7 @@ from
 		on a.customer_id = b.customer_id
 GROUP BY a.customer_id
 order by a.customer_id;
+
+
+/*COMENTARIOS JUANPE*/
+/*Solución, código y limpieza todo OK*/
