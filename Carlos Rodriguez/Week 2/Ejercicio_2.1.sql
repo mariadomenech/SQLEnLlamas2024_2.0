@@ -25,3 +25,28 @@ SELECT
     CAST(ROUND(ISNULL(ro.Velocidad_Promedio_km_h, 0), 2) AS DECIMAL(18, 2)) as Velocidad_Promedio_km_h
 FROM case02.runners r
 LEFT JOIN #RunnerOrdersWithSpeed ro ON r.runner_id = ro.runner_id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+A modo de detalle, para el tema de la limpieza de los campos Distancia y Duración se podría hacer de una forma mas general que eliminaría todo los caracteres deseados independientemente de su posición
+en la cadena:
+
+	case
+		when distance IN ('',' ','null','NULL') then NULL
+		else CAST(REPLACE(TRANSLATE(distance, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', REPLICATE(' ', 52)),' ','') as float)
+	end as distance,
+	case
+		when duration IN ('',' ','null','NULL') then NULL
+		else CAST(REPLACE(TRANSLATE(duration, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', REPLICATE(' ', 52)),' ','') as float)
+	end as duration,
+
+ En la función TRANSLATE la cadena de caractares que queremos quitar ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') y la cadena de la traduccion (REPLICATE(' ', 52)),' ','')) deben tener la misma
+longitud, de ahí el uso de REPLICATE. En la cadena de caractares que queremos quitar podemos tambien incluir cualquier símbolo (€ por ejemplo) aunque habria que tener cuidado de no incluir símbolos como
+ "." "," o "-" ente otros ya que se podrian usar en campos de importes por ejemplo.
+
+*/
