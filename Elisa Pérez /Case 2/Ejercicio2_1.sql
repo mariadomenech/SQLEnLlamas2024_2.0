@@ -43,3 +43,7 @@ SELECT	runner_id
 		, ISNULL(CAST(AVG(distance/(duration/60))AS decimal(4,2)), 0)  velocidad_avg
 FROM tmp
 GROUP BY runner_id;
+
+
+/*COMENTARIO 2*/
+/* Correctísimo! Genial Elisa! Enhorabuena!!*/
