@@ -4,7 +4,7 @@
 -- Por ejemplo, en "distance" podría admitir las opciones kilometers y kms. En cuanto a "duration", evitas tener que hacer REPLACE anidados.
 ;WITH
 
-	CUSTOMER_ORDERS_CLEANED AS (
+	RUNNER_ORDERS_CLEANED AS (
 		SELECT
 			order_id
 			,runner_id
@@ -31,11 +31,11 @@
 	,TOTAL_DISTANCE_AND_AVERAGE_SPEED_PER_TOTAL_RUNNERS AS (
 		SELECT
 			r.runner_id
-			,ROUND(ISNULL(SUM(co.distance_in_km), 0), 1) AS total_distance_in_km
-			,ROUND(ISNULL(AVG(co.distance_in_km/NULLIF(co.duration_in_min, 0))*60, 0), 1) AS average_speed_in_km_per_hour
+			,ROUND(ISNULL(SUM(ro.distance_in_km), 0), 2) AS total_distance_in_km
+			,ROUND(ISNULL(AVG(ro.distance_in_km/NULLIF(ro.duration_in_min, 0))*60, 0), 2) AS average_speed_in_km_per_hour
 		FROM SQL_EN_LLAMAS_ALUMNOS.case02.runners AS r
-		LEFT JOIN CUSTOMER_ORDERS_CLEANED AS co
-			ON r.runner_id = co.runner_id
+		LEFT JOIN RUNNER_ORDERS_CLEANED AS ro
+			ON r.runner_id = ro.runner_id
 		GROUP BY r.runner_id
 	)
 
@@ -61,5 +61,10 @@ Código:	Me ha gustado mucho el uso de PATINDEX, una forma bastante ingeniosa de
 Legibilidad: Perfecta como siempre.
 
 Me ha gustado mucho tu solución y la has hecho bastante general para tratar multitud de casuísticas, lo cual siempre está mucho mejor.
+*/
+
+/*
+Muchas gracias, Manu! Cuantas cosas bonitas y positivas me dices jeje.
+Arreglado el tema de rendondeo. Yo tampoco conocía PATINDEX hasta este reto, siempre se aprende algo nuevo :D.
 */
 
