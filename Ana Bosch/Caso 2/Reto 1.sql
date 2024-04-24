@@ -28,3 +28,19 @@ from calculate_CTE
 group by runner_id
 
 -- Se podría haber aprovechado la primera CTE para hacer los cálculos también en ella, no obstante he preferido dividirlo en dos para dejar claro que en cada una ocurren procesos diferentes 
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto! Por mi parte también prefiero que se haga en 2 CTEs, así se ven los dos procesos por separado y en caso de necesitar cambiar algo es más fácil de leer.
+Me gusta mucho el uso del PATINDEX, muy original y sobre todo del stuff, así que me lo apunto para mi :)
+También el tener en cuenta que estén todos los runners, no sólo los que hacen pedidos, así como los casteos y control de nulos. Es un ejercicio perfecto.
+
+Como única cosa por decirte algo hubiera tabulado un poco más los CASE para mejorar la legibilidad, pero sin más.
+
+Ánimo con el siguiente! :)
+
+*/
