@@ -41,3 +41,25 @@
 
 SELECT *
 FROM TOTAL_DISTANCE_AND_AVERAGE_SPEED_PER_TOTAL_RUNNERS;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+El resultado es correcto Pedro!
+
+Resultado:  Muy bien controlados  los nulos en el cálculo de la distancia y la duración,
+	y muy bien el redondeo de los resultados en última instancia, ya que si se hace primero van a variar aunque 
+	sea mínimamente los datos. Aunque parezca obvio, hay compañeros que se les ha pasado. Lo que si te pediría para
+	retos posteriores es redondear a 2 decimales que es lo común para no perder detalle en el resultado, por establecer
+	un número determinado jeje.
+	
+Código:	Me ha gustado mucho el uso de PATINDEX, una forma bastante ingeniosa de limpiar los datos de las columnas, la verdad 
+	que no conocía esta función.
+Legibilidad: Perfecta como siempre.
+
+Me ha gustado mucho tu solución y la has hecho bastante general para tratar multitud de casuísticas, lo cual siempre está mucho mejor.
+*/
+
