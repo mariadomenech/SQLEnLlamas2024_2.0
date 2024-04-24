@@ -14,6 +14,6 @@ WITH CTE_CLEAN AS(
 )
 SELECT runner,
   CONCAT(SUM(distance), 'km') total_dist,
-  CONCAT(ISNULL(CAST(AVG(distance * 1000 / NULLIF(duration * 60, 0))AS DECIMAL(5,2)),0), 'm/s') avg_vel
+  CONCAT(ISNULL(CAST(AVG(distance / NULLIF(duration / 60, 0))AS DECIMAL(5,2)),0), 'km/h') avg_vel
 FROM CTE_CLEAN
 GROUP BY runner;
