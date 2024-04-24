@@ -17,3 +17,12 @@ SELECT runner,
   CONCAT(ISNULL(CAST(AVG(distance / NULLIF(duration / 60, 0))AS DECIMAL(5,2)),0), 'km/h') avg_vel
 FROM CTE_CLEAN
 GROUP BY runner;
+
+
+/************************************/
+/************COMENTARIO DANI*********/
+/************************************/
+/* Resultado correcto, me gusta el resultset al haber añadido KM y KM/H a los resultados en sí
+en vez de a la columna. Tambien me gusta el enfoque de usar CTE en vez de subconsulta, eso es Paco!
+El uso de PATINDEX para sacar la distancia bastante bien, es complejo pero el buen manejo nos puede
+dar infinidad de posibilidades. En resumen todo correctísimo, sigue así! */
