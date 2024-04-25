@@ -61,7 +61,7 @@ ON oc.runner_id = runners.runner_id
 GROUP BY runners.runner_id
 	,total_pizzas_ok
 	,total_pizzas_modificadas
-ORDER BY runner_id 
+ORDER BY runner_id;
 
 /* COMENTARIOS 
 Se ha añadido el símbolo % para que los resultados sean más representativos. Si este resultado se incorporase en tablas, quitaríamos ese carácter y solo utilizaríamos el número.
@@ -71,3 +71,40 @@ por ejemplo, se podría ordenar por el porcentaje de pizzas modificadas, así se
 También como curiosidad, me gustaría saber si hay una forma de obtener el mismo resultado con un número menor de tablas temporales, le he dado algunas vueltas pero no lo he visto fácil,
 igualmente le seguiré dando otras cuantas para ver si veo alguna forma :)
 */
+
+
+/* SOLUCIÓN 2
+He estado dando algunas vueltas más al ejercicio y he visto que hay otra manera donde no es necesario crear tantas tablas temporales y la consulta en sí se quedaría algo más limpia
+*/
+WITH orders_cleaned AS(
+	SELECT
+		runners.runner_id AS runner_id
+		,COALESCE(runner_orders.order_id, 0) AS order_id
+		,CASE WHEN UPPER(cancellation) LIKE '%CANCELLATION%' OR pickup_time IS NULL THEN 0 ELSE 1 END AS pedidos_completados
+		,CASE WHEN COALESCE(exclusions, '') IN ('', 'null') THEN 0 ELSE 1 END AS exclusiones
+		,CASE WHEN COALESCE(extras, '') IN ('', 'null') THEN 0 ELSE 1 END as extras
+	FROM case02.runner_orders runner_orders
+	JOIN case02.customer_orders customer_orders
+		ON runner_orders.order_id = customer_orders.order_id
+	RIGHT JOIN case02.runners runners
+		ON runner_orders.runner_id = runners.runner_id
+),
+
+orders_total AS (
+	SELECT 
+		runner_id
+		,CAST( COUNT( DISTINCT CASE WHEN pedidos_completados = 1 THEN order_id ELSE NULL END) AS FLOAT) AS num_pedidos_ok
+		,COUNT (DISTINCT order_id) as num_pedidos
+		,CAST( COUNT( CASE WHEN pedidos_completados = 1 THEN order_id ELSE NULL END) AS FLOAT) AS num_pizzas_ok
+		,CAST( SUM( CASE WHEN pedidos_completados = 1 AND (exclusiones = 1 OR extras = 1) THEN 1 ELSE 0 END ) AS FLOAT) AS num_pizzas_modificadas
+	FROM orders_cleaned
+	GROUP BY runner_id
+)
+
+SELECT
+	runner_id
+	,num_pedidos_ok
+	,num_pizzas_ok
+	,CONCAT (CASE WHEN num_pedidos = 0 THEN 0 ELSE (num_pedidos_ok * 100 / num_pedidos) END ,'%') AS pct_pedidos_ok
+	,CONCAT (CASE WHEN num_pizzas_ok = 0 THEN 0 ELSE ROUND((num_pizzas_modificadas * 100 / num_pizzas_ok), 2) END, '%') AS pct_pizzas_ok_mod
+FROM orders_total;
