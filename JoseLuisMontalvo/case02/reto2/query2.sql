@@ -2,9 +2,6 @@
 /* Cuantos pedidos y cuantas pizzas se han entregado con exito por cada runner, Cual es el porcentaje de exito de cada runner que porcentaje de la pizzas tenía modificaciones.
    Todo debe mostrarse en una misma ventana de datos */
 
-
-
----- Ordeno y limpio
 with Auxiliar as (
    select pedidos.order_id,pedidos.pizza_id,case 
                                                   when pedidos.exclusions in ('null',' ') and (pedidos.extras in ('null',' ') or pedidos.extras is null) then 'SinModificaciones'
@@ -39,7 +36,7 @@ select runners.runner_id,
 	       round(cast(agr.NumeroPedidos_Entregados as decimal(5,2))/cast(agr.NumeroPedidos_Totales as decimal(5,2))*100,2)
 	      else 0.00
         end as Porcentaje_exito,
-		isnull(agr.Pizzas_Modificadas,0) as PizzasConModificaciones,
+		isnull(agr.Pizzas_Modificadas+agr.Pizzas_SinModificar,0) as PizzasEntregadas,
 		case 
 	       when agr.Pizzas_Modificadas+agr.Pizzas_SinModificar>0 then 
 	       round(cast(agr.Pizzas_Modificadas as decimal(5,2))/cast((agr.Pizzas_Modificadas+agr.Pizzas_SinModificar) as decimal(5,2))*100,2)
