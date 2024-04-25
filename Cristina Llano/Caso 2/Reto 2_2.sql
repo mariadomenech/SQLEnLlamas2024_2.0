@@ -46,3 +46,20 @@ FROM #base_runner_orders run_or
 RIGHT JOIN SQL_EN_LLAMAS_ALUMNOS.case02.runners run
 	ON run.runner_id = run_or.runner_id
 ORDER BY 1;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Todo correcto Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha gustado mucho el uso de # para crear la tabla temporal; no lo había visto hacer así aún a nadie.
+
+
+*/
