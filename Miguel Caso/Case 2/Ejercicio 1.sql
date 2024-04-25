@@ -52,8 +52,8 @@ runner_stats AS (
 
 SELECT 
 	r.runner_id,
-	COALESCE (SUM(rs.mod_distance),0) AS Distancia_acumulada,
-	COALESCE (AVG(rs.velocidad_media_kmh),0) AS Velocidad_Promedio_KMH
+	ROUND (COALESCE (SUM(rs.mod_distance),0),2) AS Distancia_acumulada,
+	ROUND (COALESCE (AVG(rs.velocidad_media_kmh),0),2) AS Velocidad_Promedio_KMH
 FROM SQL_EN_LLAMAS_ALUMNOS.CASE02.RUNNERS r
 	LEFT JOIN runner_stats rs ON r.runner_id = rs.runner_id
 GROUP BY r.runner_id
