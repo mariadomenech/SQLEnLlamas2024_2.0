@@ -1,0 +1,86 @@
+CREATE TABLE #runner_orders_temp
+	(
+	[order_id] INT NULL,
+	[runner_id] INT NULL,
+	[pickup_time] varchar(19) NULL,
+	[distance] FLOAT NULL,
+	[duration] FLOAT NULL,
+	[cancellation] varchar(23) NULL
+	)
+
+INSERT INTO #runner_orders_TEMP
+	SELECT 
+		ORDER_ID,
+		RUNNER_ID,
+		CASE	
+			WHEN pickup_time IN ('',' ','null','NULL') THEN NULL
+			ELSE pickup_time
+		END pickup_time,
+		CASE	
+			WHEN distance IN ('',' ','null','NULL') THEN NULL
+			ELSE CAST(RTRIM(REPLACE(distance,'km','')) AS FLOAT) 
+		END distance,
+		CASE	
+			WHEN duration IN ('',' ','null','NULL') THEN NULL
+			WHEN SUBSTRING(duration,3,1) LIKE '[0-9]' THEN CAST(SUBSTRING(duration,1,3) AS FLOAT) 
+			WHEN SUBSTRING(duration,2,1) LIKE '[0-9]' THEN CAST(SUBSTRING(duration,1,2) AS FLOAT) 
+			WHEN SUBSTRING(duration,1,1) LIKE '[0-9]' THEN CAST(SUBSTRING(duration,1,1) AS FLOAT) 
+			ELSE CAST(duration AS FLOAT) 
+		END duration,
+		CASE	
+			WHEN cancellation IN ('',' ','null','NULL') THEN NULL
+			ELSE cancellation
+		END cancellation
+	FROM case02.runner_orders;
+
+
+CREATE TABLE #customer_orders_temp
+	(
+	[order_id] INT NULL,
+	[customer_id] INT NULL,
+	[pizza_id] INT NULL,
+	[exclusions] varchar(4) NULL,
+	[extras] varchar(4) NULL,
+	[order_time] datetime NULL
+	)
+
+INSERT INTO #customer_orders_temp
+	SELECT 
+		order_id,
+		customer_id,
+		pizza_id,
+		CASE	
+			WHEN exclusions IN ('',' ','null','NULL') THEN NULL
+			ELSE exclusions
+		END exclusions,
+		CASE	
+			WHEN extras IN ('',' ','null','NULL') THEN NULL
+			ELSE extras
+		END extras,
+		order_time
+	FROM case02.customer_orders;
+
+SELECT 
+C.runner_id,
+ISNULL(COUNT(DISTINCT CASE WHEN cancellation IS NULL THEN a.order_id ELSE NULL END),'0') AS Npedidos_exitosos,
+ISNULL(COUNT(CASE WHEN cancellation IS NULL THEN pizza_id ELSE NULL END),'0') AS Npizzas_exitosas,
+ISNULL(
+	ROUND(
+		CAST((COUNT(DISTINCT CASE WHEN cancellation IS NULL THEN A.order_id ELSE NULL END) * 100) AS FLOAT)
+		/ 
+		CAST(NULLIF(COUNT(DISTINCT a.order_id),'0') AS FLOAT)
+		,2)
+,'0') AS pct_exito_pedido,
+ISNULL(
+	ROUND(
+		CAST(COUNT(CASE WHEN cancellation IS NULL AND (exclusions IS NOT NULL OR extras IS NOT NULL) THEN pizza_id ELSE NULL END) * 100 AS FLOAT)
+		/ 
+		CAST(NULLIF(COUNT(CASE WHEN cancellation IS NULL THEN pizza_id ELSE NULL END),'0')AS FLOAT)		
+		,2)
+,'0') AS pct_modificaciones_pizza
+FROM #customer_orders_temp A
+INNER JOIN #runner_orders_temp B
+	ON (A.order_id=B.order_id)
+RIGHT JOIN case02.runners C
+	ON (B.runner_id=C.runner_id)
+GROUP BY C.RUNNER_ID;
