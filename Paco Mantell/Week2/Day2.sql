@@ -53,3 +53,21 @@ LEFT JOIN CTE_TOT_SUCCESS B
 	ON A.runner_id=B.runner_id
 LEFT JOIN CTE_TOT_PIZZAS_MOD C
 	ON a.runner_id=c.runner_id
+
+
+/*********************************************/
+/*************COMENTARIO DANI*****************/
+/* Resultado incorrecto, hay diferentes puntos donde podría residir el problema.
+Lo primero es que el resultado que nos devuelve la consulta no contabiliza bien lo
+que se pide, los resultados son erróneos. Uno de los puntos a destacar es el uso de
+CROSS APPLY STRING_SPLIT, esta técnica no es recomendable ya que su uso en conjunto
+de datos grandes empeoraría de manera considerable el rendimiento, te animo a buscarle
+un enfoque diferente, una CTE por ejemplo te ayudaría a limpiar los datos de manera 
+mas eficiente. Luego vemos que en la CTE_TOT_PIZZAS_MOD la claúsula WHERE filtra donde
+exclusions y extras son 'null' sin embargo no maneja los casos en los que exclusions y
+extras son cadenas vacías, te sugiero agregar alguna condición adicional para tener en
+cuenta estas cadenas. Por otro lado te recomiendo mejorar un punto la legibilidad, no 
+es mala, pero podría ser mejor, intenta indexar los atributos y campos, eso seguro que
+te ayudará un montón. En cuanto tengas la consulta corregida plásmamela abajo de este
+comentario. Ánimo Paco, sé que puedes, tu consulta muestra originalidad y habilidad
+para resolver problemas! */
