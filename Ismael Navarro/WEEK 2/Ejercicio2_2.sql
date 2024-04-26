@@ -73,3 +73,16 @@ FinalResult AS (
 SELECT *
 FROM FinalResult
 ORDER BY runner_id;
+
+
+
+/**************************************/
+/***********COMENTARIO DANI************/
+/* Resultado correcto!, buena legibilidad, buen uso de CTE´s para el manejo y limpieza
+y buen manejo de Nulos. Sin embargo habría un detallín que mejorar, el resultado nos
+devuelve todos los números como decimales aunque sean números redondos, la coma en 
+ese caso no nos aportaría nada, tampoco está de mas ni molesta por lo que no se 
+consideraría nada erróneo. Te animo a que le des una vuelta e intentes manejar la
+casuística de que si el número no tiene decimales no lo mostremos como tal, en el 
+resultado el único que debería tener decimales es el "33.33". Ánimo Ismael! cada 
+día tienes mas SQL en vena!
