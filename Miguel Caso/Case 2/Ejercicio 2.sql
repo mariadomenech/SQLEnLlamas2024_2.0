@@ -62,7 +62,7 @@ SELECT
     COALESCE (e.num_Pedidos_Entregados, 0) AS Pedidos_Entregados,
     COALESCE (pe.num_Pizzas,0) AS Num_Pizzas,
     COALESCE ((e.num_Pedidos_Entregados * 100 / pr.num_Pedidos_Totales), 0) AS Porcentaje_exito,
-    COALESCE ((pm.num_Modificadas * 100 / pe.num_Pizzas), 0) AS Porcentaje_Modificadas
+    COALESCE (ROUND((CAST (pm.num_Modificadas AS Decimal) * 100 / CAST (pe.num_Pizzas AS Decimal)),2), 0) AS Porcentaje_Modificadas
 FROM SQL_EN_LLAMAS_ALUMNOS.case02.runners ru
 	LEFT JOIN exito_por_runner e ON ru.runner_id = e.runner_id
 	LEFT JOIN pizzas_entregadas pe ON ru.runner_id = pe.runner_id
