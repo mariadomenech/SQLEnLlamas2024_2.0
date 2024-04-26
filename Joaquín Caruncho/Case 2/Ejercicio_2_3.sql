@@ -3,8 +3,7 @@ select
 sum(co.precio_pizza) ingreso_pizzas
 ,sum(ex.extra_por_pedido) extras
 ,sum(ro.distancia_coste) as costes
--- comento calculo del resultado final para que se ajuste a lo que devuelve la comparison tool
---,sum(co.precio_pizza) + sum(ex.extra_por_pedido)- sum(ro.distancia_coste) as resultado_final
+,sum(co.precio_pizza) + sum(ex.extra_por_pedido)- sum(ro.distancia_coste) as resultado_final
 from
 (
 		SELECT 
