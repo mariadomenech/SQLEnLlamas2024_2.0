@@ -68,3 +68,15 @@ FROM SQL_EN_LLAMAS_ALUMNOS.case02.runners ru
 	LEFT JOIN pizzas_entregadas pe ON ru.runner_id = pe.runner_id
 	LEFT JOIN pedidos_por_runner pr ON ru.runner_id = pr.runner_id
 	LEFT JOIN pizzas_modificadas pm ON ru.runner_id = pm.runner_id;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto. Me ha gustado mucho cómo lo has ido organizando. Ha sido muy sencillo corregirlo de lo legible que es, muchas gracias!
+
+Perfecto Miguel!!!
+
+*/
