@@ -58,3 +58,20 @@ FROM SQL_EN_LLAMAS_ALUMNOS.CASE02.RUNNERS r
 	LEFT JOIN runner_stats rs ON r.runner_id = rs.runner_id
 GROUP BY r.runner_id
 ORDER BY r.runner_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto. Aunque la app da diferencias, era porque tú hiciste un ROUND (x,2) tanto en distancia_acumulada como en velocidad_promedio_kmh
+			pero la app tiene predefinido que el resultado es un decimal(18,2). Para que te saliese bien en la app tenías que poner:
+				CAST(COALESCE (SUM(rs.mod_distance),0) AS DECIMAL(18,2)) AS Distancia_acumulada,
+				CAST(COALESCE (AVG(rs.velocidad_media_kmh),0) AS DECIMAL(18,2))  AS Velocidad_Promedio_KMH
+	Pero vamos, que está perfecto con ROUND jajaja
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Muy bien Miguel!!!
+
+*/
