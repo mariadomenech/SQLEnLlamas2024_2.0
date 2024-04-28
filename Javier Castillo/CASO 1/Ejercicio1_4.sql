@@ -19,3 +19,19 @@ Legibilidad: OK. El código es perfectamente legible, aunque podrías haber tabu
 
 Te animo a que me comentes cualquier duda que te surja.
 */
+
+SELECT 
+      PRODUCTO
+    , NUM_PEDIDOS
+FROM
+(
+	SELECT 
+		  M.product_name AS PRODUCTO
+		, COUNT(1) AS NUM_PEDIDOS
+		, DENSE_RANK() OVER ( ORDER BY COUNT(1) DESC) AS Rank
+	FROM [SQL_EN_LLAMAS_ALUMNOS].[case01].[sales] AS S
+	LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] AS M
+		ON S.product_id=M.product_id
+	GROUP BY M.product_name
+) AS A
+WHERE A.Rank = 1;
