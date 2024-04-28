@@ -1,0 +1,29 @@
+SELECT
+	SUM(ganancias_pizzas) + SUM(extras) AS ingresos,
+	SUM(distance)*0.3 AS gastos,
+	SUM(ganancias_pizzas) +	SUM(extras) - SUM(distance)*0.3 AS beneficios
+FROM #runner_orders_temp A
+INNER JOIN 	(
+			SELECT order_id,
+				SUM(
+					ISNULL	(
+								CASE 
+									WHEN pizza_id=1 THEN 12 
+									ELSE 10 
+								END
+							,'0')
+					) AS ganancias_pizzas
+			FROM #customer_orders_temp
+			GROUP BY order_id
+			) B
+	ON (A.order_id=B.order_id)
+LEFT JOIN 	(	
+			SELECT
+				a.order_id,
+				COUNT(a.order_id) AS extras
+			FROM #customer_orders_temp A
+			CROSS APPLY STRING_SPLIT(extras,',')
+			GROUP BY a.order_id
+			) C
+	ON (B.order_id=C.order_id)	
+WHERE cancellation IS NULL;
