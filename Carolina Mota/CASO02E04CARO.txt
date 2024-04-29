@@ -1,0 +1,9 @@
+SELECT 
+	topping_name, 
+	COUNT(A.topping_id) AS Nveces
+FROM case02.pizza_recipes_split
+UNPIVOT (topping_id FOR Nombre IN ([topping_1],[topping_2],[topping_3],[topping_4],[topping_5],[topping_6],[topping_7],[topping_8])) AS A
+INNER JOIN case02.pizza_toppings B
+	ON (A.topping_id=B.topping_id)
+GROUP BY topping_name
+ORDER BY COUNT(A.topping_id) DESC;
