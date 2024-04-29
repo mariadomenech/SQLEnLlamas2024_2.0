@@ -95,3 +95,22 @@
 
 SELECT *
 FROM RUNNERS_STATISTICS;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Perfecto Pedro, me ha gustado mucho como lo has organizado, aunque es cierto que se puede conseguir es menos tablas,
+a mi parecer, es mucho mejor de esta forma pues lo hace mucho más legible y fácil de seguir!
+
+*/
+
+
+
+
