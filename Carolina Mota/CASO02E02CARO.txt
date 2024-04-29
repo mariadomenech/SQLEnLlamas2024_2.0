@@ -51,11 +51,12 @@ INSERT INTO #customer_orders_temp
 		pizza_id,
 		CASE	
 			WHEN exclusions IN ('',' ','null','NULL') THEN NULL
-			ELSE exclusions
+			WHEN UPPER(exclusions) in ('BEEF') THEN '3'
+			ELSE REPLACE(exclusions,' ' ,'')
 		END exclusions,
 		CASE	
 			WHEN extras IN ('',' ','null','NULL') THEN NULL
-			ELSE extras
+			ELSE REPLACE(extras,' ','')
 		END extras,
 		order_time
 	FROM case02.customer_orders;
