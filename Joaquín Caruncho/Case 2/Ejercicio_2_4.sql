@@ -24,4 +24,4 @@ FROM
 	inner join case02.pizza_toppings b
 		on cast(a.VALOR as int)= b.topping_id
 	GROUP BY b.topping_name
-	order by numero_ocurrencias desc, b.topping_name asc;
+	order by numero_ocurrencias desc;
