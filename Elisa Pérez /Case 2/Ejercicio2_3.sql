@@ -28,3 +28,11 @@ SELECT SUM(ING_PIZZAS) ING_PIZZAS
 FROM A
 LEFT JOIN B
 ON A.order_id = B.order_id;
+
+
+/***************************************/
+/*********COMENTARIO DANI***************/
+/***************************************/
+/* Resultado correcto!. Legibilidad impecable!, buen uso de CROSS APPLY STRING_SPLIT
+para dividir la columna 'extras' en partes mas pequeñas. Buen uso de CTE´s, las justas
+y necesarias, en resumen, una query impecable! Enhorabuena Elisa, el SQL es poderoso en tí */
