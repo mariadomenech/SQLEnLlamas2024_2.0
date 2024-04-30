@@ -47,3 +47,16 @@ SELECT
 FROM OrderCost pc
 INNER JOIN RunnerCosts rc ON rc.order_id = pc.order_id
 INNER JOIN ExtraIngredients ei ON ei.order_id = pc.order_id;
+
+
+
+/**************************************************/
+/*********COMENTARIO DANI**************************/
+/* Resultado incorrecto. Hay varios puntos a destacar, la idea inicial es buena Ismael,
+sin embargo te has confundido en algunos detalles. El primero a destacar es que usas 
+demasiadas CTES y eso quizá te haya inducido a los errores que hacen que la consulta 
+esté errónea. Por otro lado tu consulta nos devuelven datos de más y no del todo claros, 
+te animo a renombrar las columnas de una forma mas explícita y literal además de solo
+devolver los datos que pedimos, recuerda que devolver de más no siempre es sinónimo de calidad.
+Sé que puedes sacarla, por ello te animo a que me replantees la query abajo de este comentario!.
+A por todas Ismael! */
