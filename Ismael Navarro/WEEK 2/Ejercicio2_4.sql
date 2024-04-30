@@ -14,3 +14,13 @@ GROUP BY topping_name
 ORDER BY times_used DESC;
 
 select* from case02.pizza_recipes_split
+
+
+/***************************************************/
+/***************COMENTARIO DANI*********************/
+/***************************************************/
+/* Resultado correcto!. Simple y sencillo, buen uso del CROSS_APPLY. 
+A destacar te diría el JOIN, intentemos enfocarlo con un JOIN mas 
+específico, eso nos evitará problemas de rendimiento en caso de que 
+la tabla o tablas contengan mas datos de los que pensamos. Ánimo Ismael,
+la queryPower te invade poco a poco*/
