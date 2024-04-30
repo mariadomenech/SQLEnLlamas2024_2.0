@@ -111,3 +111,25 @@ SET @runner_eur_km = 0.30;
 
 SELECT *
 FROM GIUSEPPE_HERITAGE;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Perfecta.
+
+Genial Pedro! Me ha gustado mucho el detalle de declarar variables para los precios y las constantes, es una muy
+buena práctica para no repetir código y de cara al futuro si hubiera que modificar las mismas. 
+
+Como siempre muy bien la creación de las CTEs para que sea más fácil y claro  seguir la query.
+Además, muy bien usado el STRING_SPLIT para separar los extras y calcular el beneficio de los mismos.
+
+A seguir así!
+*/
+
+
+
