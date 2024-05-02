@@ -1,24 +1,58 @@
-WITH filtro AS (
-    SELECT  
-        ro.order_id,
-        ro.runner_id,
-        CASE pn.pizza_id
-            WHEN 1 THEN 12
-            ELSE 10
-        END precio,
-        CASE co.extras
-            WHEN ' ' THEN 0
-            WHEN 'null' THEN 0
-            ELSE 1
-        END AS extras,
-        COALESCE(CAST(LEFT(ro.distance, PATINDEX('%[^0-9.]%', ro.distance + ' ') - 1) AS FLOAT), 0) * 0.30 AS ganancia_runner
-    FROM case02.runner_orders ro
-    LEFT JOIN case02.customer_orders co ON ro.order_id = co.order_id
-    LEFT JOIN case02.pizza_names pn ON co.pizza_id = pn.pizza_id
-    WHERE ro.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
-)
 SELECT 
-    COUNT(DISTINCT order_id) AS pedidos,
-    SUM(extras) AS extras,
-    SUM((precio + extras) - ganancia_runner) AS Ganancias
-FROM filtro;
+    SUM(desglose_pizzas.precio_total_pizzas) AS ing_pizzas,
+    SUM(desglose_pizzas.n_ingredientes) AS ing_ingredientes_extra,
+    (
+        SELECT COALESCE(SUM(CAST([case02].GetNumbers(runners_orders_3.distance) AS FLOAT)), 0)
+        FROM case02.runner_orders runners_orders_3
+    ) * 0.3 AS costes
+FROM (
+    SELECT 
+        cust_orders_2.pizza_id AS pizza,
+        COUNT(cust_orders_2.pizza_id) AS n_pizzas,
+        MAX(pizzas_ingredientes.n_ingredientes) AS n_ingredientes,
+        CASE 
+            WHEN cust_orders_2.pizza_id = 1 THEN 12
+            ELSE 10
+        END AS precio_unitario,
+        (
+            CASE 
+                WHEN cust_orders_2.pizza_id = 1 THEN 12
+                ELSE 10
+            END
+        ) * COUNT(cust_orders_2.pizza_id) AS precio_total_pizzas
+    FROM 
+        case02.customer_orders cust_orders_2
+    JOIN (
+        SELECT 
+            pizza_id,
+            SUM(
+                CASE 
+                    WHEN value <> 'null' AND value <> '' THEN 1
+                    ELSE 0
+                END
+            ) AS n_ingredientes
+        FROM 
+            case02.customer_orders cust_orders
+        CROSS APPLY 
+            STRING_SPLIT(extras, ',')
+        JOIN 
+            case02.runner_orders runners_orders 
+        ON 
+            runners_orders.order_id = cust_orders.order_id
+        WHERE 
+            runners_orders.duration <> 'null'
+        GROUP BY 
+            pizza_id
+    ) AS pizzas_ingredientes 
+    ON 
+        cust_orders_2.pizza_id = pizzas_ingredientes.pizza_id
+    JOIN 
+        case02.runner_orders runners_orders_2 
+    ON 
+        runners_orders_2.order_id = cust_orders_2.order_id
+    WHERE 
+        runners_orders_2.duration <> 'null'
+    GROUP BY 
+        cust_orders_2.pizza_id
+) AS desglose_pizzas;
+;
