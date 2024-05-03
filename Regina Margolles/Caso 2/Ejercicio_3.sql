@@ -3,7 +3,7 @@ CTE_runner_orders_clean
 as 
 	(	
 		Select
-		     order_id, 
+		         order_id, 
 			 runner_id,
 			 pickup_time,
 			 CASE
@@ -44,10 +44,10 @@ as
 										  WHERE topping_name = exclusions)
 			  END as exclusions, 
 			  CASE 
-					 WHEN PATINDEX('',extras)=1 THEN NULL
-					 WHEN PATINDEX('%null%',extras)=1 THEN NULL
-					 WHEN PATINDEX('%[0-9]%',extras)=1 THEN extras
-					 WHEN PATINDEX('%[A-Z-a-z]%',extras)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
+				 WHEN PATINDEX('',extras)=1 THEN NULL
+				 WHEN PATINDEX('%null%',extras)=1 THEN NULL
+				 WHEN PATINDEX('%[0-9]%',extras)=1 THEN extras
+				 WHEN PATINDEX('%[A-Z-a-z]%',extras)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
 										     FROM case02.pizza_toppings 
 										     WHERE topping_name = extras)
 			  END as extras,
