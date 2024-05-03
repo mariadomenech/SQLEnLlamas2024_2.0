@@ -39,16 +39,16 @@ as
 				 WHEN PATINDEX('%null%',exclusions)=1 THEN NULL
 				 WHEN PATINDEX('%[^0-9]%',exclusions)=0 THEN exclusions
 				 WHEN PATINDEX('%[^A-Z-a-z]%',exclusions)=0 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
-																		FROM case02.pizza_toppings 
-																		WHERE topping_name = exclusions)
+			  							  FROM case02.pizza_toppings 
+										  WHERE topping_name = exclusions)
 			  END as exclusions, 
 			  CASE 
-					 WHEN PATINDEX('',extras)=1 THEN NULL
-					 WHEN PATINDEX('%null%',extras)=1 THEN NULL
-					 WHEN PATINDEX('%[0-9]%',extras)=1 THEN extras
-					 WHEN PATINDEX('%[A-Z-a-z]%',extras)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
-																		                   FROM case02.pizza_toppings 
-																		                   WHERE topping_name = extras)
+				WHEN PATINDEX('',extras)=1 THEN NULL
+				WHEN PATINDEX('%null%',extras)=1 THEN NULL
+				WHEN PATINDEX('%[0-9]%',extras)=1 THEN extras
+				WHEN PATINDEX('%[A-Z-a-z]%',extras)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
+							                    FROM case02.pizza_toppings 
+									    WHERE topping_name = extras)
 			  END as extras,
 			  order_time	 
 		 from
@@ -58,41 +58,40 @@ as
 
 Select  table1.runner_id,
         table1.orders,
-		    table1.number_pizzas_without_cancellation,
-    		CASE
-          WHEN table1.total_orders= 0 THEN 0
-    		  ELSE ROUND(table1.orders*100/cast(table1.total_orders as decimal(5,2)),2,1)  
-    		END as percent_runner,
-    		CASE
-          WHEN table1.number_pizzas_without_cancellation = 0 THEN 0
-    		  ELSE ROUND(table2.number_pizzas_with_modifications*100/cast(table1.number_pizzas_without_cancellation as decimal(5,2)),2,1)
-    		END as percent_pizzas
+	table1.number_pizzas_without_cancellation,
+    	CASE
+	        WHEN table1.total_orders= 0 THEN 0
+	    	ELSE ROUND(table1.orders*100/cast(table1.total_orders as decimal(5,2)),2,1)  
+    	END as percent_runner,
+    	CASE
+	        WHEN table1.number_pizzas_without_cancellation = 0 THEN 0
+	    	ELSE ROUND(table2.number_pizzas_with_modifications*100/cast(table1.number_pizzas_without_cancellation as decimal(5,2)),2,1)
+    	END as percent_pizzas
 from (	
 Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellation, t.number_pizzas
  from (
 	Select  r.runner_id as runner_id,
-	     		COUNT(ro.order_id) over (partition by r.runner_id) as number_pizzas,
-  		    CASE 
-              WHEN ro.cancellation IS NULL THEN
-      			     COUNT(ro.order_id)  over (partition by r.runner_id, ro.cancellation)
-  			  END as number_pizzas_without_cancellation, 
-  			 (Select 
-              COUNT(r2.order_id)  
-  			  from CTE_runner_orders_clean  as r2 
-  			  where r2.runner_id = ro.runner_id and r2.cancellation is null
-          ) as orders,
-  			 (Select 
-              COUNT(r2.order_id)
-  			  from CTE_runner_orders_clean as r2
-  			  where r2.runner_id = ro.runner_id) as total_orders,
-  			 row_number () over (partition by r.runner_id order by r.runner_id) as row_numbers
-  from
-  			case02.runners as r
-  left join  CTE_runner_orders_clean as ro
-  			on r.runner_id = ro.runner_id
-  
-  left join CTE_customer_orders_clean as c
-  			on ro.order_id = c.order_id 		
+	     	COUNT(ro.order_id) over (partition by r.runner_id) as number_pizzas,
+  		CASE 
+	                WHEN ro.cancellation IS NULL THEN
+	      		     COUNT(ro.order_id)  over (partition by r.runner_id, ro.cancellation)
+  		END as number_pizzas_without_cancellation, 
+  	       (Select 
+              		COUNT(r2.order_id)  
+  		from CTE_runner_orders_clean  as r2 
+  		where r2.runner_id = ro.runner_id and r2.cancellation is null
+         	) as orders,
+  		(Select 
+              		COUNT(r2.order_id)
+  		from CTE_runner_orders_clean as r2
+  		where r2.runner_id = ro.runner_id) as total_orders,
+  		row_number () over (partition by r.runner_id order by r.runner_id) as row_numbers
+  	from
+  	case02.runners as r
+  	left join  CTE_runner_orders_clean as ro
+  	    on r.runner_id = ro.runner_id
+        left join CTE_customer_orders_clean as c
+  	    on ro.order_id = c.order_id 		
 	) as t 
  where row_numbers = 1
 ) as table1
