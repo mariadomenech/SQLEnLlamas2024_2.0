@@ -13,7 +13,8 @@ DECLARE @runner_orders_clean TABLE
 			 pickup_time varchar(19),
 			 distance varchar(7),
 			 duration varchar(10),
-			 cancellation varchar(23));
+			 cancellation varchar(23),
+			 row_numbers int IDENTITY NOT NULL);
 
 
 DECLARE @CURSOR CURSOR;
@@ -50,11 +51,13 @@ FETCH NEXT FROM @CURSOR INTO @order_id,
 	BEGIN 
 		INSERT INTO @runner_orders_clean 
 					(order_id,
-					 runner_id)
+					 runner_id
+					 )
 						 
 				VALUES
 					(@order_id,
-					 @runner_id);
+					 @runner_id
+					 );
 
 		
 		SET @pickup_time_value = 
@@ -99,14 +102,14 @@ FETCH NEXT FROM @CURSOR INTO @order_id,
 									 @pickup_time,
 									 @distance,
 									 @duration,
-									 @cancellation;
-
-		
+									 @cancellation;		
 	
 	END
 
 CLOSE @CURSOR;
 DEALLOCATE @CURSOR;
+
+
 
 INSERT INTO @distance_vs_velocity (runner_id,distance_runner,velocity_runner) 
 			SELECT r.runner_id,
@@ -144,4 +147,3 @@ RETURN
 END;
 
 select * from dbo.DistancevsVelocity();
-
