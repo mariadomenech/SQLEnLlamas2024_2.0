@@ -27,9 +27,9 @@ as
 	)
 	
 SELECT r.runner_id,
-				   ISNULL(distance_per_runner,0), 
-				   ISNULL(ROUND(total_velocity_per_runner/delivery_number_without_null,2),0) as promedium_velocity_per_runner
-			FROM (
+       ISNULL(distance_per_runner,0), 
+       ISNULL(ROUND(total_velocity_per_runner/delivery_number_without_null,2),0) as promedium_velocity_per_runner
+       FROM (
 					SELECT			
 									distinct(runner_id),
 									SUM(distance) OVER (PARTITION BY runner_id) AS distance_per_runner,
@@ -49,7 +49,8 @@ SELECT r.runner_id,
 											END AS velocity_per_delivery
 
 								FROM CTE_runner_orders_clean
-						  ) as t
-					GROUP BY runner_id,distance,velocity_per_delivery,delivery_number) as t2
+					) as t
+	    GROUP BY runner_id,distance,velocity_per_delivery,delivery_number) as t2
 
-		right join case02.runners as r on t2.runner_id = r.runner_id;
+	    right join case02.runners as r 
+			on t2.runner_id = r.runner_id;
