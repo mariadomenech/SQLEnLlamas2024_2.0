@@ -88,11 +88,11 @@ Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellatio
   		row_number () over (partition by r.runner_id order by r.runner_id) as row_numbers
   	from
   	case02.runners as r
-  	left join  CTE_runner_orders_clean as ro
-  	    on r.runner_id = ro.runner_id
-        left join CTE_customer_orders_clean as c
-  	    on ro.order_id = c.order_id 		
-	) as t 
+        left join  CTE_runner_orders_clean as ro
+  		on r.runner_id = ro.runner_id
+   	left join CTE_customer_orders_clean as c
+  	 	on ro.order_id = c.order_id 		
+   ) as t 
  where row_numbers = 1
 ) as table1
   left join (
@@ -103,12 +103,12 @@ Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellatio
       			ro.runner_id as runner_id, 
       			count(ro.runner_id) as number_pizzas_with_modifications,
       			row_number() over (partition by ro.runner_id order by ro.runner_id) as row_numbers
-      		FROM
+      		from
       			CTE_runner_orders_clean as ro
       			left join CTE_customer_orders_clean as c
       			on ro.order_id = c.order_id 
-      	where ro.cancellation is  null and (c.exclusions is not null or c.extras is not null)
-      	group by ro.runner_id) as t
+      			where ro.cancellation is  null and (c.exclusions is not null or c.extras is not null)
+      		group by ro.runner_id) as t
       	where row_numbers = 1) as table2
   on table1.runner_id = table2.runner_id;
 
