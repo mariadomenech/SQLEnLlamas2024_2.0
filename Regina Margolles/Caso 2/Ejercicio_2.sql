@@ -3,7 +3,7 @@ CTE_runner_orders_clean
 as 
 	(	
 		Select
-		   order_id, 
+		   	order_id, 
 			 runner_id,
 			 pickup_time,
 			 CASE
@@ -17,12 +17,12 @@ as
 				  WHEN ISNUMERIC(duration) = 1 THEN duration
 				  WHEN PATINDEX('%[A-Za-z]%',duration) = 1 THEN NULL
 				  WHEN PATINDEX('%[0-9]%',duration) = 1 THEN TRIM(SUBSTRING(duration,0, CHARINDEX('m',duration)))
-		    END as duration,
+		    	END as duration,
 			CASE
 				  WHEN cancellation = '' THEN NULL
 				  WHEN PATINDEX('%null%',cancellation) = 1 THEN NULL
 				  WHEN PATINDEX('%[A-Za-z]%',cancellation) = 1 THEN cancellation
-		    END as cancellation
+		    	END as cancellation
 		
 	  from case02.runner_orders
 	)
@@ -31,7 +31,7 @@ CTE_customer_orders_clean
 as 
 	(
 		Select 
-		    order_id, 
+		    	  order_id, 
 			  customer_id,
 			  pizza_id,
 			  CASE 
