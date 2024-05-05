@@ -70,3 +70,16 @@ SELECT
 	SUM(salario) AS gastos_salario,
 	SUM(importe_pizza) + SUM(importe_extras) - SUM(salario) AS Beneficios
 FROM ingresos_pedido;
+
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto. Me ha gustado que incluyas los beneficios, porque al final a Giuseppe es una de las cosas que más le puede interesar saber jeje
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Genial Miguel!!!
+
+*/
