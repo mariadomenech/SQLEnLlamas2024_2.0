@@ -60,3 +60,27 @@ SELECT
     SUM(extras) AS extras,
     SUM((precio + extras) - ganancia_runner) AS Ganancias
 FROM filtro;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Resultado incorrecto David.
+
+Resultado: Los resultados de ingresos y costes no están calculados correctamente.
+            - Costes (ganancia runner): Hay que calcularlos por pedido, ya que los costes son los mismos independientemente de las pizzas que lleve y siempre procuramos redondear los resultados.
+            - Ingresos: Tenemos que sumar antes los precios de las pizzas al hacer el case when.
+
+Código: Aunque el resultado de los ingredientes extras es correcto, no sería la manera correcta de obtenerlo. Para ello tenemos que hacer un split de los extras. 
+        Una manera de hacerlo sería utilizar la función CROSS APPLY STRING_SPLIT ((CASE WHEN (extras is null OR extras = 'null' or extras = '') THEN '0' ELSE extras END ), ',').
+
+Legibilidad: OK.
+
+Me ha gustado que hagas primero la limpieza de las tablas.
+Te animo a darle una vuelta y que si tienes dudas preguntes por el grupo o a los correctores, que seguro se puede ayudar en algo, y como siempre, a utilizar la aplicación para comprobar que los resultados son los correctos.
+
+Ánimo!!
+
+*/
