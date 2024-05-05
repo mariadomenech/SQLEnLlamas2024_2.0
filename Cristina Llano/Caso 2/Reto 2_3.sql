@@ -43,3 +43,20 @@ INNER JOIN
 ) run
   ON run.order_id = pedidos.order_id
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Impecable Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha gustado que muestres los beneficios directamente porque al final es lo que más le interesa a Guiseppe!
+
+
+*/
