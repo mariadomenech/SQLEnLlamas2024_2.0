@@ -170,8 +170,7 @@ SELECT
     px.total_successful_orders,
     px.delivered_orders_percentage,
     cp.total_pizzas,
-    pc.altered_pizzas_percentage,
-   cpc.total_altered_pizzas
+    pc.altered_pizzas_percentage
 FROM Porcent_ex_pizza px
 LEFT JOIN Porcent_camb_pizza pc ON px.runner_id = pc.runner_id
 LEFT JOIN Count_pizza cp ON pc.runner_id = cp.runner_id
