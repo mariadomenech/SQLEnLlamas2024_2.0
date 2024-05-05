@@ -21,3 +21,20 @@ LEFT JOIN
 ) repe
 ON  topp.topping_id  = repe.topping_id
 ORDER BY 2 DESC;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, perfecto!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha gustado que tengas en cuenta el control de nulos.
+
+
+*/
