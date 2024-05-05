@@ -20,3 +20,16 @@ FROM SQL_EN_LLAMAS_ALUMNOS.case02.pizza_toppings pt
 	JOIN cuenta_ingredientes ci ON pt.topping_id = ci.topping
 	GROUP BY pt.topping_name
 	ORDER BY COUNT (ci.topping) DESC;
+
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto.
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto. Muy fácil de entender cómo estás haciendo el código.
+
+Perfect!!!
+
+*/
