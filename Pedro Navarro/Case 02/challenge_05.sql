@@ -113,3 +113,25 @@
 
 SELECT *
 FROM TOPPINGS_RANKING;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Perfecta.
+
+Todo perfecto! Me ha gustado mucho cómo has ido construyendo la solución. Como bien dices,
+en estos ejercicios más tediosos y largos es mejor crear mas CTEs para que sea más legible.
+
+Muy bien el detalle de cómo has sacado los extras y los ingredientes excluidos haciendo un left y 
+comprobando si eran nulos, muy original. 
+
+Por último, genial cómo muestras la salida generando una lista con STRING_AGG para cada contaje de uso de 
+los toppings. 
+
+Estupenda solución, sigue así!!
+*/
