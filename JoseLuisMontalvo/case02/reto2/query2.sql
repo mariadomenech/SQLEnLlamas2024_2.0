@@ -45,3 +45,7 @@ select runners.runner_id,
 
 from case02.runners runners
                 left join Agrupacion agr on agr.runner_id=runners.runner_id;
+
+/*COMENTARIOS JUANPE
+Todo perfecto. Me gusta el planteamiento seguido, primera cte para sacar los campos con los que "jugar" cuando tienes que hacer los conteos. Una segunda cte donde sacar los conteos y la salida donde ya se hacen las cuentas necesarias.
+Como he dicho todo perfecto, facil de seguir y bien ordenado.*/
