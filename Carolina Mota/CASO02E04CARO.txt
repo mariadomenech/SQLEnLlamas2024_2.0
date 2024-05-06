@@ -7,3 +7,12 @@ INNER JOIN case02.pizza_toppings B
 	ON (A.topping_id=B.topping_id)
 GROUP BY topping_name
 ORDER BY COUNT(A.topping_id) DESC;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
