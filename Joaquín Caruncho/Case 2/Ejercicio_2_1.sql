@@ -27,3 +27,8 @@ group by a.runner_id, order_id
 )a
 group by a.runner_id
 order by a.runner_id;
+
+/*COMENTARIOS JUANPE
+Bien limpiado la tabla pero poco genérica ya que haces un replace de palabras concretas 'minutes', 'mins' hay formas más genéricas como buscar el primer numero y el ultimo y que te extraiga entra esas posciones, o que te extragia justo hasta donde aparece alguna
+letra, pero aún asi bien pues una forma perfecta de limpiar datos no existe, aunque si unas más generica que otras.
+En cuanto a resultados codigo y legibildiad todo correcto.*/
