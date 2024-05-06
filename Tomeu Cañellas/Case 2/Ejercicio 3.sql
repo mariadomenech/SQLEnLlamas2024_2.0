@@ -74,3 +74,11 @@ FROM (
 	INNER JOIN answer_2
 		ON answer_1.answer_id = answer_2.answer_id
 	) answer;
+
+/*
+
+Está perfecto. Limpieza, buenas soluciones y código correcto. Además has añadido el resultado final, que en la app no lo presentaba
+como necesario pero es lo que se pedía realmente en el ejercicio: 98,44.
+Nada que añadir! :)
+
+*/
