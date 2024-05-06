@@ -41,3 +41,12 @@ FROM
     pedidos_exitosos p
     JOIN total_pedidos t ON p.runner_id = t.runner_id
 ORDER BY p.runner_id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
