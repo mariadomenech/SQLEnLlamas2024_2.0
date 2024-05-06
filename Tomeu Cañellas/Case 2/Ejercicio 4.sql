@@ -25,3 +25,15 @@ INNER JOIN [SQL_EN_LLAMAS_ALUMNOS].[case02].[pizza_toppings] pizza_toppings
 --Agrupamos por topping y ordenamos por su cuenta de forma descendente
 GROUP BY pizza_toppings.topping_name
 ORDER BY 2 DESC;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Tengo que decirte que me ha sorprendido la solución, no me la esperaba jajaja, no es la más elegante pero es 
+igualmente válida. Se podría haber hecho uso de CTEs con UNPIVOT o CROSS APPLY por ejemplo para un código más
+"moderno" pero sigue siendo válida. Esta tarde añado alguna solución usando esos ejemplos por si le quieres echar
+un vistazo. ;)
+
+*/
