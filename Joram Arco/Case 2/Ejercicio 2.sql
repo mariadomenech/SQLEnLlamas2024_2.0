@@ -108,3 +108,12 @@ SELECT
 	,CONCAT (CASE WHEN num_pedidos = 0 THEN 0 ELSE (num_pedidos_ok * 100 / num_pedidos) END ,'%') AS pct_pedidos_ok
 	,CONCAT (CASE WHEN num_pizzas_ok = 0 THEN 0 ELSE ROUND((num_pizzas_modificadas * 100 / num_pizzas_ok), 2) END, '%') AS pct_pizzas_ok_mod
 FROM orders_total;
+
+/*COMENTARIOS JUANPE
+Bien por las dos opciones, ambas muy bien ordenadas y usando los with se consigue un código más limpio y facil de seguir. La primera aunque con más with valida igual pero me gusta la segunda que se hace en menos lineas de código. 
+En cuanto al simbolo de porcentaje también me parece bien sobre todo porque lo has anotado en comentarios, porque es cierto que al ponerle el simbolo pasas un numero a char y si hace falta usarlo te tocaria volver a pasar a number y quitarle el simbolo
+pero al reflejarlo en el comentario me parece perfecto, pues demuestras no solo que lo pones para que quede guay si no que sabes las consecuencias de ponerlo, por ello ¡genial!
+En cuanto al orden de moestrarlos si que tiene sentido que sea por % de exito que en este caso coincide con id runner.
+Y aunque me parece todo genial en el ejercicio si quiero hacerte un comentario, cuando haces "CAST" no es necesario si lo que hay dentro es un conteo o una suma que por defecto el conteo y la suma ya te devuelven valor numerico, si fuera para forzar a que
+tengas un determinado numero de decimales si, pero en este caso son números enteros, num_pedidos_ok,num_pizzas_ok,num_pizzas_modificadas no te hace falta el cast.
+Pero todo genial.*/
