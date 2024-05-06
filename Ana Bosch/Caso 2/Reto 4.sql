@@ -21,13 +21,17 @@ AS (
 		)  
 	) AS tabla_pivotada
 	GROUP BY topping_id
+	
 )
 
 SELECT topping_name,
-	repeticiones
+	COALESCE(repeticiones,0)
 FROM CTE_PIVOTADA CTE
-JOIN case02.pizza_toppings AS PT
+RIGHT JOIN case02.pizza_toppings AS PT
 	ON CTE.topping_id = PT.topping_id
 ORDER BY 2 desc
+
+-- Aunque en este caso, los topping_ids de la tabla de hechos coinciden con la dimensión, se tiene en cuenta obtener todos los de la dimensión por si no siempre 
+-- ocurriera esa casuística así como el tratamiento de los valores nulos.
 
 
