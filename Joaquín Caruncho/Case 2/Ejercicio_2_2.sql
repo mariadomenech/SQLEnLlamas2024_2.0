@@ -28,3 +28,7 @@ select
 
 )a
 order by a.runner_id;
+
+
+/*COMENTARIOS JUANPE
+Todo perfecto, una forma muy sencilla de hacerlo sin necesidad de excesivas subselect o with*/
