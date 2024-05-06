@@ -21,3 +21,6 @@ RIGHT JOIN case02.runners runners
 		ON (runner_orders.runner_id = runners.runner_id)
 
 GROUP BY runners.runner_id;
+
+/*Comentarios Juanpe
+Todo Correcto resultados legiblidad y código y bien limpiando los datos iniciales*/
