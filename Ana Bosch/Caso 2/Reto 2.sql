@@ -94,3 +94,14 @@ LEFT JOIN CTE_KO KO
 LEFT JOIN CTE_pizzas_MOD pizzas_MOD
 	ON OK.runner_id = pizzas_MOD.runner_id
 ORDER BY 1 ASC
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto!! Nada que añadir. Se podría hacer alguna solución un poco más genérica para tratar el texto de los "Cancellation" pero
+como no hay más textos de ejemplo veo perfecto lo que has hecho. 10/10 :)
+
+*/
