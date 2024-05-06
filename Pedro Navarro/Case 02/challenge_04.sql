@@ -33,3 +33,16 @@
 
 SELECT *
 FROM REPEATED_TOTAL_TOPPINGS;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Perfecta.
+
+Perfecto Pedro, es justo lo que se esperaba!
+*/
