@@ -85,3 +85,12 @@ INNER JOIN #runner_orders_temp B
 RIGHT JOIN case02.runners C
 	ON (B.runner_id=C.runner_id)
 GROUP BY C.RUNNER_ID;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
