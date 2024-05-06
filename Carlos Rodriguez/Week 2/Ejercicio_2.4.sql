@@ -9,3 +9,12 @@ FROM (
 GROUP BY topping_name
 ORDER BY veces_usado DESC;
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! Aunque la idea de este ejercicio era que utilizaseis la funcion UNPIVOT, debido a que ya os dabamos el dato spliteado.
+
+*/
