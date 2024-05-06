@@ -126,3 +126,20 @@ FROM
 	GROUP BY A.topping_id,topping_name,N_extras,N_exclusiones
 ) G
 GROUP BY gasto_ingredientes;
+
+
+/*************************************************************/
+/***********COMENTARIO DANI***********************************/
+/*
+Resultado parcialmente correcto, en su mayoría el resultset es correcto pero hay
+algun que otro pequeño error que hace que cierto ingrediente se coloque donde no
+debe, debido a la lógica y al manejo de cálculo ese detallito se ha escapado, no
+hay problema, supone una corrección relativamente sencilla. La carne de ternera y 
+de pollo están invertidas, una ocupa el lugar de la otra en la consulta final y te 
+chivateo que no es así jeje. Me ha gustado el uso de DENSE RANK para asignar un rango
+a cada fila dentro de una partición de un conjunto de resultados. El uso de UNPIVOT
+para transformar las columnas de ingredientes en filas ha estado genial, original.
+Como puntos a mejorar diría que a priori la consulta es compleja, te animo a refactorizarla
+para una mejor lectura y comprensión además de intentar refactorizar también algunas
+consultas que llegan a repetir cierto manejo de lógica y cálculo. Sigue así Ismael,
+el SELECT te invade poco a poco!*/
