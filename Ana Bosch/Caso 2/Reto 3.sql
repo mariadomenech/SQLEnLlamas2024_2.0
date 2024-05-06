@@ -83,3 +83,16 @@ JOIN CTE_precios_pizzas CTE_PP
 	ON CTE_PE.order_id = CTE_PP.order_id
 JOIN CTE_coste_carrera CTE_RO
 	ON CTE_PE.order_id = CTE_RO.order_id
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Sigue estando perfecto, el código es limpio, suficientemente genérico, con buen tratamiento de nulos y excepciones.
+Y el resultado está bien pero ha faltado la operación final para motrar sólo cuánto dinero le sobra a Giuseppe:
+138+4-43.56 = 98.44
+Ha sido un tema general porque era la solución que daba la app, así que sigue siendo perfectamente válido :)
+
+*/
