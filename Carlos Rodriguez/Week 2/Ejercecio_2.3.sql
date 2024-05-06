@@ -56,3 +56,14 @@ FROM (
         cust_orders_2.pizza_id
 ) AS desglose_pizzas;
 ;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Faltaría añadir el beneficio final, entiendo que se debe a que utilizas la app y en ella no aparece, asi que culpa nuestra :(
+
+Por otro lado, de cara a la legibilidad del código, evitaría introducir retornos de carro despues de cada from/join/on ya que estira el código y dificulta un poco su lectura.
+
+*/
