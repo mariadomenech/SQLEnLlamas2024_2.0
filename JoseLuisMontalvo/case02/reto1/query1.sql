@@ -24,3 +24,6 @@ select runner.runner_id,
   from case02.runners runner
               left join Auxiliar aux on aux.runner_id=runner.runner_id
 group by runner.runner_id;
+
+/*Comentarios Juanpe
+Todo Correcto resultados legiblidad y código y bien limpiando los datos iniciales*/
