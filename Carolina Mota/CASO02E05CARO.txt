@@ -43,7 +43,7 @@ FROM
 		ON (A.pizza_id=C.pizza_id)
 	INNER JOIN #runner_orders_temp D
 		ON (C.order_id=D.order_id)
-	LEFT JOIN (SELECT
+	LEFT JOIN (		SELECT
 					[value] AS topping_id, 
 					COUNT([value]) AS N_extras
 				FROM #customer_orders_temp AS A
@@ -79,3 +79,53 @@ GROUP BY gasto_ingredientes;
 El resultado esta perfecto, lo único que se pedía utilizar la tabla PIZZA_RECIPES en lugar de la PIZZA_RECIPES_SPLIT. Este cambio de tabla implica unos pequeños cambios en el código, échale un ojo si tienes tiempo!
 
 */
+/*********************************************************/
+/***************** CAMBIO PIZZA_RECIPES *********************/
+/*********************************************************/
+
+
+SELECT 
+RANK( ) OVER (ORDER BY gasto_ingredientes DESC) AS ranking,
+gasto_ingredientes AS num_ingredientes,
+STRING_AGG(topping_name,', ') WITHIN GROUP (ORDER BY (CAST(topping_id AS INT))) AS ingredientes
+FROM
+	(SELECT 
+		A.[value] AS topping_id,
+		topping_name, 
+		COUNT(A.[value]) + ISNULL(CAST(N_extras AS INT),0) - ISNULL(CAST(N_exclusiones AS INT),0) AS gasto_ingredientes
+	FROM case02.pizza_recipes AS P
+	CROSS APPLY STRING_SPLIT(REPLACE(toppings,' ',''),',') AS A
+	INNER JOIN case02.pizza_toppings B
+		ON (A.[value]=B.topping_id)
+	INNER JOIN #customer_orders_temp C
+		ON (P.pizza_id=C.pizza_id)
+	INNER JOIN #runner_orders_temp D
+		ON (C.order_id=D.order_id)
+	LEFT JOIN (		SELECT
+					[value] AS topping_id, 
+					COUNT([value]) AS N_extras
+				FROM #customer_orders_temp AS A
+				CROSS APPLY STRING_SPLIT(extras,',') AS B
+				INNER JOIN #runner_orders_temp C
+					ON (A.order_id=C.order_id)
+				WHERE cancellation IS NULL
+				GROUP BY [value]
+				) E
+		ON (B.topping_id=E.topping_id)
+	LEFT JOIN (
+				SELECT
+					[value] AS topping_id, 
+					COUNT([value]) AS N_exclusiones
+				FROM #customer_orders_temp AS A
+				CROSS APPLY STRING_SPLIT(exclusions,',') AS B
+				INNER JOIN #runner_orders_temp C
+					ON (A.order_id=C.order_id)
+				WHERE cancellation IS NULL
+				GROUP BY [value]
+				) F
+		ON (B.topping_id=F.topping_id)
+	WHERE cancellation IS NULL
+	GROUP BY A.[value],topping_name,N_extras,N_exclusiones
+) G
+GROUP BY gasto_ingredientes;
+
