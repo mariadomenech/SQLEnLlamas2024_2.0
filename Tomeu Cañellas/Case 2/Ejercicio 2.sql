@@ -82,3 +82,12 @@ LEFT JOIN order_answers
 	ON order_answers.runner_id = pizzas_ok.runner_id;
 
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto, tanto el tratamiento de los datos, como la limpieza y el resultado. Me gusta que le hayas dado una solución un poco más
+general con el %Cancellation%. Nada que añadir!
+
+*/
