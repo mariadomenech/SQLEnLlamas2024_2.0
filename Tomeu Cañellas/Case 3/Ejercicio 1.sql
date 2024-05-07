@@ -8,7 +8,7 @@ WITH continuous_periods AS (
             end_date,
             LAG(end_date) OVER (PARTITION BY customer_id, node_id ORDER BY start_date) AS prev_end_date --Obtenemos el end_date previo
     FROM [SQL_EN_LLAMAS_ALUMNOS].[case03].[customer_nodes]
-	  WHERE end_date < '9999-12-31' --Filtramos las estancias activas en los nodos
+    WHERE end_date < '9999-12-31' --Filtramos las estancias activas en los nodos
 ),
 
 --En esta tabla temporal marcamos con 0 si la start_date es igual a la end_date previa + 1, lo que significa que el periodo es continuo y con 1 si
@@ -36,13 +36,13 @@ grouped_periods AS (
 
 --Obtenemos la fecha mínima y la máxima para cada periodo continuo
 intermediate_table AS (
-	  SELECT  customer_id,
-		        node_id,
-		        MIN(start_date) AS start_date,
-		        MAX(end_date) AS end_date,
-		        period_group
-	  FROM grouped_periods
-	  GROUP BY customer_id, node_id, period_group
+    SELECT  customer_id,
+	    node_id,
+	    MIN(start_date) AS start_date,
+	    MAX(end_date) AS end_date,
+	    period_group
+    FROM grouped_periods
+    GROUP BY customer_id, node_id, period_group
 )
 
 --Finalmente, calculamos la duración media en dias de cada estancia en un nodo
