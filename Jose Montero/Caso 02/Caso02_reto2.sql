@@ -1,5 +1,5 @@
 --SELECT TABLA PIZZAS MODIFICADAS--
-/*Primero limpio la tabla de pizzas de customers. A�ado un flag con las pizzas modificadas para hacer el c�lculo m�s tarde.*/
+/*Primero limpio la tabla de pizzas de customers. Añado un flag con las pizzas modificadas para hacer el cálculo más tarde.*/
 select 
 	co.order_id
 	, case when (co.exclusions <> 'null' and co.exclusions <> ' ') or (co.extras <> 'null' and co.extras <> ' ' and co.extras <> 'NULL') then '1' else '0' end as flg_modificado
@@ -11,7 +11,7 @@ select * from #pizzasmodificadas
 
 
 --SELECT TABLAS UNIDAS sin filtrar--
-/*En este paso se une la tabla anteriormente creada con la de pedidos de runners. A�adimos tambi�n un flag con los pedidos que se han entregado.*/
+/*En este paso se une la tabla anteriormente creada con la de pedidos de runners. Añadimos también un flag con los pedidos que se han entregado.*/
 select
 	ro.runner_id
 	, ro.order_id
@@ -28,7 +28,7 @@ select * from #totalpedidos
 
 
 --QUERY DEFINITIVA--
-/*En base a la tabla anterior, mediante selects podemos obtener lo que requer�a el ejercicio.*/
+/*En base a la tabla anterior, mediante selects podemos obtener lo que requería el ejercicio.*/
 select
 	ru.runner_id as Runner_malpagado
 	, coalesce(count(distinct(case when tp.flg_entregado = 1 then tp.order_id else null end)),0) as Pedidos_completados
@@ -40,15 +40,11 @@ right join case02.runners ru
 	on ru.runner_id = tp.runner_id
 group by ru.runner_id
 
+/*
+Corrección Pablo: ¡Todo perfecto!
 
-
-
-
-
-
-
-
-
-
-
-
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Como te comenté en el anterior ejercicio, a mí me gusta más el uso de CTEs, pero genial por usar tablas temporales y así evitar subconsultas.
+Legibilidad: OK. ¡Mucho mejor estos últimos ejercicios con todo bien tabulado!
+¡Enhorabuena!
+*/
