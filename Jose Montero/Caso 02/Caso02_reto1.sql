@@ -17,11 +17,10 @@ right join case02.runners r
 group by r.runner_id
 
 /*
-Corrección Pablo: Todo prácticamente correcto.
+Corrección Pablo: ¡Todo perfecto!
 
 Resultado: OK. Obtienes justo lo que se pedía.
-Código: OK, si no tenemos en cuenta que falta el código para crear la tabla temporal. Una opción más cómoda, al no necesitar un create y drop 
-de la tabla temporal, sería el uso de CTEs, en este caso tendríamos:
+Código: OK. Para mí es más cómodo utilizar CTEs en lugar de tablas temporales, aunque tu solución es perfectamente válida. Usando una CTE la solución quedaría así:
 */
 
 WITH pedidos AS (
