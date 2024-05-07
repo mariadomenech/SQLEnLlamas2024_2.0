@@ -35,3 +35,8 @@ FROM
 	GROUP BY M.product_name
 ) AS A
 WHERE A.Rank = 1;
+
+
+/*
+Ahora sí, ¡perfecto!
+*/
