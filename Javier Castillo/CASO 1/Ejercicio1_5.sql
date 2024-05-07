@@ -1,6 +1,6 @@
 /*
-Fidelizaci�n
-Cada � gastado  equivale a 10 puntos
+Fidelización
+Cada € gastado  equivale a 10 puntos
 El sushi tiene un multiplicador x2 puntos
 */
 
@@ -15,3 +15,13 @@ LEFT JOIN [SQL_EN_LLAMAS_ALUMNOS].[case01].[menu] AS M
 
 GROUP BY C.customer_id
 ORDER BY CLIENTE;
+
+/*
+Corrección Pablo: Todo perfecto.
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK.
+Legibilidad: OK. El código es perfectamente legible, aunque podrías haber tabulado las columnas del select.
+
+¡Enhorabuena!
+*/
