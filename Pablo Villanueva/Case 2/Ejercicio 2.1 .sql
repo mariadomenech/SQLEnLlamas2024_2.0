@@ -24,3 +24,19 @@ SELECT
     CAST(ROUND(ISNULL(ro.Velocidad_Promedio_km_h, 0), 2) AS DECIMAL(18, 2)) as Velocidad_Promedio_km_h
 FROM case02.runners r
 LEFT JOIN #RunnerOrdersWithSpeed ro ON r.runner_id = ro.runner_id;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+
+RESULTADO: OK
+CÓDIGO: OK
+LEGIBILIDAD: OK
+
+Genial Pablo, una solución simple y legible. Muy bien el uso de PATINDEX para hacer una limpieza
+más geneérica de la solución y perfectamente tratados los posibles nulos.
+
+*/
