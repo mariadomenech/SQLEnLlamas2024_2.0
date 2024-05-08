@@ -59,3 +59,43 @@ SELECT
 	ROUND(AVG(CAST(dias_por_nodo AS FLOAT)),2) AS dias_reasignacion_media,
 	concat('Los clientes se reasignan a un nodo diferente cada ', ROUND(AVG(CAST(dias_por_nodo AS FLOAT)),2), ' días de media') AS texto
 FROM suma_dias;
+
+
+/*
+He seguido dando vueltas a la solución y he encontrado otra forma de hacerlo que creo más "limpia" ya que si quitamos los valores infinitos con el where
+en la primera tabla temporal y luego obtenemos la fecha fin del siguiente registro (que sería el que coincide con el mismo nodo en el cliente, por lo que sería
+para clientes que mantienen el mismo nodo en el cambio).
+*/
+WITH cambios_mismo_nodo AS (
+	SELECT 
+		customer_id
+		,node_id
+		,LAG(node_id,1,0) OVER (PARTITION BY customer_id ORDER BY start_date) AS previous_node
+		,start_date
+		,end_date
+	FROM case03.customer_nodes
+	WHERE end_date != '9999-12-31' --Quitamos los valores "infinitos" donde aún no se ha cambiado de nodo y por eso no interesan
+),
+
+diferentes_nodos AS ( 
+	SELECT 
+		customer_id
+		,previous_node
+		,node_id
+		,start_date 
+		,end_date
+		,LEAD(start_date) OVER (PARTITION BY customer_id ORDER BY customer_id, start_date) AS next_end_date
+	FROM cambios_mismo_nodo
+	where node_id != previous_node
+),
+
+valor_solucion AS(
+	SELECT
+		ROUND(AVG(CAST(DATEDIFF(DAY, start_date, DATEADD(DAY, -1, next_end_date)) AS FLOAT)), 2) AS average_reassignment_days_between_different_nodes
+	FROM diferentes_nodos
+)
+
+SELECT 
+	average_reassignment_days_between_different_nodes
+	,CONCAT('Los clientes se reasignan a un nodo diferente cada ', average_reassignment_days_between_different_nodes, ' días de media') AS texto
+FROM valor_solucion;
