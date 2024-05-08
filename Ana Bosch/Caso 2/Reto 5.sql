@@ -1,3 +1,5 @@
+-- RETO 5: ¿Cuántas veces ha sido usado cada ingrediente sobre el total de pizzas entregadas? Ordena desde el más frecuente al menos frecuente.
+
 WITH 
 -- Eliminamos cualquier tipo de cancelación, al usar like en el caso en que este en mayusculas la palabra también la tendría en cuenta
 CTE_RO
@@ -23,7 +25,7 @@ AS (
 -- Esta query lo que hace es asegurar que si hay escrito en minúscula o mayúscula algún ingrediente automaticamente busca su id para mostrarla
 CTE_EXTRAS
 AS (
-	SELECT order_id
+	SELECT A.order_id
 		,pizza_id
 		,CASE	
 			WHEN extras LIKE (
@@ -39,19 +41,10 @@ AS (
 			WHEN ISNUMERIC(extras) = 1 THEN extras
 			ELSE 0
 		END AS extras
-	FROM CTE_CROSS_EXTRAS
-),
-
--- Eliminamos los pedidos cancelados
-CTE_EXTRA_SIN_CANCELACION
-AS (
-	SELECT A.order_id
-		,pizza_id
-		,extras
-	FROM CTE_EXTRAS A
+	FROM CTE_CROSS_EXTRAS A
 	JOIN CTE_RO B 
 		ON A.order_id = B.order_id
-	WHERE cancellation = 0
+	WHERE cancellation != 1
 ),
 
 -- Separamos las exclusiones en filas diferentes
@@ -67,7 +60,7 @@ AS (
 -- Esta query lo que hace es asegurar que si hay escrito en minúscula o mayúscula algún ingrediente automaticamente busca su id para mostrarla
 CTE_EXCLUSION
 AS (
-	SELECT order_id
+	SELECT A.order_id
 		,pizza_id
 		,CASE	
 			WHEN exclusions LIKE (
@@ -83,19 +76,10 @@ AS (
 			WHEN ISNUMERIC(exclusions) = 1 THEN exclusions
 			ELSE 0
 		END AS exclusions
-	FROM CTE_CROSS_EXCLUIONS
-),
-
---Eliminamos las exclusiones canceladas
-CTE_EXCLUSION_SIN_CANCELACION
-AS (
-	SELECT A.order_id
-		,pizza_id
-		,exclusions
-	FROM CTE_EXCLUSION A
+	FROM CTE_CROSS_EXCLUIONS A
 	JOIN CTE_RO B 
 		ON A.order_id = B.order_id
-	WHERE cancellation = 0
+	WHERE cancellation != 1
 ),
 
 --Contamos las exclusiones por ingrediente
@@ -104,7 +88,7 @@ AS (
 
 	SELECT topping_id
 		,COUNT(*) AS exclusiones_restar
-	FROM CTE_EXCLUSION_SIN_CANCELACION A
+	FROM CTE_EXCLUSION A
 	JOIN case02.pizza_toppings B
 	ON A.exclusions = B.topping_id
 	GROUP BY topping_id
@@ -115,7 +99,7 @@ CTE_SUMA_EXTRA
 AS (
 	SELECT topping_id
 		,COUNT(*) AS extras_sumar
-	FROM CTE_EXTRA_SIN_CANCELACION A
+	FROM CTE_EXTRAS A
 	JOIN case02.pizza_toppings B
 	ON A.extras = B.topping_id
 	GROUP BY topping_id
@@ -190,3 +174,6 @@ FROM CTE_SUMA_TOTAL A
 JOIN case02.pizza_toppings B
 	on A.topping_id = B.topping_id
 GROUP BY repeticiones
+
+-- Puede parecer un codigo complejo, no obstante la idea de encapsular operaciones especificas que puedan reutilizarse en calculos más complejos me parece mejor opción.
+-- En una de las CTE se calcula en función de cualquier ingrediente que se escriba el id correspondiente, para intentar 'automatizar' el proceso.
