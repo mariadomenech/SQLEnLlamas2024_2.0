@@ -19,3 +19,15 @@ FROM (
 )A
 GROUP BY RUNNER
 ORDER BY RUNNER;
+
+/*
+Corrección Pablo: El ejercicio no está del todo bien.
+
+Resultado: NOK. La velocidad promedio de los riders 2 y 3 es incorrecta.
+Código: NOK. Has considerado los pedidos anulados a los riders 2 y 3 como distancia y duración igual a 0 km y 0 min respectivamente. Esto en sí no es incorrecto, pero 
+tenerlos en cuenta en la media sí que es un error ya que esta debe calcularse únicamente con las entregas que han realizado los riders. Al fin y al cabo, al anularse un pedido, 
+el rider no llega a montarse en la moto, es decir, esa entrega no llega a producirse.
+Legibilidad: OK. Genial la tabulación, el código es perfectamente legible. De todas formas, te animo a que pruebes las CTEs, con las que consigues un código aún más limpio en mi opinión.
+
+Además, has limpiado perfectamente los datos iniciales. Te animo a que lo corrijas si tienes un rato. ¡Ánimo!
+*/
