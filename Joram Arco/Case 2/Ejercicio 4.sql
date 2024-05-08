@@ -75,3 +75,11 @@ JOIN case02.pizza_toppings pt
 	ON value = pt.topping_id
 GROUP BY topping_name
 ORDER BY veces_usado DESC;
+
+
+/*COMENTARIOS JUANPE
+GENIAL! Bueno la primera propuesta esa la opción "cutre" jaja Bien visto al final el unpivot que era lo que queriamos que se usara en este ejercicio (aunque sin pedirlo para ver quien lo veía).
+Muy bien también el uso de la otra tabla usando el string_split. 
+En este ejercicio como te digo era para que se practicara el unpivot por eso se ofrecia la tabla pizza_recipes_split como alternativa a pizza_recipes.
+Pero como digo por el grupo si se dan varias soluciones mejor pues asi vemos que estais pendientes de todo. */
+
