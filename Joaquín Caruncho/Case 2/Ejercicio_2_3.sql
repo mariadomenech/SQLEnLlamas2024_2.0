@@ -46,3 +46,9 @@ where
 group by a.order_id
 ) ex
 on ro.order_id = ex.order_id;
+/*COMENTARIOS JUANPE:
+Genial por incluir beneficios que era realmente lo que se pedia aunque por error la app no lo mostroba. 
+Bien visto la función STRING_SPLIT
+Es totalmente correcto el uso de varias subselect pero si me aceptas un consejo mira el uso de las cte, son las tablas temporales que se usan con el with
+suelen ser muy comodas y su uso suele llevar asociado un código más ordenado y limpio, pero como lo tienes con subselect como te digo también es valido,
+aunque mejorable la limpieza de código, pero por lo demás todo bien.*/
