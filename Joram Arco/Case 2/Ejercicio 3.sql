@@ -72,3 +72,8 @@ FROM(
 		,coc.order_id
 ) consulta2
 ;
+/*COMENTARIOS JUANPE:
+Genial por incluir beneficios que era realmente lo que se pedia aunque por error la app no lo mostroba. 
+Bien visto la función STRING_SPLIT
+Gracias por los comentarios nos ayudan bastante a los que estamos corrigiendo.
+¡Todo perfecto!*/
