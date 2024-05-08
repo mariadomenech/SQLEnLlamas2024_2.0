@@ -25,3 +25,9 @@ FROM
 		on cast(a.VALOR as int)= b.topping_id
 	GROUP BY b.topping_name
 	order by numero_ocurrencias desc;
+/*Comentarios Juanpe
+Correcto el resultado y el código. Tu has partido de pizza_recipes_split como se pedia en el enunciado aunque se puso eso en el enunciado para ver si alguien se animaba para usar un unpivot.
+En tu caso has concatenado y lo que has hecho en el campo "TIRA" es lo que existe en la tabla case02.pizza_recipes.
+No se especificaba usar el unpivot por ello no es incorrecta tu propuesta pero te ánimo si quieres a que lo rehagas usando el unpivot.
+En cuanto a la legibilidad todo muy bien tabulado y alienado.
+*/
