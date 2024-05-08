@@ -59,3 +59,7 @@ select sum(Imp_pizzas) as Imp_Pizzas,
        sum(Imp_extras) Imp_extras,
 	   sum(Costes_runner) Costes_runner 
 from Aux_resultado ;
+
+
+/*COMENTARIOS JUANPE
+Resultado correcto y codigo correcto. En cuanto al a la organización de código siempre es un tema subjetivo, pero la Auxiliar_pedidos te han bailado un poco las tabulaciones y cuesta leerlo pero en general bien*/
