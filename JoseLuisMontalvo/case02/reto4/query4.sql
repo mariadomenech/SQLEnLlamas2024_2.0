@@ -52,3 +52,8 @@ declare @tabla_salida table (Repetido int , topping varchar(20))  --- Tabla auxi
 	group by topping
 	order by 2 desc;
 
+/*COMENTARIOS JUANPE
+PERFECTO. Poco que decir a tu propueta, el uso de un procedimiento con cursor, doble while etc es una propuesta muy avanzada, no pensabamos que alguien se atreviera a montar algo del estilo en este ejercicios pues buscabamos
+que los alumnos practiran el unpivot (si se daban cuenta) aunque hay otras formas. Y de todas esas otras formas un procediemiento es sin duda la más "pro" de echo en la semana 3 y 4 se van a trabajar con procedimeintos y funciones
+pero tu solución de hoy no solo es correcta si no que muy avanzada. Y además añadir que muy bien tabulado y ordenado el código, que eso, a parte de buena practica nos ayuda a los que corregimos a que nos sea más facil ver que
+estais haciendo*/
