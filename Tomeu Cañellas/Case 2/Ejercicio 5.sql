@@ -132,3 +132,18 @@ SELECT  ROW_NUMBER() OVER (ORDER BY topping_count DESC) AS ranking,
 FROM ranking
 GROUP BY topping_count
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está genial, se ve una solución de buen nivel para los problemas que tiene este ejercicio, uno de los más complejos de todos los retos.
+Me gusta la limpieza y que cada CTE realiza su proceso de una manera clara.
+Por poner algún punto a mejorar la CTE customer_orders se podría haber planteado para casos genéricos en que no estuviera la id y no sólo para el beef,
+pero tampoco te lo comenté en el ejercicio 3, con lo que no pasa nada. Y en ingredients_table ocurre una cosa parecida, son soluciones específicas a este
+ejercicio pero podrían resolver casos un poco más generales. 
+Aún así está todo muy bien. Enhorabuena!! un gran ejercicio! :)
+
+*/
