@@ -47,3 +47,21 @@ SELECT RANK() OVER (ORDER BY num_uso_ingredientes DESC) AS id_frecuencia
 FROM base_final_pizzas
 GROUP BY num_uso_ingredientes
 ORDER BY 1;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Perfecto Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me gusta mucho lo organizado que lo haces y las explicaciones para facilitar la corrección!
+
+
+*/
