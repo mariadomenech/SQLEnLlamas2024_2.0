@@ -35,3 +35,11 @@ ORDER BY 2 desc
 -- ocurriera esa casuística así como el tratamiento de los valores nulos.
 
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto. Solución correcta, limpia y usando el UNPIVOT que era lo que se pretendía como solución más "elegante", así que nada que añadir :)
+
+*/
