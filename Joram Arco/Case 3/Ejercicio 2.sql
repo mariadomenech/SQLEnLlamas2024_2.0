@@ -45,4 +45,6 @@ SELECT
 FROM suma_calculos
 WHERE (depositos > 1 AND compras > 1) OR retiros > 1
 GROUP BY anio
-	,mes;
+	,mes
+ORDER BY SUM(clientes) DESC --Para darle un orden por número de clientes en lugar de alfabéticamente por mes como aparece en la solución de la herramienta
+;
