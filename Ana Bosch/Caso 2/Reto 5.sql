@@ -177,3 +177,18 @@ GROUP BY repeticiones
 
 -- Puede parecer un codigo complejo, no obstante la idea de encapsular operaciones especificas que puedan reutilizarse en calculos más complejos me parece mejor opción.
 -- En una de las CTE se calcula en función de cualquier ingrediente que se escriba el id correspondiente, para intentar 'automatizar' el proceso.
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Enhorabuena! Es un ejercicio de 10. Limpio, legible y todo lo genérico que se puede hacer con las limitaciones de que UNPIVOT no te permita tablas dinámicas. 
+No creo que sea un código complejo, tiene muchas lineas pero, como ya hablamos hace unos retos, creo que la idea de que cada CTE haga su proceso es la mejor manera de hacerlo legible. 
+Y en este caso, que es uno de los ejercicios más complejos, no he tenido ningún problema para entender lo que hacía cada parte del código.
+Hay punto extra por la solución que das en CTE_EXTRAS y CTE_EXCLUSION. ;)
+
+Mucho ánimo con el siguiente, que fue mi némesis en la primera edición!
+
+*/
