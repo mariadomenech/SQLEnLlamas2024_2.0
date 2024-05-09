@@ -40,9 +40,9 @@ También se podría haber hecho un HAVING en la tabla anterior de la forma HAVIN
 */
 SELECT
 	anio
-	,mes
-	,SUM(clientes)
+	,LOWER(mes)+'.' AS mes --Para formatear el mes igual que viene en la herramienta de comparación
+	,SUM(clientes) AS NUM_CLIENTES
 FROM suma_calculos
 WHERE (depositos > 1 AND compras > 1) OR retiros > 1
 GROUP BY anio
-	,mes
+	,mes;
