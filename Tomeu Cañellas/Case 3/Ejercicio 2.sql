@@ -22,7 +22,7 @@ txn_per_type AS (
                      ELSE 0 END) AS withdrawals,
             SUM(CASE WHEN txn_type = 'purchase' THEN txn_count 
                      ELSE 0 END) AS purchases,
-		    SUM(CASE WHEN txn_type = 'deposit' THEN txn_count 
+	    SUM(CASE WHEN txn_type = 'deposit' THEN txn_count 
                      ELSE 0 END) AS deposits
     FROM txn_per_month
     GROUP BY customer_id,
