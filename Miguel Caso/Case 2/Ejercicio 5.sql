@@ -103,3 +103,60 @@ FROM SQL_EN_LLAMAS_ALUMNOS.case02.pizza_toppings pt
 	LEFT JOIN cuenta_exclusiones ce ON pt.topping_id = ce.exclusions
 GROUP BY ci.num_toppings - COALESCE(ce.num_exclusions,0)
 ORDER BY ci.num_toppings - COALESCE(ce.num_exclusions,0) DESC;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto.
+CÓDIGO: Correcto. No obstante tengo 2 comentarios que darte:
+	- Las ctes están muy bien, pero puede ser que puedas reducir el número de ctes, por ejemplo unir 'pedidos_a_ingredientes' y 'lista_ingredientes', 
+	así puedes hacer más corto el código y más sostenible a largo plazo.
+
+	- Intenta no usar mucho UNION ALL. Utiliza otros joins como INNER JOIN o LEFT JOIN para evitar el procesamiento de muchos datos. 
+	Ejemplo de cómo se ha realizado la solución:
+	----------------------------------------------
+	CTE1 --> seleccionamos los pedidos que han sido recogidos (no son NULL en PICKUP_TIME)
+	CTE2 --> extraemos los ingredientes de cada tipo de pizza, usando la función STRING_SPLIT para desglosar la lista de TOPPINGS
+	CTE3 --> Calculamos el número total de ingredientes por nombre de topping, uniendo las CTE1 y la CTE2 y contando las apariciones de cada topping. 
+	MEDIANTE INNER JOIN:
+		CTE3 AS (
+		SELECT C.TOPPING_NAME
+			,COUNT(*) AS NUM_INGREDIENTES
+		FROM CTE1 A
+		INNER JOIN CTE2 B 
+			ON A.PIZZA_ID = B.PIZZA_ID
+		RIGHT JOIN SQL_EN_LLAMAS.CASE02.PIZZA_TOPPINGS C 
+			ON B.INGREDIENTE = C.TOPPING_ID
+		GROUP BY C.TOPPING_NAME
+		)
+	CTE4 --> Procesamos los ingredientes excluidos de cada pizza, aplicando de nuevo STRING_SPLIT.
+	CTE5 --> Contamos los ingredientes excluidos por nombre de topping --> Usamos INNER JOIN:
+		CTE5 AS (
+		SELECT B.TOPPING_NAME
+			,COUNT(A.INGREDIENTE_EXCLUIDO) AS NUM_INGREDIENTES_EXCLUIDOS
+		FROM CTE4 A
+		INNER JOIN SQL_EN_LLAMAS.CASE02.PIZZA_TOPPINGS B 
+			ON A.INGREDIENTE_EXCLUIDO = B.TOPPING_ID
+		GROUP BY B.TOPPING_NAME
+		)
+	CTE6 --> Contamos el número de ingredientes adicionales especificados (como EXTRAS) --> Usamos INNER JOIN:
+		CTE6 AS (
+			SELECT B.TOPPING_NAME
+				,COUNT(A.INGREDIENTE_INCLUIDO) AS NUM_INGREDIENTES_INCLUIDOS
+			FROM CTE5 A
+			INNER JOIN SQL_EN_LLAMAS.CASE02.PIZZA_TOPPINGS B 
+				ON A.INGREDIENTE_INCLUIDO = B.TOPPING_ID
+			GROUP BY B.TOPPING_NAME
+			)
+	CTE7 --> Contamos los ingredientes adicionales incluidos por nombre de topping.
+	---------------------------------------------------------------------------------
+	Como ves en esta query no se ha usado un UNION ALL sino un INNER JOIN.
+
+ ----> Está muy bien vista la solución pero ya te digo, puede ser un coste muy grande usar el UNION ALL en algunos casos y es mejor usar otro tipo de JOIN :)
+
+LEGIBILIDAD: Correcto. Me encanta que pongas comentarios y expliques qué vas haciendo en cada parte.
+
+Muy bien, sigue asíiii!!!
+
+*/
