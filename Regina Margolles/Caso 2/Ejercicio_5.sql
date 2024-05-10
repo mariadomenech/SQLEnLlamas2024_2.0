@@ -163,4 +163,4 @@ AS
   from CTE10
   group by (used_time_number_topping) 
 )
-SELECT * FROM CTE11
+SELECT * FROM CTE11;
