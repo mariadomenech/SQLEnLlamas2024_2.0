@@ -48,3 +48,14 @@ SELECT
 	SUM(COSTE_RUNNER/NUM_PIZZA_POR_PEDIDO) AS COSTE_RUNNER,
 	SUM(INGRESO_PIZZA+INGRESO_EXTRAS-COSTE_RUNNER/NUM_PIZZA_POR_PEDIDO) AS BENEFICIO
 FROM GASTOS;
+
+
+/*
+Corrección Pablo: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Muy bien nuevamente todos los pasos realizados, además del uso de STRING_SPLIT para los extra.
+Legibilidad: OK. ¡Es muy fácil seguir el hilo de tus ejercicios!
+
+¡Enhorabuena!
+*/
