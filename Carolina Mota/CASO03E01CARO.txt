@@ -35,3 +35,22 @@ FROM(
 		GROUP BY CUSTOMER_ID
 	) C
 /**No me sale el mismo resultado :'(**/
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Como comentas, el resultado no es correcto. Tras revisarlo veo que te has complicado un poco, es mucho mas simple yo creo.
+
+Primero identificaria los inicios de tramos, aqui no comprobaria ordenando asc y desc a la vez, simplemente identificaria los nodos anteriores que no son iguales al nodo actual (primera codicion que compruebas en el case del campo F1).
+
+Segundo, una vez identificados los tramos iniciales, sacaría los dias en nodo de cada cliente, filtrando por aquellos registros que hemos identificado como inicios de tramo (como haces, F1 = 0). Esta comprobación la haces sacando la diferencia de la fecha de inicio y fin (esta fecha fin, la modificas previamente) y sumandole 1 dia, yo personalmente no haria esa modificacion de la fecha de fin sino que sacaria la diferencia de la fecha de inicio y de la siguiente fecha de inicio, restandole 1 dia posteriormente para quedarme con los dias transcurridos entre las dos fechas.
+
+Por ultimo, una vez que ya tenemos los dias en nodo de cada cliente, haria la media de los dias.
+
+Te dejaria tu codigo adaptado a lo que te he comentado previamente, pero no lo hago ya que veo que sueles corregirlo despues de los comentarios :)
+
+Si no tienes tiempo para ponerte a corregirlo y quieres ver el codigo, comentamelo y te lo paso sin problema!
+
+*/
