@@ -23,3 +23,13 @@ LEFT JOIN ( --left join para mostrar todos los runners
 	GROUP BY orders.runner_id
 	) AS calculo_dist_veloc  --Query que calcula la distancia acumulada y velocidad media de los trayectos
 	ON runners.runner_id = calculo_dist_veloc.RUNNER_ID
+
+/*
+Corrección Pablo: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Genial la limpieza de los datos en una función aparte y bien realizado los cálculos.
+Legibilidad: OK. Aunque yo soy fan de las CTEs en lugar de subquerys, tu código se lee perfectamente al estar bien explicado y tabulado.
+
+¡Enhorabuena!
+*/
