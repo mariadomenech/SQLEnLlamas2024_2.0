@@ -38,8 +38,8 @@ as
 			  CASE 
 				 WHEN PATINDEX('',exclusions)=1 THEN NULL
 				 WHEN PATINDEX('%null%',exclusions)=1 THEN NULL
-				 WHEN PATINDEX('%[^0-9]%',exclusions)=0 THEN exclusions
-				 WHEN PATINDEX('%[^A-Z-a-z]%',exclusions)=0 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
+				 WHEN PATINDEX('%[0-9]%',exclusions)=1 THEN exclusions
+				 WHEN PATINDEX('%[A-Z-a-z]%',exclusions)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
 							                          FROM case02.pizza_toppings 
 										  WHERE topping_name = exclusions)
 			  END as exclusions, 
@@ -65,13 +65,13 @@ as
 		r.runner_id,
 		r.distance, 
 		CASE
-	      WHEN 
-		p.pizza_name = 'Meatlovers'  THEN 12
-	      WHEN 
-	        p.pizza_name = 'Vegetarian'   THEN 10
-	    END as price_pizza,
-		 (cast(r.distance as decimal(5,2)) * 0.30) as travel_cost,
-		 row_number () over (partition by c.order_id order by c.order_id) as number_row
+	      	WHEN 
+			p.pizza_name = 'Meatlovers'  THEN 12
+	      	WHEN 
+	       		p.pizza_name = 'Vegetarian'   THEN 10
+	    	END as price_pizza,
+		(cast(r.distance as decimal(5,2)) * 0.30) as travel_cost,
+		row_number () over (partition by c.order_id order by c.order_id) as number_row
  from CTE_customer_orders_clean as c
      left join CTE_runner_orders_clean as r
 	on c.order_id = r.order_id
@@ -98,9 +98,9 @@ group by  CTE1.order_id,
 	
 CTE3 
 as(
-	select *,
-	SUM(CTE2.price_pizza + (CTE2.extras_pizza)) over (partition by CTE2.order_id) as subtotal
-	from CTE2
+select *,
+       SUM(CTE2.price_pizza + (CTE2.extras_pizza)) over (partition by CTE2.order_id) as subtotal
+from CTE2
 ),
 
 
@@ -108,7 +108,7 @@ CTE4
 as(
 
 select  CTE3.order_id,
-		CTE3.subtotal - CTE3.travel_cost as profit
+	CTE3.subtotal - CTE3.travel_cost as profit
 
 from CTE3
 
