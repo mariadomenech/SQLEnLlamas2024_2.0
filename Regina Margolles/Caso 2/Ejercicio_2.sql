@@ -37,8 +37,8 @@ as
 			  CASE 
 				 WHEN PATINDEX('',exclusions)=1 THEN NULL
 				 WHEN PATINDEX('%null%',exclusions)=1 THEN NULL
-				 WHEN PATINDEX('%[^0-9]%',exclusions)=0 THEN exclusions
-				 WHEN PATINDEX('%[^A-Z-a-z]%',exclusions)=0 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
+				 WHEN PATINDEX('%[0-9]%',exclusions)=1 THEN exclusions
+				 WHEN PATINDEX('%[A-Z-a-z]%',exclusions)=1 THEN (SELECT CAST(topping_id AS VARCHAR(4)) 
 			  							  FROM case02.pizza_toppings 
 										  WHERE topping_name = exclusions)
 			  END as exclusions, 
@@ -84,7 +84,8 @@ Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellatio
   		(Select 
               		COUNT(r2.order_id)
   		from CTE_runner_orders_clean as r2
-  		where r2.runner_id = ro.runner_id) as total_orders,
+  		where r2.runner_id = ro.runner_id)
+		as total_orders,
   		row_number () over (partition by r.runner_id order by r.runner_id) as row_numbers
   	from
   	case02.runners as r
@@ -105,9 +106,9 @@ Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellatio
       			row_number() over (partition by ro.runner_id order by ro.runner_id) as row_numbers
       		from
       			CTE_runner_orders_clean as ro
-      			left join CTE_customer_orders_clean as c
+      		left join CTE_customer_orders_clean as c
       			on ro.order_id = c.order_id 
-      			where ro.cancellation is  null and (c.exclusions is not null or c.extras is not null)
+      		where ro.cancellation is  null and (c.exclusions is not null or c.extras is not null)
       		group by ro.runner_id) as t
       	where row_numbers = 1) as table2
   on table1.runner_id = table2.runner_id;
