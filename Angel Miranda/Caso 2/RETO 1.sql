@@ -22,3 +22,14 @@ SELECT
 FROM TABLA_DISTANCIA_VELOCIDAD A
 WHERE CANCELADO = 0 
 GROUP BY RUNNER_ID;
+
+/*
+Corrección Pablo: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Genial la limpieza de los datos, el control del runner extra y la ejecución de los cálculos.
+Legibilidad: OK. Me encanta el uso de CTEs, resulta más fácil de entender el código en mi opinión. Entiendo que empleaste una 
+segunda CTE para mantener el código limpio y encapsulado en lugar de hacerlo todo a la vez en una única CTE, ¡resulta muy visual!
+
+¡Enhorabuena!
+*/
