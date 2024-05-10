@@ -25,3 +25,13 @@ SELECT
 	CASE WHEN PEDIDO = 0 THEN 0 ELSE ROUND(PEDIDO_OK/PEDIDO * 100,2) END AS P_EXITO,
 	CASE WHEN N_PIZZAS = 0 THEN 0 ELSE ROUND(N_PIZZA_MODIFICADA/N_PIZZAS * 100,2) END AS P_MODIFICADAS
 FROM PEDIDOS;
+
+/*
+Corrección Pablo: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Genial por la creación de flags y los cálculos realizados.
+Legibilidad: OK. De nuevo, que gusto da leer un código tan bien ordenado y tabulado.
+
+¡Enhorabuena!
+*/
