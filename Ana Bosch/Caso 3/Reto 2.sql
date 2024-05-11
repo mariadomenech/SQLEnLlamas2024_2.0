@@ -25,7 +25,7 @@ AS (
 
 )
 
--- Query para conocer el calculo final y establecer el formato predeterminado
+-- Query para conocer el calculo final
 SELECT anyo
 	,mes
 	,COUNT(customer_id) AS clientes
