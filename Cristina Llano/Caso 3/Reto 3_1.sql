@@ -50,3 +50,23 @@ FROM BASE_FECHAS_DUPLI
 WHERE fecha_fin_vigencia <> '9999-12-31' /*No se tiene en cuenta los que están vigente ya que aún no han cambiado*/
 ;
 -- Creo que se podría optimizar, pero no tengo mucho más tiempo para ello :(, de esta forma me he asegurado que contempla todos los casos.
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, está genial!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha parecido muy acertado la manera en la que lo has organizado, y controlas siempre muy bien las posibles casuísticas que pueda haber!
+Además, me ha gustado que uses dense_rank para hacer mejor el ranking y que uses los argumentos de LAG.
+
+Sigue así!!
+
+
+*/
