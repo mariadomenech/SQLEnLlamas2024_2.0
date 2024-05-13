@@ -60,3 +60,21 @@ SELECT
 FROM ING_TOTAL
 GROUP BY CANTIDAD_TOTAL
 ORDER BY CANTIDAD_TOTAL DESC;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Todo muy ordenado.
+
+
+*/
