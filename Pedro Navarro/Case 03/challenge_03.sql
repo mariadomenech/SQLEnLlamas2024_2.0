@@ -2,13 +2,14 @@
 -- CALCULE EL TOTAL DE COMPRAS (PURCHASE) Y QUE TE DEVUELVA EL SIGUIENTE MENSAJE:
 -- "EL CLIENTE 1 SE HA GASTADO UN TOTAL DE 1276 EUR EN COMPRAS DE PRODUCTOS EN EL MES DE MARZO"
 
--- Creacin del procedimiento almacenado
+-- Creación del procedimiento almacenado
 CREATE OR ALTER PROCEDURE case02.PNG_Ejercicio3_1_Procedimiento1
 	@customer_id INT
 	,@year INT
 	,@month_name VARCHAR(10)
 AS
 BEGIN
+	-- Cálculo del gasto total de compras
 	DECLARE @total_spend NUMERIC(20,2);
 
 	SELECT @total_spend = SUM(txn_amount)
@@ -22,6 +23,7 @@ BEGIN
 		,YEAR(txn_date)
 		,DATENAME(month, txn_date);
 
+	-- Control de resultado nulo
 	IF @total_spend IS NULL
 		DECLARE @customer_log INT;
 
@@ -29,6 +31,7 @@ BEGIN
 		FROM SQL_EN_LLAMAS_ALUMNOS.case03.customer_transactions
 		WHERE customer_id = @customer_id;
 
+		-- Control y validación del parámetro @customer_id
 		IF @customer_log IS NULL
 			BEGIN
 			DECLARE @min_customer_log INT, @max_customer_log INT;
@@ -51,6 +54,7 @@ BEGIN
 			WHERE customer_id = @customer_id
 				AND YEAR(txn_date) = @year;
 
+			-- Control y validación del parámetro @year
 			IF @customer_log IS NOT NULL AND @year_log IS NULL
 				BEGIN
 				DECLARE @all_years VARCHAR(500);
@@ -78,6 +82,7 @@ BEGIN
 					AND YEAR(txn_date) = @year
 					AND LOWER(DATENAME(month, txn_date)) LIKE LOWER(@month_name);
 
+				-- Control y validación del parámetro @month_name
 				IF @customer_log IS NOT NULL AND @year_log IS NOT NULL AND @month_name_log IS NULL
 					BEGIN
 					DECLARE @all_month_names VARCHAR(200);
