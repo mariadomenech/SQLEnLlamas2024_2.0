@@ -1,6 +1,7 @@
 WITH CTE_ORDERS AS (
-	SELECT 
-		order_id,
+	/*Asignamos precio y limpiamos un poco*/
+	SELECT B.runner_id,
+		A.order_id,
 		customer_id,
 		pizza_id,
 		CASE
@@ -9,13 +10,37 @@ WITH CTE_ORDERS AS (
 			ELSE 0
 		END price,
 		CASE
-			WHEN NULLIF(NULLIF(VALUE,'null'),'') IS NOT NULL THEN 1
-			ELSE 0
-		END supplement,
-		NULLIF(NULLIF(VALUE,'null'),'') AS extra
-	FROM case02.customer_orders
-		CROSS APPLY STRING_SPLIT(extras, ',')
-		
+			WHEN extras IS NULL OR extras like '%null%' OR extras='' THEN 'No'
+			ELSE extras
+		END extras,
+		NULLIF(NULLIF(B.cancellation,'null'),'') cancellation
+	FROM case02.customer_orders A
+	JOIN case02.runner_orders B
+	ON A.order_id=B.order_id
+), CTE_SALES_EXTRAS AS (
+	/*Ventas de extras por pedido*/
+	SELECT runner_id,
+	order_id,
+	SUM(CASE
+		WHEN VALUE='No' THEN 0
+		ELSE 1
+	END) extra_sales,
+	cancellation
+	FROM CTE_ORDERS
+	CROSS APPLY STRING_SPLIT(EXTRAS, ',')
+	WHERE cancellation IS NULL
+	GROUP BY runner_id, order_id,cancellation
+), CTE_SALES AS(
+	/*Ventas por pedido*/
+	SELECT 
+	A.order_id,
+	SUM(price) pizza_sales,
+	extra_sales
+	FROM CTE_ORDERS A
+	JOIN CTE_SALES_EXTRAS B
+		ON A.order_id=B.order_id
+	WHERE A.cancellation IS NULL
+	GROUP BY A.order_id, extra_sales
 ), CTE_RUNNERS AS (
 	/*Tabla de distancias por runner*/
 	SELECT
@@ -30,27 +55,9 @@ WITH CTE_ORDERS AS (
 	LEFT JOIN case02.runner_orders B
 		ON A.runner_id = B.runner_id
 	WHERE NULLIF(NULLIF(B.cancellation, ''), 'null') IS NULL
-), CTE_RUNNER_COST AS (
-	/*Coste por pedido*/
-	SELECT
-		order_id,
-		SUM(cost) runner_cost
-	FROM CTE_RUNNERS A
-	GROUP BY order_id
-), CTE_SALES AS (
-	/*Ventas por pedido*/
-	SELECT 
-		A.order_id,
-		SUM(A.price) price,
-		SUM(A.supplement) supplement
-	FROM CTE_ORDERS A
-	JOIN CTE_RUNNERS B
-		ON A.order_id=B.order_id
-	GROUP BY A.order_id
 )
-/*Venta neta total*/
-SELECT
-SUM(A.price) + SUM(A.supplement) - SUM(runner_cost) net_sales
+/*Calculamos venta neta*/
+SELECT SUM(pizza_sales) + SUM(extra_sales) - SUM(cost) net_sales
 FROM CTE_SALES A
-JOIN CTE_RUNNER_COST B
-	ON A.order_id=B.order_id;
+JOIN CTE_RUNNERS B
+	ON A.order_id=B.order_id
