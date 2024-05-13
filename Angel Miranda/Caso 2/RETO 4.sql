@@ -9,3 +9,15 @@ SELECT
 	COUNT(TOPPING_NAME) AS NUM_VECES_USADO
 FROM TABLA_INGREDIENTES_TRASPUESTA
 GROUP BY TOPPING_NAME;
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA  *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! 
+Legibilidad perfecta!
+Aunque la idea de este ejercicio era que utilizaseis la funcion UNPIVOT, porque es más genérico y puedes usarlo en otros gestores.
+Pero, vamos, ninguna pega.
+
+*/
