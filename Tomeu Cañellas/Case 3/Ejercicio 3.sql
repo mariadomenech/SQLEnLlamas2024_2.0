@@ -53,7 +53,7 @@ BEGIN
 
     -- Imprimie el mensaje
     PRINT @message;
-END
+END;
 
 --Test:
 
@@ -62,3 +62,7 @@ EXEC SPTotalPurchases @customer_id = 1, @month = '03';
 EXEC SPTotalPurchases @customer_id = 1000, @month = 3;
 EXEC SPTotalPurchases @customer_id = 1, @month = 12;
 EXEC SPTotalPurchases @customer_id = 1, @month = 13;
+
+--Drop:
+
+DROP PROCEDURE SPTotalPurchases;
