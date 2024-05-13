@@ -51,3 +51,15 @@ FROM (
 	WHERE runners_orders_2.duration <> 'null' --quitamos los cancelados
 	GROUP BY cust_orders_2.pizza_id
 	) AS desglose_pizzas --query para obtener ingredientes, cantidad de pizzas de cada tipo y su precio
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA  *********************/
+/*********************************************************/
+/*
+
+Genial por incluir beneficios que era realmente lo que se pedia aunque por error la app no lo mostroba. 
+Bien visto la función STRING_SPLIT
+¡Todo perfecto!
+
+*/
