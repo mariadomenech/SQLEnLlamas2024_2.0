@@ -33,3 +33,16 @@ LEFT JOIN pizza_recipes_unpivot recipes  --Left join para mostrar todos los ingr
 ON toppings.topping_id = recipes.topping_id
 GROUP BY toppings.topping_name
 ORDER BY N_VECES_REPETIDO DESC --Ordenamos para mostrar los ingredientes más repetidos primero
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA  *********************/
+/*********************************************************/
+/*
+
+Resultado correcto! 
+Legibilidad perfecta!
+La idea de este ejercicio era que utilizáseis la funcion UNPIVOT, porque es más genérico y puedes usarlo en otros gestores.
+Perfecto!
+
+*/
