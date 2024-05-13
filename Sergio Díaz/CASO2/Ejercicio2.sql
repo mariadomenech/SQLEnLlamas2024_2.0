@@ -48,3 +48,16 @@ LEFT JOIN (
 	) AS PRINCIPAL 
 	ON runners.runner_id = PRINCIPAL.runner_id
 ORDER BY runners.runner_id
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA  *********************/
+/*********************************************************/
+/*
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. 
+Legibilidad: OK. 
+
+¡Enhorabuena!
+*/
