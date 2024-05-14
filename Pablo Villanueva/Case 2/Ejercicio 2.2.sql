@@ -57,8 +57,8 @@ SELECT
     r.runner_id,
     ISNULL(SUM(CASE WHEN os.orders_done = 1 THEN 1 ELSE 0 END), 0) AS num_pedidos_ok,
     ISNULL(pd.total_pizzas_ok, 0) AS num_pizzas_ok,
-    CONCAT(ISNULL(ROUND((SUM(CASE WHEN os.orders_done = 1 THEN 1 ELSE 0 END) * 100.0) / NULLIF(COUNT(os.order_id), 0), 2), 0), '%') AS pct_pedidos_ok,
-    CONCAT(ISNULL(ROUND((pwm.total_pizzas_modificadas * 100.0) / NULLIF(pd.total_pizzas_ok, 0), 2), 0), '%') AS pct_pizzas_ok_mod
+    ISNULL(ROUND((SUM(CASE WHEN os.orders_done = 1 THEN 1 ELSE 0 END) * 100.0) / NULLIF(COUNT(os.order_id), 0), 2), 0) AS pct_pedidos_ok,
+    ISNULL(ROUND((pwm.total_pizzas_modificadas * 100.0) / NULLIF(pd.total_pizzas_ok, 0), 2), 0) AS pct_pizzas_ok_mod
 FROM case02.runners r
 LEFT JOIN order_status os ON r.runner_id = os.runner_id
 LEFT JOIN pizzas_delivered pd ON r.runner_id = pd.runner_id
