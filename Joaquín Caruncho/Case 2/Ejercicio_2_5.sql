@@ -99,3 +99,9 @@ select
 )a
 GROUP BY A.total
 ORDER BY TOTAL DESC;
+/*COMENTARIOS JUANPE.
+TODO CORRECTO. Perfecto por hacer el cruce de exclusiones de forma que te tome beef junto con el resto sin recurrir al tipico case when para cambiar beef por su ID. 
+Y a parte de hacer eso me gusta mucho como lo has planteado con el left y el coalesce para conseguirlo.
+Si comentarte que cuando una query lleva tantas subconsultas es importante ser más meticulo con la ordenación del código, o incluso te propongo que investigues los tablas cte con los with,
+suelen venir muy bien para tener una query más "limpia" cuando se tienen muchas subconsultas.
+*/
