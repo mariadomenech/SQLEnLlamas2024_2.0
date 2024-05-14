@@ -5,3 +5,6 @@ from case01.customers C
 	on C.customer_id=S.customer_id
 group by C.customer_id
 order by n_dias desc;
+
+/*COMENTARIOS JUANPE*/
+/*Correcto. Te animo a que sigas con el resto de ejercicios verás que aumentan en dificultad*/
