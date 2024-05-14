@@ -52,3 +52,7 @@ select ing.id as iD,
 	   ing.n_usado as Usado 
 from @ingredientes_aux ing
 order by ing.n_usado desc ;
+
+/*COMENTARIOS JUANPE
+PERFECTO. Como te he comentado en otros ejercicios, poco tengo que decir más haya de que soy yo el que aprende al corregir tus propuestas de solución, brillante la idea, no solo por el uso de un procedimjento si no por como lo has planteado
+updateando conforme encuentras cada ingrediente.*/
