@@ -125,3 +125,27 @@ ing_exclusions AS (
 COMO EXTRA EN ESTE EJEMPLO TAMBIÉN HE APROVECHADO PARA MOSTRARTE UNA FORMA DE FILTRAR POR LOS CANCELADOS DISTINTA A LA QUE USAS CON EL LIKE Y BASICAMENTE ES QUE SI EL CAMPO PICKUP_TIME QUE ES LA FECHA DE ENTREGA
 , QUE VIENE COMO CHAR, SI LO PODEMOS CONVERTIR EN FECHA ES QUE ESE PEDIDO SE ENTREGÓ Y SI NO SE PUEDE PORQUE SEA 'NULL' o 'null' o '' EL try_cast DEVUELVE null Y POR TANTO PODEMOS FILTRAR POR ESE CAMPO PORQUE INDICARÍA
 QUE EL PEDIDO NO SE ENTREGO, ES DECIR, SE CANCELÓ, SI NO CONOCIAS EL TRY_CAST ES UNA VERSIÓN AVANZADA*/
+
+/*COMENTARIOS JORAM
+Perfecto, muchas gracias por el ejemplo, me viene muy bien para aprender el uso del TRY_CAST y otra forma genérica de obtener también los id de los ingredientes :)
+También he generado un ejemplo utilizando la tabla que ya tenía, seleccionando de forma dinámica el id del ingrediente a través de su nombre: */
+ing_exclusions AS(
+	SELECT 
+		topping_id
+		,topping_name
+		,COUNT(exclusions) as veces_exclusions
+	FROM (
+		SELECT 
+			CASE WHEN TRIM(value) LIKE (SELECT topping_name FROM case02.pizza_toppings pt JOIN case02.customer_orders co ON pt.topping_name = co.exclusions) 
+			THEN (SELECT topping_id FROM case02.pizza_toppings pt JOIN case02.customer_orders co ON pt.topping_name = co.exclusions)
+			WHEN TRIM(value) IN('null','') OR TRIM(value) IS NULL THEN 0 ELSE TRIM(value) END as exclusions
+		FROM case02.customer_orders
+		CROSS APPLY STRING_SPLIT(exclusions, ',') 
+		 WHERE order_id NOT IN (SELECT order_id FROM case02.runner_orders WHERE upper(cancellation) LIKE '%CANCELLATION%')
+		) consulta
+	JOIN case02.pizza_toppings pt 
+		ON consulta.exclusions=pt.topping_id 
+	WHERE exclusions != 0 
+	GROUP BY topping_id
+		,topping_name
+),
