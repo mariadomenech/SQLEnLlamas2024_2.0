@@ -1,0 +1,69 @@
+DROP PROC SP_ComprasCaro;
+
+CREATE PROC SP_ComprasCaro
+	@idusuario INT,
+	@mes VARCHAR(50)
+AS
+BEGIN
+	SELECT 
+		SUM(txn_amount) AS TotalCompras,
+		CONCAT('El cliente ',@idusuario,' se ha gastado un total de ',SUM(txn_amount),' EUR en compras de productos el mes de ',@mes) AS mensaje
+	FROM case03.customer_transactions 
+	WHERE 
+		txn_type='purchase' 
+		AND customer_id=@Idusuario 
+		AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+END;
+
+EXEC SP_ComprasCaro 1,'Marzo';
+
+
+/******************************************************************************/
+
+/****************************Ejercicio Ampliado********************************/
+
+/******************************************************************************/
+
+
+DROP PROC SP_ComprasCaro;
+
+CREATE PROC SP_ComprasCaro
+	@idusuario INT,
+	@mes VARCHAR(50),
+	@resultado varchar(100) = 0 OUTPUT
+AS
+BEGIN
+SET @resultado= (
+				CASE 
+				WHEN (
+						SELECT 
+							COUNT(*) 
+						FROM case03.customer_transactions 
+						WHERE 
+							customer_id=@Idusuario
+					)=0 
+					THEN 'Usuario no disponible en BBDD'
+				WHEN (
+						SELECT 
+							COUNT(*) 
+						FROM case03.customer_transactions 
+						WHERE 
+							customer_id=@Idusuario 
+							AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+					)=0 
+					THEN CONCAT('El cliente ',@idusuario,' se ha gastado un total de 0 EUR en compras de productos el mes de ',@mes)
+				ELSE (
+						SELECT 
+							CONCAT('El cliente ',@idusuario,' se ha gastado un total de ',SUM(txn_amount),' EUR en compras de productos el mes de ',@mes)
+						FROM case03.customer_transactions 
+						WHERE 
+							txn_type='purchase' 
+							AND customer_id=@Idusuario 
+							AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+					) 
+				END
+				)
+END
+PRINT @resultado;
+
+EXEC SP_ComprasCaro 1,'Marzo';
