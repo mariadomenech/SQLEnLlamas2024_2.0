@@ -103,3 +103,5 @@ EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 4;
 EXEC TotalMovimientosporMes @customerID = 999, @mes = 3,  @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 78,  @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 5;
+
+DROP PROCEDURE TotalMovimientosporMes;
