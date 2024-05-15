@@ -31,9 +31,10 @@ BEGIN
     -- Calculamos el valor según el tipo de cálculo seleccionado
     IF @calculation_type = 'B'
     BEGIN
-        SELECT @result = ISNULL(SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
-                                           WHEN txn_type = 'purchase' THEN -txn_amount
-                                           WHEN txn_type = 'withdrawal' THEN -txn_amount
+        SELECT @result = ISNULL(
+	    			SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+                                         WHEN txn_type = 'purchase' THEN -txn_amount
+                                         WHEN txn_type = 'withdrawal' THEN -txn_amount
                                       END), 0)
         FROM [SQL_EN_LLAMAS_ALUMNOS].[case03].[customer_transactions]
         WHERE customer_id = @customer_id
@@ -71,7 +72,7 @@ BEGIN
 
     -- Generamos el mensaje de salida
     DECLARE @message VARCHAR(MAX);
-	DECLARE @calculation_name VARCHAR(50);
+    DECLARE @calculation_name VARCHAR(50);
 
     IF @calculation_type = 'B'
         SET @calculation_name = 'Balance';
