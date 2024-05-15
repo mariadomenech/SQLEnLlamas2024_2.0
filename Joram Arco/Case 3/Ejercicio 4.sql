@@ -1,3 +1,4 @@
+/* CREACIÓN DEL PROCEDURE */
 CREATE OR ALTER PROCEDURE TotalMovimientosporMes
     @customerID INT
     ,@mes INT
@@ -90,12 +91,8 @@ BEGIN
 	SELECT @OutputMensaje AS Mensaje
 END;
 
-/* MOVIMIENTOS:
-1 = Balance
-2 = Compras
-3 = Depositos
-4 = Retiradas
-*/
+/* PRUEBAS DE EJECUCIONES 
+MOVIMIENTOS: 1 = Balance - 2 = Compras - 3 = Depositos - 4 = Retiradas */
 EXEC TotalMovimientosporMes @customerID = 12, @mes = 3, @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 2;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 3;
@@ -104,4 +101,5 @@ EXEC TotalMovimientosporMes @customerID = 999, @mes = 3,  @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 78,  @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 5;
 
-DROP PROCEDURE TotalMovimientosporMes;
+/* ELIMINACIÓN DEL PROCEDIMIENTO */
+DROP PROCEDURE IF EXISTS TotalMovimientosporMes;
