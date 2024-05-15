@@ -1,0 +1,55 @@
+
+DROP PROC SP_ComprasCaro;
+
+CREATE PROC SP_ComprasCaro
+	@idusuario INT,
+	@mes VARCHAR(50),
+	@operacion VARCHAR(50),
+	@resultado varchar(100) = 0 OUTPUT
+AS
+BEGIN
+SET @resultado= (
+				CASE 
+				WHEN (
+						SELECT 
+							COUNT(*) 
+						FROM case03.customer_transactions 
+						WHERE 
+							customer_id=@Idusuario
+					)=0 
+					THEN 'Usuario no disponible en BBDD'
+				ELSE (
+						SELECT 
+						CASE 
+							WHEN UPPER(@operacion)='BENEFICIO' 
+								THEN CONCAT('El cliente ',@idusuario,' tiene un beneficio total de ',Beneficio,' EUR en el mes de ',LOWER(@mes),'.') 
+							WHEN UPPER(@operacion)='DEPOSITADO' 
+								THEN CONCAT('El cliente ',@idusuario,' ha depositado un total de ',Depositado,' EUR en el mes de ',LOWER(@mes),'.')
+							WHEN UPPER(@operacion)='COMPRAS' 
+								THEN CONCAT('El cliente ',@idusuario,' se ha gastado un total de ',Compras,' EUR en compras de productos el mes de ',LOWER(@mes),'.')
+							WHEN UPPER(@operacion)='RETIROS' 
+								THEN CONCAT('El cliente ',@idusuario,' ha retirado un total de ',Retiros,' EUR en el mes de ',LOWER(@mes),'.')
+							ELSE 'Operación incorrecta, elija entre: Beneficio, Depositado, Compras y Retiros'	
+						END	AS mensaje
+						FROM (
+							SELECT 
+								ISNULL(SUM(CASE WHEN txn_type='deposit' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0)
+								-
+								ISNULL(SUM(CASE WHEN txn_type='purchase' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0)
+								-
+								ISNULL(SUM(CASE WHEN txn_type='withdrawal' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Beneficio,
+								ISNULL(SUM(CASE WHEN txn_type='deposit' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Depositado,
+								ISNULL(SUM(CASE WHEN txn_type='purchase' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Compras,
+								ISNULL(SUM(CASE WHEN txn_type='withdrawal' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Retiros
+							FROM case03.customer_transactions 
+							WHERE 
+								 customer_id=@Idusuario 
+								AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+						) A
+					)
+				END
+				)
+END
+SELECT @resultado AS ResultadoMessage;
+
+EXEC SP_ComprasCaro 1,'Marzo','BENEFICIO';
