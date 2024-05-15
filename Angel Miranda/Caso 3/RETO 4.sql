@@ -31,16 +31,16 @@ IF EXISTS
 		FROM CASE03.CUSTOMER_TRANSACTIONS
 		WHERE CUSTOMER_ID = @CUSTOMER_ID
 			AND MONTH(TXN_DATE) = @MES 
---SE COMPRUEBA QUE VALOR SE HA METIDO DE TRANSACCIÓN
-	IF @TIPO_TXN = 1
-		SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' tiene un balance total de ',(@DEPOSITO - @COMPRA - @RETIRO),'€ en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
-    ELSE IF @TIPO_TXN = 2
-		SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' ha depositado un total de ',@DEPOSITO,'€ en el banco en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
-	ELSE IF @TIPO_TXN = 3
-		SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' se ha gastado un total de ',@COMPRA,'€ en compras de productos en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
-	ELSE IF @TIPO_TXN = 4
-		SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' ha retirado un total de ',@RETIRO,'€ del banco durante el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
-	ELSE SET @TEXTO = 'Introduce un valor de tipo transacción correcto (1 = balance, 2 = deposito, 3 = compra y 4 = retiro)'
+--SE COMPRUEBA QUE VALOR SE HA METIDO DE TRANSACCIÃ“N
+		IF @TIPO_TXN = 1
+			SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' tiene un balance total de ',(@DEPOSITO - @COMPRA - @RETIRO),'â‚¬ en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
+		ELSE IF @TIPO_TXN = 2
+			SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' ha depositado un total de ',@DEPOSITO,'â‚¬ en el banco en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
+		ELSE IF @TIPO_TXN = 3
+			SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' se ha gastado un total de ',@COMPRA,'â‚¬ en compras de productos en el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
+		ELSE IF @TIPO_TXN = 4
+			SET @TEXTO = CONCAT('El cliente ',@CUSTOMER_ID,' ha retirado un total de ',@RETIRO,'â‚¬ del banco durante el mes de ',LOWER(DATENAME(MONTH,DATEFROMPARTS(2024,@MES,1))),'.')
+		ELSE SET @TEXTO = 'Introduce un valor de tipo transacciÃ³n correcto (1 = balance, 2 = deposito, 3 = compra y 4 = retiro)'
 		END
 ELSE
 --SI NO EXISTE EL CLIENTE SE GUARDA EL SIGUIENTE TEXTO
