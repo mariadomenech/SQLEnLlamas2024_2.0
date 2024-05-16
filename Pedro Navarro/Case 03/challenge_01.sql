@@ -32,3 +32,17 @@
 
 SELECT *
 FROM FINAL_RESULT;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Perfecta.
+
+Todo perfecto, justo lo esperado!
+
+*/
