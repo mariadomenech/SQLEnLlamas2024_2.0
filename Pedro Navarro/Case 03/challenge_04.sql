@@ -114,7 +114,7 @@ BEGIN
 				SELECT @all_years = STRING_AGG(distinct_year, ', ')
 				FROM DISTINCT_YEARS;
 
-				PRINT 'EL CLIENTE ' + CAST(@customer_id AS VARCHAR(10)) + ' NO HA REALIZADO NINGUNA COMPRA EN EL AÑO ' +
+				PRINT 'EL CLIENTE ' + CAST(@customer_id AS VARCHAR(10)) + ' NO HA REALIZADO NINGUNA OPERACIÓN EN EL AÑO ' +
 						CAST(@year AS VARCHAR(4)) + '. PRUEBE CON ALGUNO DE ESTOS AÑOS: ' + @all_years;
 				END
 
@@ -142,7 +142,7 @@ BEGIN
 					SELECT @all_month_names = STRING_AGG(distinct_month, ', ')
 					FROM DISTINCT_MONTHS;
 						
-					PRINT 'EL CLIENTE ' + CAST(@customer_id AS VARCHAR(10)) + ' NO HA REALIZADO NINGUNA COMPRA EN EL MES DE ' +
+					PRINT 'EL CLIENTE ' + CAST(@customer_id AS VARCHAR(10)) + ' NO HA REALIZADO NINGUNA OPERACIÓN EN EL MES DE ' +
 							UPPER(@month_name) + ' DEL AÑO ' + CAST(@year AS VARCHAR(4)) + '. PRUEBE CON ALGUNO DE ESTOS MESES: ' + @all_month_names;
 					END
 
