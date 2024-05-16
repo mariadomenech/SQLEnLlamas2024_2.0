@@ -19,7 +19,7 @@ DECLARE @id_cliente INT = @id_cliente_entrada,
 		@fecha_mes INT = @fecha_mes_entrada,
 		@des_salida VARCHAR(100),
 		@int_productos_totales INT,
-		@fecha_mes_texto VARCHAR(15)
+		@fecha_mes_texto VARCHAR(15) = '0'
 	
 BEGIN
 	-- Validamos que los datos introducidos con son correctos:
