@@ -1,8 +1,8 @@
+-- RETO 4:
 -- Evoluciona el procedimiento de ayer para que podamos elegir el tipo de cálculo que nos devuelva por mes y cliente:
 -- "Balance: depósito - compra - retiros"; "Total depositado"; "Total de compras"; "Total de retiros".
 
--- Creo un procedimiento que permita la entrada de cliente y mes
-CREATE OR ALTER PROCEDURE RETO_3 
+CREATE OR ALTER PROCEDURE RETO_4
 	@customer_id INT, 
 	@month INT,
 	@movimiento INT
@@ -100,14 +100,14 @@ BEGIN
 END;
 		
 -- Comprobación del procedure
-EXEC Reto_3 1, 3, 1; 
-EXEC Reto_3 0, 3, 1; 
-EXEC Reto_3 1, 0, 1; 
-EXEC Reto_3 1, 3, 0; 
+EXEC RETO_4 1, 3, 1; 
+EXEC RETO_4 0, 3, 1; 
+EXEC RETO_4 1, 0, 1; 
+EXEC RETO_4 1, 3, 0; 
 
 -- Borro procedure asegurandome que no falle y salga error si no existe
-DROP PROCEDURE IF EXISTS RETO_3 
+DROP PROCEDURE IF EXISTS RETO_4 
 
 
--- Comentario: he intentado reutilizar código en lo máximo posible. Lo he realizado en los calculos evitando repetir consultas y en los mensajes de salida evitando repetir texto
+-- COMENTARIO: he intentado reutilizar código en lo máximo posible. Lo he realizado en los calculos evitando repetir consultas y en los mensajes de salida evitando repetir texto
 
