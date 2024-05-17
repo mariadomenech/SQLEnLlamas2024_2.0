@@ -4,7 +4,7 @@
 
 -- Creo una función reutilizable para cualquier tipo de movimiento (no llevaría comprobaciones 
 -- ya que estas las dejo dentro del procedure evitando entrar en la función si no cumple las condiciones
-CREATE OR ALTER FUNCTION dbo.getMov (
+CREATE OR ALTER FUNCTION dbo.getMovimiento (
 	@customer_id INT,
 	@month INT,
 	@movimiento INT
@@ -46,7 +46,7 @@ BEGIN
 END;
 
 -- Creo un procedimiento que permita la entrada de cliente y mes
-CREATE OR ALTER PROCEDURE procMov 
+CREATE OR ALTER PROCEDURE RETO_5 
 	@customer_id INT, 
 	@month INT,
 	@movimiento INT
@@ -70,7 +70,7 @@ BEGIN
 		IF @customer_id BETWEEN @Min_customer AND @Max_customer -- Que el cliente exista en la BD
 		
 			IF @movimiento IN (1,2,3,4) -- Que el movimiento exista
-				SET @msg = dbo.getMov(@customer_id,@month,@movimiento) -- si existe llamamos a la función
+				SET @msg = dbo.getMovimiento(@customer_id,@month,@movimiento) -- si existe llamamos a la función
 			ELSE 
 				SET @msg = 'El movimiento no existe'
 		ELSE
@@ -82,16 +82,16 @@ BEGIN
 END;
 		
 -- Comprobación del procedure
-EXEC Reto_3 1, 3, 1; 
-EXEC Reto_3 1, 3, 2; 
-EXEC Reto_3 1, 3, 3; 
-EXEC Reto_3 1, 3, 4; 
-EXEC Reto_3 0, 3, 1; 
-EXEC Reto_3 1, 0, 1; 
-EXEC Reto_3 1, 3, 0; 
+EXEC RETO_5 1, 3, 1; 
+EXEC RETO_5 1, 3, 2; 
+EXEC RETO_5 1, 3, 3; 
+EXEC RETO_5 1, 3, 4; 
+EXEC RETO_5 0, 3, 1; 
+EXEC RETO_5 1, 0, 1; 
+EXEC RETO_5 1, 3, 0; 
 
 -- Borro procedure asegurandome que no falle y salga error si no existe
-DROP PROCEDURE IF EXISTS procMov 
+DROP PROCEDURE IF EXISTS RETO_5 
 
 -- Borro función asegurandome que no falle y salga error si no existe
-DROP FUNCTION IF EXISTS dbo.getMov
+DROP FUNCTION IF EXISTS dbo.getMovimiento
