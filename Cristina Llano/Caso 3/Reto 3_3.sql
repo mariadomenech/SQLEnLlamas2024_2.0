@@ -69,3 +69,20 @@ EXEC CLN_Case3_Reto3 2006, 13;
 EXEC CLN_Case3_Reto3 1, 3;
 -- 4. Insertamos el cliente que nos solicita el ejercicio pero con un mes que no tiene
 EXEC CLN_Case3_Reto3 1, 6;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, está genial!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Controlas muy bien todas las casuísticas que se pueden dar incluyendo un mensaje para cada tipo de error; además de mostrar la información correctamente.
+
+
+*/
