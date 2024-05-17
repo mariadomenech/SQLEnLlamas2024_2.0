@@ -9,11 +9,10 @@ AS
 BEGIN
     DECLARE @balance INT;
 
-    SELECT @balance = ISNULL(SUM(CASE 
-                                    WHEN txn_type = 'deposit' THEN txn_amount
-                                    WHEN txn_type = 'purchase' THEN -txn_amount
-                                    WHEN txn_type = 'withdrawal' THEN -txn_amount
-                                END), 0)
+    SELECT @balance = ISNULL(SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+                                      WHEN txn_type = 'purchase' THEN -txn_amount
+                                      WHEN txn_type = 'withdrawal' THEN -txn_amount
+                                 END), 0)
     FROM [SQL_EN_LLAMAS_ALUMNOS].[case03].[customer_transactions]
     WHERE customer_id = @customer_id
     AND MONTH(txn_date) = @month;
@@ -129,11 +128,10 @@ BEGIN
     DECLARE @message VARCHAR(MAX);
     DECLARE @calculation_name VARCHAR(50);
 
-    SELECT @calculation_name = CASE 
-                                  WHEN @calculation_type = 'B' THEN 'Balance'
-                                  WHEN @calculation_type = 'D' THEN 'Total depositado'
-                                  WHEN @calculation_type = 'C' THEN 'Total de compras'
-                                  WHEN @calculation_type = 'R' THEN 'Total de retiros'
+    SELECT @calculation_name = CASE WHEN @calculation_type = 'B' THEN 'Balance'
+                                    WHEN @calculation_type = 'D' THEN 'Total depositado'
+                                    WHEN @calculation_type = 'C' THEN 'Total de compras'
+                                    WHEN @calculation_type = 'R' THEN 'Total de retiros'
                                END;
 
     SET @message = 'El resultado para el cliente ' + CAST(@customer_id AS VARCHAR(10)) +
