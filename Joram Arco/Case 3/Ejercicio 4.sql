@@ -172,9 +172,9 @@ BEGIN
 				WHEN @movimiento = 1
 					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' tiene un balance de ' + CAST(@totalDepositos-@totalCompras-@totalRetiros AS VARCHAR(10)) + '€  en el mes de ' + @mesTexto
 				WHEN @movimiento = 2
-					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' se ha gastado un total de ' + CAST(@totalCompras AS VARCHAR(10)) + '€  en compras de productos en el mes de ' + @mesTexto
+					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' se ha gastado un total de ' + CAST(@totalDepositos AS VARCHAR(10)) + '€  en compras de productos en el mes de ' + @mesTexto
 				WHEN @movimiento = 3
-					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha depositado un total de ' + CAST(@totalDepositos AS VARCHAR(10)) + '€ en el mes de ' + @mesTexto
+					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha depositado un total de ' + CAST(@totalCompras AS VARCHAR(10)) + '€ en el mes de ' + @mesTexto
 				ELSE 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha retirado un total de ' + CAST(@totalRetiros AS VARCHAR(10)) + '€  en el mes de ' + 	@mesTexto
 				END
 		END
@@ -182,7 +182,7 @@ BEGIN
 END;
 
 /* PRUEBAS DE EJECUCIONES 
-MOVIMIENTOS: 1 = Balance - 2 = Compras - 3 = Depositos - 4 = Retiradas */
+MOVIMIENTOS: 1 = Balance - 2 = Depósitos - 3 = Compras - 4 = Retiradas */
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3, @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 2;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 3;
