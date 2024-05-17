@@ -111,9 +111,9 @@ BEGIN
 				WHEN @movimiento = 1
 					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' tiene un balance de ' + CAST(dbo.GetBalance(@customerID, @mes) AS VARCHAR(10)) + '€  en el mes de ' + @mesTexto
 				WHEN @movimiento = 2
-					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' se ha gastado un total de ' + CAST(dbo.GetTotalDepositos(@customerID, @mes) AS VARCHAR(10)) + '€  en compras de productos en el mes de ' + @mesTexto
+					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha depositado un total de ' + CAST(dbo.GetTotalDepositos(@customerID, @mes) AS VARCHAR(10)) + '€  en compras de productos en el mes de ' + @mesTexto
 				WHEN @movimiento = 3
-					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha depositado un total de ' + CAST(dbo.GetTotalCompras(@customerID, @mes) AS VARCHAR(10)) + '€ en el mes de ' + @mesTexto
+					THEN 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' se ha gastado un total de ' + CAST(dbo.GetTotalCompras(@customerID, @mes) AS VARCHAR(10)) + '€ en el mes de ' + @mesTexto
 				ELSE 'El cliente ' + CAST(@customerID AS VARCHAR(5)) + ' ha retirado un total de ' + CAST(dbo.GetTotalRetiradas(@customerID, @mes) AS VARCHAR(10)) + '€  en el mes de ' + @mesTexto
 		END
 	END
