@@ -165,6 +165,7 @@ BEGIN
 			FROM case03.customer_transactions
 			WHERE customer_id = @customerID
 				AND MONTH(txn_date) = @mes
+				AND txn_type IN ('purchase', 'deposit', 'withdrawal') --Para asegurarnos que solo se recogen estos tipos en la consulta
 
 			SET @mesTexto = DATENAME(MONTH, DATEFROMPARTS(YEAR(GETDATE()), @mes, 1))
 			SET @OutputMensaje = CASE --Generamos un mensaje de salida dependiendo del tipo de movimiento que se haya elegido
