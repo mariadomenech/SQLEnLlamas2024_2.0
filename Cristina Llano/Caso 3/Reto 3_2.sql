@@ -25,3 +25,19 @@ WHERE (num_desposito > 1 AND num_compras > 1 ) OR num_retiro > 1
 GROUP BY fecha_anio_num
   , fecha_mes_texto
 ORDER BY 3 DESC;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Todo correcto, enhorabuena!!
+
+Resultado: OK
+Código: OK
+Legibilidad: OK
+
+Me gusta que no te "compliques la vida", lo haces muy sencillo explicándo cada paso y ordenando los resultados (que nunca está de más).
+
+*/
