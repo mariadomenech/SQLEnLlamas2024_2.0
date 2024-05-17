@@ -123,8 +123,8 @@ END;
 /* PRUEBAS DE EJECUCIONES 
 MOVIMIENTOS: 1 = Balance - 2 = Depósitos - 3 = Compras - 4 = Retiradas */
 EXEC TotalMovimientosporMes @customerID = 1, @mes = 3, @movimiento = 1;
-EXEC TotalMovimientosporMes @customerID = 1, @mes = 3,  @movimiento = 2; --movimiento 3
-EXEC TotalMovimientosporMes @customerID = 1, @mes = 3,  @movimiento = 3; --movimiento 2 --tiene un importe de 
+EXEC TotalMovimientosporMes @customerID = 1, @mes = 3,  @movimiento = 2;
+EXEC TotalMovimientosporMes @customerID = 1, @mes = 3,  @movimiento = 3; 
 EXEC TotalMovimientosporMes @customerID = 1, @mes = 3,  @movimiento = 4;
 EXEC TotalMovimientosporMes @customerID = 999, @mes = 3,  @movimiento = 1;
 EXEC TotalMovimientosporMes @customerID = 123, @mes = 78,  @movimiento = 1;
