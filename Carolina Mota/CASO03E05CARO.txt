@@ -1,0 +1,137 @@
+------------------Función Beneficio-----------------------------
+CREATE FUNCTION UF_BeneficioCaro 
+	(
+		@idusuario INT,
+		@mes VARCHAR(50)
+	)
+RETURNS TABLE
+AS
+RETURN(
+		SELECT 
+			ISNULL(SUM(CASE WHEN txn_type='deposit' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0)
+			-
+			ISNULL(SUM(CASE WHEN txn_type='purchase' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0)
+			-
+			ISNULL(SUM(CASE WHEN txn_type='withdrawal' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Beneficio
+		FROM case03.customer_transactions 
+		WHERE 
+			customer_id=@Idusuario 
+			AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+	);
+	
+SELECT * FROM UF_BeneficioCaro(1,'MARZO');
+----------------------------------------------------------------
+
+------------------Función Depositado----------------------------
+CREATE FUNCTION UF_DepositadoCaro 
+	(
+		@idusuario INT,
+		@mes VARCHAR(50)
+	)
+RETURNS TABLE
+AS
+RETURN(
+		SELECT 
+			ISNULL(SUM(CASE WHEN txn_type='deposit' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Depositado
+		FROM case03.customer_transactions 
+		WHERE 
+			customer_id=@Idusuario 
+			AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+			AND txn_type='deposit'
+	);
+	
+SELECT * FROM UF_DepositadoCaro(1,'MARZO');	
+----------------------------------------------------------------	
+
+------------------Función Compras-------------------------------
+CREATE FUNCTION UF_ComprasCaro 
+	(
+		@idusuario INT,
+		@mes VARCHAR(50)
+	)
+RETURNS TABLE
+AS
+RETURN(
+		SELECT 
+			ISNULL(SUM(CASE WHEN txn_type='purchase' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Compras
+		FROM case03.customer_transactions 
+		WHERE 
+			customer_id=@Idusuario 
+			AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+			AND txn_type='purchase'
+	);
+	
+SELECT * FROM UF_ComprasCaro(1,'MARZO');	
+----------------------------------------------------------------	
+
+------------------Función Retiros-------------------------------	
+CREATE FUNCTION UF_RetirosCaro 
+	(
+		@idusuario INT,
+		@mes VARCHAR(50)
+	)
+RETURNS TABLE
+AS
+RETURN(
+		SELECT 
+			ISNULL(SUM(CASE WHEN txn_type='withdrawal' THEN CAST(txn_amount AS DECIMAL(10,2)) ELSE NULL END),0) AS Retiros
+		FROM case03.customer_transactions 
+		WHERE 
+			customer_id=@Idusuario 
+			AND UPPER(DATENAME(Month,txn_date))=UPPER(@mes)
+			AND txn_type='withdrawal'
+	);
+	
+SELECT * FROM UF_RetirosCaro (1,'MARZO');	
+----------------------------------------------------------------
+
+------------------Procedure Operación---------------------------	
+CREATE PROC SP_OperacionCaro
+	@idusuariosp INT,
+	@messp VARCHAR(50),
+	@operacionsp VARCHAR(50),
+	@resultadosp VARCHAR(100) = 0 OUTPUT
+AS
+BEGIN
+SET @resultadosp= (
+				CASE 
+				WHEN (
+						SELECT 
+							COUNT(*) 
+						FROM case03.customer_transactions 
+						WHERE 
+							customer_id=@Idusuariosp
+					)=0 
+					THEN 'Usuario no disponible en BBDD'
+				WHEN UPPER(@operacionsp)='BENEFICIO' 
+					THEN (
+							SELECT 
+								CONCAT('El cliente ',@idusuariosp,' tiene un beneficio total de ',Beneficio,' EUR en el mes de ',LOWER(@messp),'.') 
+							FROM UF_BeneficioCaro(@idusuariosp,@messp)
+						)
+				WHEN UPPER(@operacionsp)='DEPOSITADO' 
+					THEN (
+							SELECT 
+								CONCAT('El cliente ',@idusuariosp,' ha depositado un total de ',Depositado,' EUR en el mes de ',LOWER(@messp),'.') 
+							FROM UF_DepositadoCaro(@idusuariosp,@messp)
+						)
+				WHEN UPPER(@operacionsp)='COMPRAS' 
+					THEN (
+							SELECT 
+								CONCAT('El cliente ',@idusuariosp,' se ha gastado un total de ',Compras,' EUR en compras de productos el mes de ',LOWER(@messp),'.') 
+							FROM UF_ComprasCaro(@idusuariosp,@messp)
+						)
+				WHEN UPPER(@operacionsp)='RETIROS' 
+					THEN (
+							SELECT 
+								CONCAT('El cliente ',@idusuariosp,' ha retirado un total de ',Retiros,' EUR en el mes de ',LOWER(@messp),'.') 
+							FROM UF_RetirosCaro(@idusuariosp,@messp)
+						)
+				ELSE 'Operación incorrecta, elija entre: Beneficio, Depositado, Compras y Retiros'	
+				END
+				)
+END
+SELECT @resultadosp AS ResultadoMessage;
+
+EXEC SP_OperacionCaro 1,'Marzo','Compras';
+----------------------------------------------------------------
