@@ -30,3 +30,14 @@ FROM (
 	SELECT CAST(AVG(CAST(DATEDIFF(DAY, start_date, end_date) AS DECIMAL(5,2)))AS DECIMAL(5,2)) AS avg_day
 	FROM CTE_END_DATE
 ) A
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfectamente resuelto en las lineas justas. Es uno de los ejercicios que más hay que darle al coco de todos los retos
+y está resuelto de la manera más sencilla posible. Nada que añadir, enhorabuena!!
+
+*/
