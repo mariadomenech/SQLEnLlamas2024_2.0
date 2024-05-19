@@ -11,7 +11,8 @@ select @total=sum(txn_amount)
       from case03.customer_transactions
 	  where customer_id=@cliente and 
 	        year(txn_date)=@anio and
-			month(txn_date)=@mes
+			month(txn_date)=@mes and
+			txn_type='purchase'
 
 if (@total is null or @total=0)
    begin
