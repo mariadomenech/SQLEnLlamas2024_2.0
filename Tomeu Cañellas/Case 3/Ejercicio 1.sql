@@ -116,3 +116,13 @@ SELECT ROUND(
 FROM intermediate_table
 WHERE end_date < '9999-12-31'
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto. Es uno de los ejercicios más complicados no en ejecución pero sí en la lógica a aplicar de todo el SQL en Llamas y está genial resuelto. Enhorabuena!
+
+*/
