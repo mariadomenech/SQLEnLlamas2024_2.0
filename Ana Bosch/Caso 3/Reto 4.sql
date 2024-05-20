@@ -111,3 +111,13 @@ DROP PROCEDURE IF EXISTS RETO_4
 
 -- COMENTARIO: he intentado reutilizar código en lo máximo posible. Lo he realizado en los calculos evitando repetir consultas y en los mensajes de salida evitando repetir texto
 
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Me encanta la solución y el uso de la lógica de programación. Solución muy completa y reutilizable. Enhorabuena! :)
+
+*/
