@@ -45,3 +45,11 @@ EXEC Reto_3 1, 13;
 DROP PROCEDURE IF EXISTS RETO_3 
 
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto. Contempla casos correctos y casos en que se introduzcan mal los datos.
+
+*/
