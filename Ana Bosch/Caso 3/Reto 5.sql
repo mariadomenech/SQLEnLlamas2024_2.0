@@ -95,3 +95,13 @@ DROP PROCEDURE IF EXISTS RETO_5
 
 -- Borro función asegurandome que no falle y salga error si no existe
 DROP FUNCTION IF EXISTS dbo.getMovimiento
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Una vez más está perfecto, tanto el control de casos indeterminados como la lógica en ampliación del ejercicio anterior. 
+Enhorabuena por la semana que has hecho! :)
+
+*/
