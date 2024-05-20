@@ -54,3 +54,14 @@ SELECT r.runner_id,
 
 	    right join case02.runners as r 
 			on t2.runner_id = r.runner_id;
+
+
+/*
+Corrección María: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Genial la limpieza de los datos, el control del runner extra y la ejecución de los cálculos.
+Legibilidad: OK. Uso de CTEs.
+
+¡Enhorabuena!
+*/
