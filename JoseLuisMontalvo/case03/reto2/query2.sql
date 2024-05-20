@@ -10,8 +10,8 @@ from case03.customer_transactions
 	  )
 
 ---- Finalmente Sumamos y agrupamos por mes y cliente
-select Anio,Mes,count(*) as N_Cliente from (
-								select Anio,Mes,customer_id,sum(Deposito) as Deposito,sum(Compra) as Compra,sum(Retiro) as Retiro from Agrupacion
-								group by Anio,Mes,customer_id) as Agf
+select Anio,Mes,count(*) as N_Cliente from (select Anio,Mes,customer_id,sum(Deposito) as Deposito,sum(Compra) as Compra,sum(Retiro) as Retiro 
+	                                       from Agrupacion
+			  		     group by Anio,Mes,customer_id) as Agf
 where (Deposito>1 and Compra>1) or Retiro>1
 group by Anio,Mes;
