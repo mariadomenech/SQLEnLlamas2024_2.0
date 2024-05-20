@@ -164,3 +164,15 @@ AS
   group by (used_time_number_topping) 
 )
 SELECT * FROM CTE11;
+
+
+
+/*
+Corrección María: ¡Bien!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK!
+Legibilidad: OK, pero te pasa un poco igual que en el ejercicio 3 reduciría el uso de CTEs, hay muchos cálculos que puedes unificar en una misma consulta.
+Al final es simplificar un poco el código.
+
+*/
