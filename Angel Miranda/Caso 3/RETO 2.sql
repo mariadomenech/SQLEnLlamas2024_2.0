@@ -16,3 +16,12 @@ FROM TABLA_TXN
 WHERE (DEPOSIT_X_MES > 1 AND PURCHASE_X_MES > 1) OR WITHDRAWAL_X_MES > 1 
 GROUP BY 
 	MES_AÑO;
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/*
+
+Perfecto, sencillo. Te pongo un extra por tunearme los meses de la salida.
+
+*/
