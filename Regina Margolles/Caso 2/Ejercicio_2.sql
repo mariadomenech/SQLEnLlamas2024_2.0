@@ -113,4 +113,12 @@ Select t.runner_id,t.orders, t.total_orders, t.number_pizzas_without_cancellatio
       	where row_numbers = 1) as table2
   on table1.runner_id = table2.runner_id;
 
-  
+  /*
+Corrección María: ¡Todo perfecto!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Uso de Patindex.
+Legibilidad: OK. 
+
+¡Enhorabuena!
+*/
