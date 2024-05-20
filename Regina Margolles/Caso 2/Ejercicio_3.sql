@@ -121,3 +121,15 @@ group by CTE4.order_id, CTE4.profit
 )
 
 Select SUM(profit) from CTE5;
+
+
+
+/*
+Corrección María: ¡Bien!
+
+Resultado: OK. Obtienes justo lo que se pedía.
+Código: OK. Muy bien nuevamente todos los pasos realizados, además del uso de STRING_SPLIT para los extra.
+Legibilidad: OK, pero reduciría el uso de CTEs, hay muchos cálculos que puedes unificar en una misma consulta y no es necesario las 7 CTEs.
+
+
+*/
