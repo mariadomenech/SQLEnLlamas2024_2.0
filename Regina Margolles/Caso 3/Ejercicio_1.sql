@@ -70,3 +70,12 @@ as
    from CTE6
 )
 select * from CTE7;
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/*
+
+Bien resuelto! Había que darle al coco para usar los LAGs, días de diferencias y tal. Enhorabuena!!
+
+*/
