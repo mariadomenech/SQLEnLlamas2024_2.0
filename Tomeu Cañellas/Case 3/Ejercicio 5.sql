@@ -159,3 +159,13 @@ DROP FUNCTION dbo.CalculateBalance;
 DROP FUNCTION dbo.CalculateTotalDeposits;
 DROP FUNCTION dbo.CalculateTotalPurchases;
 DROP FUNCTION dbo.CalculateTotalWithdrawals;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Perfecto! Controlas casos indeterminados, separas la lógica y tienes en cuenta todas las situaciones. Buen trabajo, enhorabuena! :)
+
+*/
