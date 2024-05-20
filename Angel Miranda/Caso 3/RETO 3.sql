@@ -41,3 +41,16 @@ EXECUTE AMR_EJERCICIO_3_3_PROCEDURE 0,1;
 
 --SE ELIMINA EL PROCEDURE
 DROP PROCEDURE IF EXISTS AMR_EJERCICIO_3_3_PROCEDURE;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!!
+
+Guay que hagas un control de errores!
+
+*/
