@@ -35,3 +35,11 @@ GROUP BY anyo
 	,mes
 ORDER BY 3 ASC
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Perfecto, sencillo y legible. Y buen detalle de poner los meses en español.
+
+*/
