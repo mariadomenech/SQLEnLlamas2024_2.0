@@ -66,3 +66,13 @@ EXEC SPTotalPurchases @customer_id = 1, @month = 13;
 --Drop:
 
 DROP PROCEDURE SPTotalPurchases;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está genial, muy bien planteado controlando datos que no existen o se salen de rango. Enhorabuena! :)
+
+*/
