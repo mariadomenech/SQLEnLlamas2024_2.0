@@ -57,3 +57,20 @@ EXECUTE AMR_EJERCICIO_3_4_PROCEDURE 1,3,3;
 
 --SE ELIMINA EL PROCEDURE
 DROP PROCEDURE IF EXISTS AMR_EJERCICIO_3_4_PROCEDURE;
+
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Enhorabuena!!
+
+Código: OK, controlas todas casuísticas
+Legibilidad: OK, me ha faltado que me pongas al inicio del procedure qué código representa cada tipo de transacción
+Resultado: Muy completo!
+
+*/
