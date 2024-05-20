@@ -104,3 +104,15 @@ EXEC SPGetCustomerTransactions @customer_id = 1, @month = 13, @calculation_type 
 --Drop:
 
 DROP PROCEDURE SPGetCustomerTransactions
+
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto. Has tenido en cuenta también entradas inválidas tanto en meses como en clientes
+También me ha gustado cómo generas el nombre del mes con una función diferente a la habitual. Muy buen trabajo, enhorabuena!!:)
+
+*/
