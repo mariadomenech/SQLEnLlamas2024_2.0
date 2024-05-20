@@ -27,3 +27,13 @@ FROM(
 		IIF(SUM(DIAS_DIFF)>5000, NULL, SUM(DIAS_DIFF)) AS DAYS -- el valor 5000 es un valor arbitrario muy elevado para trabajar posibles casos de resultados dispares
 	FROM DIMENSION_TABLE
 	GROUP BY DIMENSION_NODE_CHANGE) TEMP;
+
+
+/*****************************************************/
+/******************COMENTARIO DANI********************/
+/*****************************************************/
+/* Resultado correcto, como única puntillita el comentarte que no nos devuelve un mensaje identificativo o esclarecedor,
+pero es como te digo una puntillita. En general bastante bien, me ha gustado el enfoque de usar LAG para determinar si
+el cliente cambió de nodo o no, tambien destacar el manejo de posibles errores con NODE_CHANGE=O para evitar que se pierdan 
+días. Y por último tambien destacar el manejo de NULLS, en este caso manejo de valores arbitrarios. En líneas generales, 
+enhorabuena Ismael, bonita senda de SQL la que estás haciendo! Sigue así!*/
