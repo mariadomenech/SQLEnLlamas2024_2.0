@@ -25,3 +25,13 @@ from
 where (n_deposit > 1 and  n_purchase>1) or (n_withdrawal>1)
 group by year, month
 order by customer_number 
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/*
+
+Perfecto y sencillo!
+
+*/
