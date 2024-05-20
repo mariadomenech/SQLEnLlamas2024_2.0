@@ -22,3 +22,17 @@ DECLARE
 @resultado varchar(max);
 EXEC Caso3_Ejercicio3 123, 5, @resultado OUTPUT
 Select @resultado
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!!
+
+¿Por qué no me intentas hacer un control de errores? Por ejemplo, si consulto un cliente que no existe,
+me devuelva un mensaje de error de que ese cliente no está en el sistema.
+
+*/
