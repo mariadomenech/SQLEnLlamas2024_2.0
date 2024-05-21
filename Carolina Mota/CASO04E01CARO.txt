@@ -1,0 +1,67 @@
+DROP PROC SP_DuplicadosCaro;
+
+CREATE PROC SP_DuplicadosCaro
+	@nombretabla VARCHAR(50),
+	@resultadosp VARCHAR(100) = 0 OUTPUT
+AS
+BEGIN
+SET @resultadosp= (
+				CASE 
+				WHEN UPPER(@nombretabla)='SALES'
+					THEN (
+							SELECT 
+								CONCAT('Posible número de duplicado en la tabla sales: ',ISNULL(SUM(nu),0)) AS texto
+							FROM (
+									SELECT *,
+										COUNT (*) nu
+									FROM CASE04.sales 
+									GROUP BY PROD_ID, QTY, PRICE, DISCOUNT, MEMBER, TXN_ID, START_TXN_TIME 
+									HAVING COUNT(*)>1
+								) A
+						)
+				WHEN UPPER(@nombretabla)='PRODUCT_PRICES'
+					THEN (
+							SELECT 
+								CONCAT('Posible número de duplicado en la tabla product_prices: ',ISNULL(SUM(nu),0)) AS texto
+							FROM (
+									SELECT *,
+										COUNT (*) nu
+									FROM CASE04.product_prices 
+									GROUP BY id, product_id, price
+									HAVING COUNT(*)>1
+								) A
+							)
+				WHEN UPPER(@nombretabla)='PRODUCT_DETAILS'
+					THEN (
+							SELECT 
+								CONCAT('Posible número de duplicado en la tabla product_details: ',ISNULL(SUM(nu),0)) AS texto
+							FROM (
+									SELECT *,
+										COUNT (*) nu
+									FROM CASE04.product_details 
+									GROUP BY product_id, price, product_name, category_id, segment_id, style_id, category_name, segment_name, style_name
+									HAVING COUNT(*)>1
+								) A
+							)
+				WHEN UPPER(@nombretabla)='PRODUCT_HIERARCHY'
+					THEN (
+							SELECT 
+								CONCAT('Posible número de duplicado en la tabla product_hierarchy: ',ISNULL(SUM(nu),0)) AS texto
+							FROM (
+									SELECT *,
+										COUNT (*) nu
+									FROM CASE04.product_hierarchy
+									GROUP BY id, parent_id, level_text, level_name
+									HAVING COUNT(*)>1
+								) A
+							)
+				ELSE 'Tabla no disponible en BBDD, escoja entre: sales, product_details, product_hierarchy, product_prices'	
+				END
+				)
+END
+
+SELECT @resultadosp AS ResultadoMessage;
+
+
+
+EXEC SP_DuplicadosCaro product_PRICES;
