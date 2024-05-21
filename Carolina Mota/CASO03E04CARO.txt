@@ -53,3 +53,12 @@ END
 SELECT @resultado AS ResultadoMessage;
 
 EXEC SP_ComprasCaro 1,'Marzo','BENEFICIO';
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto!
+
+*/
