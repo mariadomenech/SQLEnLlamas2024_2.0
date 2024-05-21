@@ -49,7 +49,7 @@ Set @total =
 		     where txn_type = 'withdrawal' and customer_id = @customer_id and MONTH(txn_date) = @mes) 
 	  end
 
-if (@total is null) begin set @total = 0 end
+  select coalesce(@total,0)
 
 
 Set @movimiento = 
