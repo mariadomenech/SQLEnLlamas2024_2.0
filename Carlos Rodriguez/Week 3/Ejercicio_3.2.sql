@@ -25,3 +25,12 @@ FROM (
 WHERE (total_deposit > 1 AND total_purchase > 1) OR total_withdrawal > 1
 GROUP BY anyo, mes
 ORDER BY clientes ASC;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto!
+
+*/
