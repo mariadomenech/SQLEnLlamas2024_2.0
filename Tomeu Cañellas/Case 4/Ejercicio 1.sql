@@ -1,11 +1,10 @@
 --CASO 4: Ejercicio 1
---SP que introduciendo nombre tabla devuelva el numero de posible duplicados
 CREATE PROCEDURE dbo.CountDuplicates
-	--Declaramos la variable que introducimos (nombre de la tabla)
+    --Declaramos la variable que introducimos (nombre de la tabla)
     @TableName NVARCHAR(MAX)
 AS
 BEGIN
-	--Declaramos las variables internas
+    --Declaramos las variables internas
     DECLARE @ColumnList NVARCHAR(MAX)
     DECLARE @SQL NVARCHAR(MAX)
     DECLARE @duplicates INT; 
@@ -40,7 +39,7 @@ BEGIN
     -- Ejecutamos la consulta dinámica indicando el output
     EXEC sp_executesql @SQL, N'@duplicates INT OUTPUT', @duplicates OUTPUT
 
-	--Declaramos el mensaje de salida
+    --Declaramos el mensaje de salida
     SET @message = 'Existen un total de ' + CAST(@duplicates AS VARCHAR(10)) + ' duplicados en la tabla ' + CAST(@TableName AS VARCHAR(MAX));
 
     -- Imprimimos el mensaje
