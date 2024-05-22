@@ -8,87 +8,107 @@ AS
 
 	BEGIN
 	
-		-- IF PARA CUANDO NO ESTÁ DISPONIBLE EL ESQUEMA EN BBDD ---------------------------
+		-- IF PARA CUANDO NO ESTÁ DISPONIBLE EL ESQUEMA EN BBDD -----------------------------------------------------------------------------
 		IF upper(ltrim(@NombreEsquema)) NOT IN (
-												SELECT DISTINCT
-													UPPER(LTRIM(table_schema))
-												FROM information_schema.columns 
-												WHERE 
-													UPPER(LTRIM(table_schema))=UPPER(LTRIM(@NombreEsquema)) 
-												)
+								SELECT DISTINCT
+									UPPER(LTRIM(table_schema))
+								FROM information_schema.columns 
+								WHERE 
+									UPPER(LTRIM(table_schema))=UPPER(LTRIM(@NombreEsquema)) 
+							)
 			BEGIN	
 				SET @Resultado = (
-									SELECT CONCAT('Esquema "', LOWER(@NombreEsquema), '" no disponible en el catálogo, puede elegir entre los esquemas: "', STRING_AGG(table_schema, ' ,'), '"') 
-									FROM (
-											SELECT DISTINCT
-												table_schema
-											FROM information_schema.columns 
-										) A
-									)
+							SELECT 
+								CONCAT(
+										'Esquema "', 
+										LOWER(@NombreEsquema), 
+										'" no disponible en el catálogo, puede elegir entre los esquemas: "', 
+										STRING_AGG(table_schema, ' ,'), 
+										'"'
+									) 
+							FROM (
+									SELECT DISTINCT
+										table_schema
+									FROM information_schema.columns 
+								) A
+						)
 				SELECT @Resultado AS MENSAJE
 			END
-		-----------------------------------------------------------------------------------	
+		---------------------------------------------------------------------------------------------------------------------------------------	
 		
-		-- ELSE IF PARA CUANDO NO ESTÁ DISPONIBLE LA TABLA EN BBDD PARA ESE ESQUEMA -------
+		-- ELSE IF PARA CUANDO NO ESTÁ DISPONIBLE LA TABLA EN BBDD PARA ESE ESQUEMA -----------------------------------------------------------
 		ELSE IF UPPER(@NombreTabla) NOT IN (
-											SELECT DISTINCT
-												UPPER(table_name)
-											FROM information_schema.columns 
-											WHERE 
-												table_schema=@NombreEsquema 
-												AND UPPER(table_name)=UPPER(@NombreTabla)
-											)
+							SELECT DISTINCT
+								UPPER(table_name)
+							FROM information_schema.columns 
+							WHERE 
+								table_schema=@NombreEsquema 
+								AND UPPER(table_name)=UPPER(@NombreTabla)
+						)
 			BEGIN
 				SET @Resultado = (
-									SELECT CONCAT('Tabla "', LOWER(@NombreTabla), '" no disponible en el esquema "', LOWER(@NombreEsquema),  '", puede elegir entre las tablas: "', STRING_AGG(table_name, ' ,'), '"') 
-									FROM (
-											SELECT DISTINCT
-												table_name
-											FROM information_schema.columns 
-											WHERE 
-												UPPER(table_schema)=UPPER(@NombreEsquema)) A
-										)
+							SELECT 
+								CONCAT(
+										'Tabla "', 
+										LOWER(@NombreTabla),
+										'" no disponible en el esquema "', 
+										LOWER(@NombreEsquema),
+										'", puede elegir entre las tablas: "', 
+										STRING_AGG(table_name, ' ,'),
+										'"'
+									) 
+							FROM (
+								SELECT DISTINCT
+									table_name
+								FROM information_schema.columns 
+								WHERE 
+									UPPER(table_schema)=UPPER(@NombreEsquema)
+								) A
+						)
 
 				SELECT @Resultado AS MENSAJE
 			END
-		-----------------------------------------------------------------------------------	
+		--------------------------------------------------------------------------------------------------------------------------------------	
 		
-		-- ELSE  PARA CUANDO LA TABLA ESTÁ DISPONIBLE EN EL ESQUEMA -----------------------
+		-- ELSE  PARA CUANDO LA TABLA ESTÁ DISPONIBLE EN EL ESQUEMA --------------------------------------------------------------------------
 		ELSE  
 			BEGIN
 			
-				-- Variable para tener el GROUP BY dinamico--------------------------------
+				-- Variable para tener el GROUP BY dinamico--------------------------------------------------------------------------
 				DECLARE @Groupby NVARCHAR(MAX) = (
-													SELECT 
-														STRING_AGG(column_name,', ') 
-													FROM information_schema.columns 
-													WHERE 
-														table_schema=@NombreEsquema
-														AND table_name=@NombreTabla
-												)
-				---------------------------------------------------------------------------
-				
-				---Variable como texto para que la ejecute el procedimiento sp_executesql--
-				SET @Resultado = (
-									N'
-										SELECT 
-											CONCAT(''Posible número de duplicados en la tabla "'+ LOWER(@NombreEsquema) +'.'+ LOWER(@NombreTabla) +'": '',ISNULL(COUNT(*),0)) AS MENSAJE
-										FROM (
-												SELECT *,
-													COUNT (*) AS nu
-												FROM ' + QUOTENAME(@NombreEsquema) +'.' + QUOTENAME(@NombreTabla) +' AS A
-												GROUP BY '+ @Groupby +'
-												HAVING COUNT(*)>1
-											) A
-										'
+									SELECT 
+										STRING_AGG(column_name,', ') 
+									FROM information_schema.columns 
+									WHERE 
+										table_schema=@NombreEsquema
+										AND table_name=@NombreTabla
 								)
+				----------------------------------------------------------------------------------------------------------------------
+				
+				---Variable como texto para que la ejecute el procedimiento sp_executesql------------------------------------------------------------------------------------------------
+				SET @Resultado = (
+							N'
+								SELECT 
+									CONCAT(
+											''Posible número de duplicados en la tabla "'+ LOWER(@NombreEsquema) +'.'+ LOWER(@NombreTabla) +'": '',
+											ISNULL(COUNT(*),0)
+										) AS MENSAJE
+								FROM (
+										SELECT *,
+											COUNT (*) AS nu
+										FROM ' + QUOTENAME(@NombreEsquema) +'.' + QUOTENAME(@NombreTabla) +' AS A
+										GROUP BY '+ @Groupby +'
+										HAVING COUNT(*)>1
+									) A
+							'
+						)
 
 				EXEC SP_EXECUTESQL @Resultado
-				---------------------------------------------------------------------------
+				-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				
 				
 			END
-		-----------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------------------------------------
 	END;
 
 /*************************************************************/
