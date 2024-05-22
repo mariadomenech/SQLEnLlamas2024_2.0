@@ -1,4 +1,5 @@
 --CASO 4: Ejercicio 1
+--Creamos el Stored Procedure
 CREATE PROCEDURE dbo.CountDuplicates
     --Declaramos la variable que introducimos (nombre de la tabla)
     @TableName NVARCHAR(MAX)
