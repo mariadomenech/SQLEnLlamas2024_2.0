@@ -135,3 +135,189 @@ EXEC SP_DuplicadosCaro salesSS, case04;
 --------------------------------------------------------------------------------------------------------------------------------------------------
 |Tabla "salesss" no disponible en el esquema "case04", puede elegir entre las tablas: "product_details ,product_hierarchy ,product_prices ,sales"|
 --------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*********************************************************************************************************/
+/*******************************AÑADO CON LA VARIABLE DE CATÁLOGO*****************************************/
+/*********************************************************************************************************/
+
+CREATE OR ALTER PROC SP_DuplicadosCaro
+@NombreCatalogo NVARCHAR(50),
+@NombreEsquema NVARCHAR(50),
+@NombreTabla NVARCHAR(50),
+@Resultado NVARCHAR(MAX) = 0 OUTPUT
+
+AS
+
+	BEGIN
+
+		-- IF PARA CUANDO NO ESTÁ DISPONIBLE DEL CATALOGO EN BBDD ---------------------------
+		IF upper(ltrim(@NombreCatalogo)) NOT IN (
+								SELECT DISTINCT
+									UPPER(LTRIM(table_catalog))
+								FROM information_schema.columns 
+								WHERE 
+									UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo)) 
+							)
+			BEGIN	
+				SET @Resultado = (
+							SELECT 
+								CONCAT(
+										'Catálogo "', 
+										LOWER(@NombreCatalogo),
+										'" no está disponible, puede elegir entre los siguientes catálogos: "', 
+										STRING_AGG(table_catalog,' ,'),
+										'"'
+									) 
+							FROM (
+									SELECT DISTINCT
+										table_catalog
+									FROM information_schema.columns 
+								) A
+						)
+				SELECT @Resultado AS MENSAJE
+			END
+		-----------------------------------------------------------------------------------	
+	
+		-- IF PARA CUANDO NO ESTÁ DISPONIBLE EL ESQUEMA EN BBDD ---------------------------
+		ELSE IF upper(ltrim(@NombreEsquema)) NOT IN (
+								SELECT DISTINCT
+									UPPER(LTRIM(table_schema))
+								FROM information_schema.columns 
+								WHERE 
+									UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo))
+									AND UPPER(LTRIM(table_schema))=UPPER(LTRIM(@NombreEsquema)) 											
+								)
+			BEGIN	
+				SET @Resultado = (
+							SELECT 
+								CONCAT(
+										'Esquema "', 
+										LOWER(@NombreEsquema), 
+										'" no disponible en el catálogo "', 
+										LOWER(@NombreCatalogo), 
+										'" puede elegir entre los esquemas: "', 
+										STRING_AGG(table_schema, ' ,'),
+										'"'
+									) 
+							FROM (
+									SELECT DISTINCT
+										table_schema
+									FROM information_schema.columns 
+									WHERE UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo))
+								) A
+						)
+				SELECT @Resultado AS MENSAJE
+			END
+		-----------------------------------------------------------------------------------	
+		
+		-- ELSE IF PARA CUANDO NO ESTÁ DISPONIBLE LA TABLA EN BBDD PARA ESE ESQUEMA -------
+		ELSE IF UPPER(@NombreTabla) NOT IN (
+							SELECT DISTINCT
+								UPPER(table_name)
+							FROM information_schema.columns 
+							WHERE 
+								UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo))
+								AND UPPER(table_schema)=UPPER(@NombreEsquema) 
+								AND UPPER(table_name)=UPPER(@NombreTabla)												
+						)
+			BEGIN
+				SET @Resultado = (
+							SELECT 
+								CONCAT(
+										'Tabla "', 
+										LOWER(@NombreTabla), 
+										'" no disponible en el esquema "', 
+										LOWER(@NombreEsquema),  
+										'", puede elegir entre las tablas: "', 
+										STRING_AGG(table_name, ' ,'), 
+										'"'
+									) 
+							FROM (
+									SELECT DISTINCT
+										table_name
+									FROM information_schema.columns 
+									WHERE 
+										UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo))
+										AND UPPER(table_schema)=UPPER(@NombreEsquema)											
+								) A
+						)
+
+				SELECT @Resultado AS MENSAJE
+			END
+		-----------------------------------------------------------------------------------	
+		
+		-- ELSE  PARA CUANDO LA TABLA ESTÁ DISPONIBLE EN EL ESQUEMA -----------------------
+		ELSE  
+			BEGIN
+			
+				-- Variable para tener el GROUP BY dinamico--------------------------------
+				DECLARE @Groupby NVARCHAR(MAX) = (
+									SELECT 
+										STRING_AGG(column_name,', ') 
+									FROM information_schema.columns 
+									WHERE 
+										UPPER(LTRIM(table_catalog))=UPPER(LTRIM(@NombreCatalogo))
+										AND UPPER(table_schema)=UPPER(@NombreEsquema)
+										AND UPPER(table_name)=UPPER(@NombreTabla)
+														
+								)
+				---------------------------------------------------------------------------
+				
+				---Variable como texto para que la ejecute el procedimiento sp_executesql--
+				SET @Resultado = (
+							N'
+								SELECT 
+									CONCAT(
+										''Posible número de duplicados en la tabla "' + LOWER(@NombreCatalogo) + '.' + LOWER(@NombreEsquema) + '.' + LOWER(@NombreTabla) + '": '',
+										ISNULL(COUNT(*),0)
+										) AS MENSAJE
+								FROM (
+										SELECT *,
+											COUNT (*) AS nu
+										FROM ' + QUOTENAME(@NombreCatalogo) + '.' + QUOTENAME(@NombreEsquema) + '.' + QUOTENAME(@NombreTabla) +' AS A
+										GROUP BY '+ @Groupby +'
+										HAVING COUNT(*)>1
+									) A
+							'
+						)
+
+				EXEC SP_EXECUTESQL @Resultado
+				---------------------------------------------------------------------------
+				
+				
+			END
+		-----------------------------------------------------------------------------------
+	END;
+
+/*************************************************************/
+/****************EJEMPLOS RESULTADOS**************************/
+/*************************************************************/
+
+EXEC SP_DuplicadosCaro SQL_EN_LLAMAS_ALUMNOS, case04, SALES;
+-------------------------------------------------------------------------------------
+|MENSAJE                                                                            |
+-------------------------------------------------------------------------------------
+|Posible número de duplicados en la tabla "sql_en_llamas_alumnos.case04.sales": 590 |
+-------------------------------------------------------------------------------------
+
+EXEC SP_DuplicadosCaro SQL_EN_LLAMAS_ALUMNAS, case04, SALES;
+----------------------------------------------------------------------------------------------------------------------------
+|MENSAJE                                                                                                                   |
+----------------------------------------------------------------------------------------------------------------------------
+|Catálogo "sql_en_llamas_alumnas" no está disponible, puede elegir entre los siguientes catálogos: "SQL_EN_LLAMAS_ALUMNOS" |
+----------------------------------------------------------------------------------------------------------------------------
+
+EXEC SP_DuplicadosCaro SQL_EN_LLAMAS_ALUMNOS, case05, SALES;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|MENSAJE                                                                                                                                                               |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|Esquema "case05" no disponible en el catálogo "sql_en_llamas_alumnos" puede elegir entre los esquemas: "case01 ,case02 ,case03 ,case04 ,CIVICA\carlos.rodriguez ,dbo" |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EXEC SP_DuplicadosCaro SQL_EN_LLAMAS_ALUMNOS, case04, SALEsS;
+---------------------------------------------------------------------------------------------------------------------------------------------------
+|MENSAJE                                                                                                                                          |
+--------------------------------------------------------------------------------------------------------------------------------------------------
+|Tabla "salesss" no disponible en el esquema "case04", puede elegir entre las tablas: "product_details ,product_hierarchy ,product_prices ,sales" |
+---------------------------------------------------------------------------------------------------------------------------------------------------
