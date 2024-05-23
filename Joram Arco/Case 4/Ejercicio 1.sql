@@ -19,13 +19,12 @@ END;
 CREATE OR ALTER PROCEDURE NumeroDuplicados
 	@nombreBD VARCHAR(30)
 	,@nombreEsquema VARCHAR(30)
-  ,@nombreTabla VARCHAR(30)
+  	,@nombreTabla VARCHAR(30)
 AS
 BEGIN
 	DECLARE @nombreTablaCompleto NVARCHAR(100)
 	DECLARE @nombreColumnas NVARCHAR(MAX)
 	DECLARE @sql NVARCHAR(MAX)
-	DECLARE @tablaIntermedia TABLE (duplicados INT)
 	DECLARE @numeroDuplicados NVARCHAR(10)
 	DECLARE @outputMensaje NVARCHAR(MAX)
 
@@ -40,16 +39,14 @@ BEGIN
 				BEGIN
 					SET @nombreColumnas = dbo.GetNombreColumnas(@nombreEsquema, @nombreTabla)
 
-					SET @sql = 'SELECT COUNT(*) FROM (
+					SET @sql = 'SELECT @numeroDuplicados=COUNT(*) FROM (
 						SELECT *, COUNT(*) AS duplicados
 						FROM ' + @nombreTablaCompleto +
 						' GROUP BY ' + @nombreColumnas +
 						' HAVING COUNT(*) > 1
 						) consulta'
 
-					INSERT INTO @tablaIntermedia EXEC sp_executesql @sql
-
-					SELECT @numeroDuplicados=duplicados FROM @tablaIntermedia
+					EXEC sp_executesql @sql, N'@numeroDuplicados INT OUTPUT', @numeroDuplicados OUTPUT
 
 					SET @OutputMensaje = 'Se han detectado ' + @numeroDuplicados + ' duplicados en la tabla ' + UPPER(@nombreTabla) 
 				END
@@ -87,5 +84,5 @@ Se hacen las comprobaciones de errores oportunas (en este orden):
 	- Que exista el esquema elegido
 	- Que exista el nombre de la tabla elegida
 Si todo es correcto, se genera una consulta donde se le pasa el nombre completo de la tabla y el nombre de las columnas (obtenido con la función) y se obtiene
-el número de registros duplicados para esa tabla. Se inserta el valor obtenido en una tabla intermedia y se vuelca en una variable tipo texto.
+el número de registros duplicados para esa tabla. Se inserta el valor obtenido en una variable.
 Una vez con esto, se genera el mensaje correspondiente. En caso de que hubiese algún error, también se genera el mensaje correspondiente al mismo. */
