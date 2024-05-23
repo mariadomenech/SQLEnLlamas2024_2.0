@@ -1,71 +1,44 @@
+
 WITH 
-	--QUITAMOS DUPLICADOS EN LA TABLA SALES--
 	QuitarDuplicados AS 
 		(
 			SELECT *,
 				COUNT (*) AS nu
 			FROM case04.sales
-			GROUP BY prod_id, qty, price, discount, member, txn_id, start_txn_time
-			HAVING COUNT(*)=1
+			GROUP BY 
+				prod_id, 
+				qty, 
+				price, 
+				discount, 
+				member, 
+				txn_id, 
+				start_txn_time
+			HAVING 
+				COUNT(*)=1
 		),
 
-	--CREAMOS LA COMBINACIÓN DE TRANSACCIONES QUE TENGAN MÁS DE TRES PRODUCTOS--
-	CombinacionesProductos AS 
+	ProductosenListas AS 
 		(
-			SELECT
-				S1.txn_id,
-				S1.prod_id AS produc1,
-				S2.prod_id AS produc2,
-				S3.prod_id AS produc3
-			FROM quitarduplicados S1
-			INNER JOIN quitarduplicados S2
-				ON S1.txn_id=S2.txn_id AND S1.prod_id<S2.prod_id
-			INNER JOIN quitarduplicados S3
-				ON S2.txn_id=S3.txn_id AND S2.prod_id<S3.prod_id
-		), 
-	
-	--NOS QUEDAMOS CON LA QUE MÁS SE REPITE--
-	Combinacionmasrepetida AS 
-		(
-			SELECT TOP (1) 
-				produc1,
-				produc2,
-				produc3,
-				COUNT(*) AS repeticiones
-			FROM CombinacionesProductos
-			GROUP BY produc1, produc2, produc3
-			ORDER BY repeticiones DESC
-		),
-		
-	--AÑADIMOS LA DESCRIPCIÓN DE LOS PRODUCTOS--
-	NombreProductosMasRepetidos AS
-		(
-			SELECT
-				p1.product_name AS produc1desc,
-				p2.product_name AS produc2desc,
-				p3.product_name AS produc3desc,
-				repeticiones
-			FROM Combinacionmasrepetida AS A
-			INNER JOIN CASE04.product_details p1
-				ON (a.produc1=p1.product_id)
-			INNER JOIN CASE04.product_details p2
-				ON (a.produc2=p2.product_id)
-			INNER JOIN CASE04.product_details p3
-				ON (a.produc3=p3.product_id)
+			SELECT 
+				txn_id,
+				STRING_AGG(product_name , ', ') WITHIN GROUP (ORDER BY product_name) Lista
+			FROM 
+				QuitarDuplicados A
+			INNER JOIN 
+				case04.product_details B
+			ON (A.prod_id=B.product_id)
+			GROUP BY 
+				TXN_ID
 		)
-		
---MOSTRAMOS EL MENSAJE DE CUALES ES LA COMBINACIÓN DE TRES PRODUCTOS MÁS REPETIDA--
-SELECT 
-	CONCAT
-		(
-			'La combinación de tres procustos más repedia es: "',
-			produc1desc,
-			'", "',
-			produc2desc,
-			'" y "',
-			produc3desc,
-			'" , con un total de ',
-			repeticiones,
-			' repeticiones.'
-		) AS Mensaje
-FROM NombreProductosMasRepetidos;
+
+SELECT TOP(1)
+	COUNT (*) AS NUM_VECES_REPETIDA,
+	'La combinación más repetida es: '+  CHAR(13)+ '-' + REPLACE(Lista,', ',+CHAR(13)+'-') AS DES_COMBINACION
+FROM 
+	ProductosenListas 
+WHERE 
+	LEN(Lista) > LEN(REPLACE(Lista,',','')) +1
+GROUP BY 
+	Lista 
+ORDER BY 
+	COUNT(*) DESC;
