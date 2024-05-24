@@ -29,3 +29,12 @@ FROM
     MostFrequentCombination
 ORDER BY 
     transaction_count DESC;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto! Como observación, intenta no meter tantos saltos de linea despues de FROMs, GROUP BYs, etc.. Hace la lectura un poco mas tediosa
+
+*/
