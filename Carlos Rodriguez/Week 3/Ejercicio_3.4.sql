@@ -73,3 +73,13 @@ EXECUTE case02.PNG_Ejercicio3_4_Procedimiento
 -- Resultado de TotalDepositado: 324.00 --
 -- Resultado de TotalCompras: 1276.00 --
 -- Resultado de TotalRetiros: 0.00 --
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
+
