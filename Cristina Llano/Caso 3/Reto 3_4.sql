@@ -98,3 +98,20 @@ EXEC CLN_Case3_Reto4 5, 3, 4;
 EXEC CLN_Case3_Reto4 1, 6, 1;
 -- 7. Insertamos datos para un cliente que no tiene el tipo solicitado
 EXEC CLN_Case3_Reto4 1, 3, 4;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Muy bien Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Muy bueno siempre el punto de dar ejemplos para ver la funcionalidad del procedimiento fácilmente.
+
+
+*/
