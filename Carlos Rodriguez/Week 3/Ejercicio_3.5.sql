@@ -130,3 +130,12 @@ EXECUTE case02.PNG_Ejercicio3_5_Procedimiento
     @year = 2020, 
     @month_name = marzo, 
     @calculation_type = TotalDepositado;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto!
+
+*/
