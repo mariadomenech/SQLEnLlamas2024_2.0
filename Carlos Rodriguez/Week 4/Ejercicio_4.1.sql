@@ -85,3 +85,11 @@ EXEC Ejercicio_4_1_CRM 'SQL_EN_LLAMAS', 'case04', 'sales';
 EXEC Ejercicio_4_1_CRM 'SQL_CARLOS_TOP1', 'case04', 'sales';
 EXEC Ejercicio_4_1_CRM 'SQL_EN_LLAMAS', 'case04', 'product_prices';
 
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto!
+
+*/
