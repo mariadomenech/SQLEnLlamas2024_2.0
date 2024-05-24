@@ -62,3 +62,12 @@ FROM (
     FROM SQL_EN_LLAMAS_ALUMNOS.case03.customer_transactions
     WHERE customer_id = @check_customer_id
 ) AS subquery_result;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Resultado correcto, aunque se podía hacerlo en un procedimiento almacenado. 
+
+*/
