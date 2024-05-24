@@ -50,3 +50,22 @@ EXEC CLN_Case4_Reto1 'sales_mala';
 
 /* Para finalizar eliminamos el procedure si no lo hemos hecho ya */
 DROP PROCEDURE IF EXISTS CLN_Case4_Reto1;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, está genial!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Muy bien organizado y me ha gustado mucho que lo hagas tan generalizado con las variables.
+
+Sigue así ya queda nada!!
+
+
+*/
