@@ -116,3 +116,19 @@ EXEC CLN_Case3_Reto5 1, 3, 3; -- 7. purchase
 EXEC CLN_Case3_Reto5 5, 3, 4; -- 8. withdrawal
 EXEC CLN_Case3_Reto5 1, 6, 1; -- 9. Cliente con un mes sin datos
 EXEC CLN_Case3_Reto5 1, 3, 4; -- 10. Cliente sin información tipo solicitado
+
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, perfecto, en la línea de este caso!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+
+*/
