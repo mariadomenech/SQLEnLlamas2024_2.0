@@ -39,5 +39,5 @@ FROM (
     GROUP BY prod_combination
     ORDER BY prod_count DESC
 ) top1
-;
+; 
 
