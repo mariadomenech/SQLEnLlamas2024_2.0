@@ -1,0 +1,20 @@
+SELECT 
+	d.product_id,
+	d.price,
+	CONCAT(c.level_text,' ',b.level_text,' - ', a.level_text) AS product_name,
+	a.id AS category_id,
+	b.id AS	segment_id,
+	c.id AS style_id,
+	a.level_text AS category_name,
+	b.level_text AS segment_name,
+	c.level_text AS style_name
+FROM 
+	case04.product_hierarchy a
+INNER JOIN 
+	case04.product_hierarchy b
+	ON (a.id=b.parent_id)
+INNER JOIN 
+	case04.product_hierarchy c
+	ON (b.id=c.parent_id)
+INNER JOIN case04.product_prices d
+	ON (c.id=d.id)
