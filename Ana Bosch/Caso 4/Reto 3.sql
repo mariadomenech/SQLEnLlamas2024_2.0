@@ -25,7 +25,8 @@ JOIN case04.product_prices prices
 
 /* SOLUCIÓN 2.0
 Junto con Joram, nos hemos dado cuenta que estabamos frente a un claro ejemplo de recursividad por lo tanto hemos considerado buena solución 
-el uso de CTE como caso base (recordando algoritmos recursivos) del cual partamos para recorrer recursivamente los nodos padres */
+el uso de CTE como caso base (recordando algoritmos recursivos) del cual partamos para recorrer recursivamente los nodos padres
+PD: Es una solución más compleja que la inicial pero nos hacía bastante ilusión incorporarla */
 
 -- CTE del caso base (categoria)
 WITH CTE_CATEGORIA
