@@ -1,0 +1,53 @@
+WITH 
+
+	Convertirdatos /*QuitarDuplicados*/ AS 
+		(
+			SELECT 
+				prod_id,
+				cast(qty AS FLOAT) AS qty,
+				CAST(price AS FLOAT) AS price,
+				(100-CAST(discount AS FLOAT))/100  AS discount,--Convertimos el descuento para poder usarlos directamente
+				member,
+				txn_id,
+				start_txn_time--,
+				--COUNT (*) AS nu
+			FROM 
+				case04.sales
+			GROUP BY 
+				prod_id, qty, 
+				price, 
+				discount, 
+				member, 
+				txn_id, 
+				start_txn_time
+			--HAVING COUNT(*)=1 --¿No es necesario quitar duplicados?
+		),
+
+	ResumenIngresos AS 
+		(
+ 
+			SELECT 
+				SUM(PRICE*QTY*DISCOUNT) AS p_descuento
+			FROM
+				convertirdatos /*QuitarDuplicados*/
+			GROUP BY 
+				TXN_ID
+		)
+
+SELECT DISTINCT
+	'CONTINUO' AS TIPO_PERCENTIL,
+	PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_25,
+	PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_50,
+	PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS pERCENTIL_75
+FROM
+	ResumenIngresos
+
+UNION ALL
+
+SELECT DISTINCT 
+	'DISCRETO' AS TIPO_PERCENTIL,
+	PERCENTILE_DISC(0.25) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_25,
+	PERCENTILE_DISC(0.50) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_50,
+	PERCENTILE_DISC(0.75) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_75
+FROM 
+	ResumenIngresos
