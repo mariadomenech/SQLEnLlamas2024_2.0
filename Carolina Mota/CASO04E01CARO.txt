@@ -321,3 +321,13 @@ EXEC SP_DuplicadosCaro SQL_EN_LLAMAS_ALUMNOS, case04, SALEsS;
 --------------------------------------------------------------------------------------------------------------------------------------------------
 |Tabla "salesss" no disponible en el esquema "case04", puede elegir entre las tablas: "product_details ,product_hierarchy ,product_prices ,sales" |
 ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Perfecto! Me ha gustado mucho el control de catálogo, esquema, etc!
+
+*/
