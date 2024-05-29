@@ -19,3 +19,12 @@ JOIN
 JOIN
     case04.product_hierarchy ph3 
     ON ph2.parent_id = ph3.id;
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto! Como observación, intenta no meter tantos saltos de linea despues de FROMs, GROUP BYs, etc.. Hace la lectura un poco mas tediosa
+
+*/
