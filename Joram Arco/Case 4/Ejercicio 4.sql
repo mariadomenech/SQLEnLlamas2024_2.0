@@ -1,10 +1,11 @@
 --Creamos una primera tabla temporal donde calculamos los ingresos por transacción
 WITH ingresos AS (
-SELECT distinct
+SELECT 
 	txn_id
-	,SUM(qty*price) OVER (PARTITION BY txn_id) AS ingresos
+	,SUM(price * qty) AS ingresos_brutos
+	,SUM(price * discount * 0.01 * qty) AS descuento
 FROM case04.sales
-GROUP BY txn_id, qty, price
+GROUP BY txn_id
 ),
 
 /* Después generamos otra tabla temporal donde creamos una variable tipo percentil para indicar si es continuo 
@@ -14,18 +15,18 @@ la tabla anterior y los unimos para obtenerlos en una misma tabla
 continuo_discreto AS (
 SELECT
 	'CONTINUO' AS tipo_percentil
-	,PERCENTILE_CONT (0.25) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_25
-	,PERCENTILE_CONT (0.5) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_50
-	,PERCENTILE_CONT (0.75) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_75
+	,PERCENTILE_CONT (0.25) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_25
+	,PERCENTILE_CONT (0.5) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_50
+	,PERCENTILE_CONT (0.75) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_75
 FROM ingresos
 
 UNION ALL
 
 SELECT
 	'DISCRETO' AS tipo_percentil
-	,PERCENTILE_DISC (0.25) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_25
-	,PERCENTILE_DISC (0.5) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_50
-	,PERCENTILE_DISC (0.75) WITHIN GROUP (ORDER BY ingresos) OVER () AS percentil_75
+	,PERCENTILE_DISC (0.25) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_25
+	,PERCENTILE_DISC (0.5) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_50
+	,PERCENTILE_DISC (0.75) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_75
 FROM ingresos
 )
 
