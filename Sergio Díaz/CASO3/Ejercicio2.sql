@@ -5,10 +5,8 @@
 WITH CTE_RESUMEN_MES -- CTE para añadir el mes en formato yyyymm y las columnas contando cada tipo de transacción
 AS (
 	SELECT customer_id
-		,CONCAT (
-			YEAR(txn_date)
-			,FORMAT(MONTH(txn_date), '00')
-			) AS ANIO_MES
+		,FORMAT(txn_date, 'yyyyMM')
+			 AS ANIO_MES
 		,SUM(CASE 
 				WHEN TXN_TYPE = 'deposit'
 					THEN 1
@@ -26,10 +24,7 @@ AS (
 				END) AS retiros
 	FROM case03.customer_transactions
 	GROUP BY customer_id
-		,CONCAT (
-			YEAR(txn_date)
-			,FORMAT(MONTH(txn_date), '00')
-			)
+		,FORMAT(txn_date, 'yyyyMM')
 	)
 	
 	
