@@ -1,4 +1,3 @@
---ALERTA! SE ENCONTRARON ERRORES AL ANALIZAR EL CODIGO SQL!
 /* Alumno: Sergio Díaz */
 /* CASO 3 - Ejercicio 4: Evolución del procedure para elegir el tipo de cálculo */
 
