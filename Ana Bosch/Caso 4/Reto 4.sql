@@ -6,7 +6,8 @@ AS (
 	SELECT txn_id
 		,SUM(qty * (price - (price * discount * 0.01))) AS preciofinal
 	FROM (
-		SELECT DISTINCT * FROM case04.sales
+		SELECT DISTINCT * 
+		FROM case04.sales
 	) A
 	GROUP BY txn_id
 )
