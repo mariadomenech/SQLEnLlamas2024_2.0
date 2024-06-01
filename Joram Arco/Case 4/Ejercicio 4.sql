@@ -25,9 +25,7 @@ SELECT
 	,PERCENTILE_CONT (0.5) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_50
 	,PERCENTILE_CONT (0.75) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_75
 FROM ingresos
-
-UNION ALL
-
+UNION
 SELECT
 	'DISCRETO' AS tipo_percentil
 	,PERCENTILE_DISC (0.25) WITHIN GROUP (ORDER BY ingresos_brutos-descuento) OVER () AS percentil_25
@@ -42,5 +40,4 @@ SELECT DISTINCT
 	,percentil_25
 	,percentil_50
 	,percentil_75
-FROM continuo_discreto
-ORDER BY tipo_percentil ;
+FROM continuo_discreto;
