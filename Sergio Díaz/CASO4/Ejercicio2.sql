@@ -22,4 +22,4 @@ FROM transaccinees_validas t
 JOIN lista_prod l
 ON t.txn_id = l.txn_id
 GROUP BY l.prod_list
-ORDER BY COUNT(l.prod_list) DESC
+ORDER BY COUNT(l.prod_list) DESC;
