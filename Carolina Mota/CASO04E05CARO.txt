@@ -1,0 +1,31 @@
+CREATE OR ALTER FUNCTION UF_SegCateProduct
+	(
+		@segment_name VARCHAR(50),
+		@category_name VARCHAR(50)
+	)
+RETURNS TABLE
+AS
+RETURN(
+		SELECT TOP (1)
+			product_name,
+			sum(qty) AS cantidad_vendida
+		FROM 
+			case04.sales A
+		INNER JOIN 
+			case04.product_details B
+			ON (A.prod_id=B.product_id)
+		WHERE
+			UPPER(segment_name)=UPPER(@segment_name)
+			AND UPPER(category_name)=UPPER(@category_name)
+		GROUP BY 
+			prod_id,
+			segment_name,
+			category_name,
+			product_name
+		ORDER BY 
+			segment_name, 
+			category_name, 
+			SUM(qty) DESC
+	);
+	
+SELECT * FROM UF_SegCateProduct('SOCKS','MENS');
