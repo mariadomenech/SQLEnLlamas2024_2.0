@@ -50,7 +50,7 @@ BEGIN
 						ORDER BY SUM(COALESCE(QTY,0)) DESC
 					) ranking
 				FROM case04.product_details product
-				LEFT JOIN (SELECT DISTINCT * FROM case04.sales)/*case04.sales*/ sales
+				LEFT JOIN (SELECT DISTINCT * FROM case04.sales) sales
 					ON product.product_id = sales.prod_id
 				WHERE category_id = @category AND segment_id = @segment
 				GROUP BY category_id
