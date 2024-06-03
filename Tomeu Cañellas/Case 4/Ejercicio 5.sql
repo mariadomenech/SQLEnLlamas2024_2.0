@@ -62,4 +62,4 @@ EXEC BestSellerProduct @CategoryID = 5, @SegmentID = 3;
 EXEC BestSellerProduct @CategoryID = 5, @SegmentID = 1;
 
 --Drop:
-DROP PROCEDURE BestSellerProduct;
+DROP PROCEDURE BestSellerProduct; 
