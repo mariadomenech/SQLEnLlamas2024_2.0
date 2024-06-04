@@ -78,93 +78,119 @@ END;
 
 
 
-CREATE PROCEDURE [dbo].[SDF_CASO3_RETO5] @Cliente INT --PROCEDIMIENTO PARA EL RETO 5
+CREATE PROCEDURE [dbo].[SDF_CASO3_RETO5] @Cliente INT
 	,@Mes VARCHAR(10) -- Mes en formato yyyyMM
 	,@Calculo INT --ESTABLECEMOS LOS SIGUIENTES VALORES: 1 BALANCE, 2 DEPOSITOS, 3 COMPRAS, 4 RETIROS
 AS
 BEGIN
-	DECLARE @Resultado INT -- Declaramos las variables
+
+	DECLARE @Resultado INT
 	DECLARE @MesTexto VARCHAR(10)
 	DECLARE @MensajeFinal VARCHAR(100)
 
-	SET @MesTexto = DATENAME(month, DATEFROMPARTS(LEFT(@Mes, 4), RIGHT(@Mes, 2), 1)) -- Formateamos el mes para el mensaje de salida
-
-	IF @Calculo = 1 --Comprobamos qué calculo es el que hay que calcular
-	BEGIN
-		SET @Resultado = dbo.SDF_BALANCE(@Cliente, @Mes) --Ejecutamos la función correspondiente
-
-		SELECT @MensajeFinal = CONCAT ( --Creamos el mensaje de salida
-				'El balance del cliente '
-				,@Cliente
-				,' para el mes de '
-				,@MesTexto
-				,' es de '
-				,@Resultado
-				,' Euros'
+	SET @MesTexto = DATENAME(month, DATEFROMPARTS(LEFT(@Mes, 4), RIGHT(@Mes, 2), 1))
+	
+	IF (
+			--Chequeamos si existe el cliente		
+			EXISTS (
+				SELECT DISTINCT customer_id
+				FROM case03.customer_transactions
+				WHERE customer_id = @Cliente
 				)
+			)
+	BEGIN
+		IF (
+				--Chequeamos si existe el mes		
+				EXISTS (
+					SELECT DISTINCT *
+					FROM case03.customer_transactions
+					WHERE FORMAT(txn_date, 'yyyyMM') = @Mes
+					)
+				)
+		BEGIN
+
+	IF @Calculo = 1
+	BEGIN
+		SET @Resultado = dbo.SDF_BALANCE(@Cliente, @Mes) -- Funcion para calcular el balance
+
+		SELECT @MensajeFinal = CONCAT ( -- Mensaje de salida
+					'El balance del cliente '
+					,@Cliente
+					,' para el mes de '
+					, @MesTexto
+					,' es de '
+					, @Resultado
+					,' Euros'
+					)
 	END
+
 	ELSE IF @Calculo = 2
 	BEGIN
-		SET @Resultado = dbo.SDF_TOTAL_DEPOSITADO(@Cliente, @Mes)
+		SET @Resultado = dbo.SDF_TOTAL_DEPOSITADO(@Cliente, @Mes) -- Funcion para calcular el total depositado
 
-		SELECT @MensajeFinal = CONCAT (
-				'La cantidad de depositos del cliente '
-				,@Cliente
-				,' para el mes de '
-				,@MesTexto
-				,' es de '
-				,@Resultado
-				,' Euros'
-				)
+		SELECT @MensajeFinal = CONCAT ( -- Mensaje de salida
+					'La cantidad de depositos del cliente '
+					,@Cliente
+					,' para el mes de '
+					, @MesTexto
+					,' es de '
+					, @Resultado
+					,' Euros'
+					)
 	END
+
 	ELSE IF @Calculo = 3
 	BEGIN
-		SET @Resultado = dbo.SDF_TOTAL_COMPRAS(@Cliente, @Mes)
+		SET @Resultado = dbo.SDF_TOTAL_COMPRAS(@Cliente, @Mes) -- Funcion para calcular el total de compras
 
-		SELECT @MensajeFinal = CONCAT (
-				'La cantidad de compras del cliente '
-				,@Cliente
-				,' para el mes de '
-				,@MesTexto
-				,' es de '
-				,@Resultado
-				,' Euros'
-				)
+		SELECT @MensajeFinal = CONCAT ( -- Mensaje de salida
+					'La cantidad de compras del cliente '
+					,@Cliente
+					,' para el mes de '
+					, @MesTexto
+					,' es de '
+					, @Resultado
+					,' Euros'
+					)
 	END
+
 	ELSE IF @Calculo = 4
 	BEGIN
-		SET @Resultado = dbo.SDF_TOTAL_RETIROS(@Cliente, @Mes)
+		SET @Resultado = dbo.SDF_TOTAL_RETIROS(@Cliente, @Mes) -- Funcion para calcular el total de retiros
 
-		SELECT @MensajeFinal = CONCAT (
-				'La cantidad de retiros del cliente '
-				,@Cliente
-				,' para el mes de '
-				,@MesTexto
-				,' es de '
-				,@Resultado
-				,' Euros'
-				)
+		SELECT @MensajeFinal = CONCAT ( -- Mensaje de salida
+					'La cantidad de retiros del cliente '
+					,@Cliente
+					,' para el mes de '
+					, @MesTexto
+					,' es de '
+					, @Resultado
+					,' Euros'
+					)
 	END
 	ELSE
-	BEGIN
-		SET @MensajeFinal = 'No se ha introducido un valor de cálculo válido. Por favor introduzca un valor entre el 1 y el 4' --Mensaje para el caso de que no sea un valor de cálculo válido
+		BEGIN
+		SET @MensajeFinal = 'No se ha introducido un valor de cálculo válido. Por favor introduzca un valor entre el 1 y el 4' -- Mensaje para valor de cálculo no válido
+		END
+
+END
+		ELSE
+		BEGIN -- Mensaje a mostrar si no existe el mes introducido o no es correcto
+			SET @MensajeFinal = CONCAT ('El mes ',@Mes,' no existe en la tabla o bien no es correcto (formato YYYYMM)')
+		END
+	END
+	ELSE
+	BEGIN -- Mensaje a mostrar si no existe el cliente en el origen de datos
+		SET @MensajeFinal = CONCAT('El cliente ', @Cliente,' no existe')
 	END
 
 	SELECT @MensajeFinal AS MENSAJE
+
 END;
 
 -----------------------------------------------------------------
 --EJECUCIONES DEL PROCEDURE
 EXEC SDF_CASO3_RETO5 125,'202001', 3
-
-EXEC SDF_CASO3_RETO5 1,'202001', 1
-	
-	
-/*
-
-COMENTARIO: Al igual que para el ejercicio anterior, dado que queda poco tiempo, dejo sin hacer el control de errores.
-Creo que me llevaría un tiempo que tampoco aportaría mucho valor a la solución de este reto puesto que sería añadir más 
-de lo mismo (lógica de IF ELSE para controlar todas las casuísticas).
-No obstante, si me queda tiempo lo actualizaré :)
-
-/**/
+EXEC SDF_CASO3_RETO5 1,'202101', 1
+EXEC SDF_CASO3_RETO5 2500,'202001', 1
+EXEC SDF_CASO3_RETO5 305,'202001', 7
