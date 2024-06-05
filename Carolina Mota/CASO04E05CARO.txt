@@ -29,3 +29,141 @@ RETURN(
 	);
 	
 SELECT * FROM UF_SegCateProduct('SOCKS','MENS');
+
+
+********************CON MENSAJES************************************
+
+
+CREATE OR ALTER FUNCTION UF_SegCateProduct
+	(
+		@segment_name VARCHAR(50),
+		@category_name VARCHAR(50)
+	)
+	
+RETURNS TABLE 
+
+AS
+
+RETURN 
+
+	( 
+		SELECT TOP (1)
+			product_name,
+			cantidad_vendida
+		FROM 
+			(	---------Para los casos en los que no esta disponible el segmento--------
+				SELECT 
+					product_name, 
+					cantidad_vendida
+				FROM 
+					(
+						SELECT TOP (1)
+							CONCAT('El segmento, "',UPPER(@segment_name),'" no está disponible, use un segmento valido: ',STRING_AGG(segment_name,', ')) AS product_name,
+							cantidad_vendida
+						FROM (
+								SELECT 
+									segment_name,
+									SUM(CASE WHEN UPPER(segment_name)!=UPPER(@segment_name) THEN NULL ELSE 1 END) AS cantidad_vendida 
+								FROM 
+									(
+										SELECT DISTINCT 
+											segment_name 
+										FROM 
+											case04.product_details
+									) A 
+								GROUP BY segment_name
+							) B 
+						GROUP BY cantidad_vendida 
+						ORDER BY cantidad_vendida DESC
+					) C
+				WHERE cantidad_vendida IS NULL
+				------------------------------------------------------------------------
+				
+				UNION ALL
+
+				---------Para los casos en los que no esta disponible la categoria dentro del segmento--------
+				SELECT 
+						product_name, 
+						cantidad_vendida
+				FROM 
+					(
+						SELECT
+							CONCAT
+								(
+									'Dentro del segmento "', 
+									segment_name,
+									'" no esta disponible la categoria "',
+									UPPER(@category_name),
+									'" use una categoria valida: "',
+									STRING_AGG(category_name,', '),
+									'"'
+								)  AS product_name,
+							NULL cantidad_vendida
+						FROM 
+							(
+								SELECT DISTINCT
+									segment_name,
+									category_name
+								FROM
+									case04.product_details 
+							) A
+						WHERE UPPER(segment_name)=UPPER(@segment_name)
+						GROUP BY segment_name, category_name
+					) A
+				------------------------------------------------------------------------------------------------
+				
+				UNION ALL
+				
+				---------Para calcular las ventas del producto por categorías--------
+				SELECT TOP (1)
+					product_name,
+					ISNULL(SUM(qty),0) AS cantidad_vendida
+				FROM 
+					case04.sales A
+				INNER JOIN 
+					case04.product_details B
+					ON (A.prod_id=B.product_id)
+				WHERE
+					UPPER(segment_name)=UPPER(@segment_name)
+					AND UPPER(category_name)=UPPER(@category_name)
+				GROUP BY 
+					prod_id,
+					segment_name,
+					category_name,
+					product_name
+				ORDER BY 
+					segment_name, 
+					category_name, 
+					SUM(qty) DESC
+				-----------------------------------------------------------------------	
+		
+			) A
+		ORDER BY cantidad_vendida DESC 	
+	);
+
+---------------PRUEBAS-------------------------
+
+SELECT * FROM UF_SegCateProduct('SOCKts','menhs');
+
+--------------------------------------------------------------------------------------------------------------------
+|product_name	                                                                                |cantidad_vendida  |
+--------------------------------------------------------------------------------------------------------------------
+|El segmento, "SOCKTS" no está disponible, use un segmento valido: Jacket, Jeans, Shirt, Socks  |NULL              |
+--------------------------------------------------------------------------------------------------------------------
+
+SELECT * FROM UF_SegCateProduct('SOCKs','menhs');
+
+--------------------------------------------------------------------------------------------------------------------------
+|product_name	                                                                                      |cantidad_vendida  |
+--------------------------------------------------------------------------------------------------------------------------
+|Dentro del segmento "Socks" no esta disponible la categoria "MENHS" use una categoria valida: "Mens" |NULL              |
+--------------------------------------------------------------------------------------------------------------------------
+
+
+SELECT * FROM UF_SegCateProduct('SOCKs','mens');
+
+-------------------------------------------------------
+|product_name	                   |cantidad_vendida  |
+-------------------------------------------------------
+|Pink Fluro Polkadot Socks - Mens  |2568              |
+-------------------------------------------------------
