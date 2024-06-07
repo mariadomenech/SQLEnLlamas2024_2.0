@@ -33,7 +33,7 @@ Por último, dale un alias a la columna isnull(SUM(m.price),0) y PERFECTO!
 		CORRECION 
 *****************************************************/
 Select c.customer_id, 
-	   isnull(SUM(m.price),0) 
+	   isnull(SUM(m.price),0) as benefit
 from 
 	  ( case01.customers as c 
 	  left join case01.sales as s
