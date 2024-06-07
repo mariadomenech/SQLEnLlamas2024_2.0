@@ -20,3 +20,20 @@ LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case04.product_hierarchy parent_a
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case04.product_hierarchy parent_b
 	ON COALESCE(parent_a.parent_id, -99) = parent_b.id
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, perfecto!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Me ha gustado que tengas en cuenta el control de nulos.
+
+
+*/
