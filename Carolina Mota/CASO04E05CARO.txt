@@ -167,3 +167,12 @@ SELECT * FROM UF_SegCateProduct('SOCKs','mens');
 -------------------------------------------------------
 |Pink Fluro Polkadot Socks - Mens  |2568              |
 -------------------------------------------------------
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Te comento, el resultado que muestras en los comentarios era correcto en su momento pero si lo ejecutas ahora verás que es diferente. Esto se debe a que alguien eliminó los duplicados de la tabla SALES... Ya estan añadidos de nuevo y por ello el resultado es diferente. Solo tendrias que controlar los duplicados, por lo demás todo perfecto!!
+
+*/
