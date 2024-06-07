@@ -19,3 +19,20 @@ ORDER BY 1 DESC
 -- Se puede hacer sepación con - o con cualquier otro, me gusta con | ya que se identifica mejor los diferentes tipos de productos.
 -- En el resultado "correcto" se comienza por el signo, cosa que no me gusta porque es menos legible
 -- He utilizado en este caso with ties en vez de un rank ya que aunque indicamos un top, si hay otras filas con el mismo conteo las incluye.
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Enhorabuena Cristina, está genial!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Muy bien, como siempre, las explicaciones que das del código y el razonamiento.
+
+
+*/
