@@ -22,3 +22,25 @@ Habría que usar la función RANK(), que si para una misma partición, dos valor
 nos permite sacar más de un producto en caso de empate.
 
 */
+
+/*********************************************************/
+/***************** CORRECIÓN *********************/
+/*********************************************************/
+
+select nombre_producto,
+       numero_veces_pedido
+from
+	(select  nombre_producto,
+		 numero_veces_pedido,
+	         RANK() over (order by numero_veces_pedido desc) as ranking
+	 from(
+		select   m.product_name as nombre_producto,
+			 COUNT(s.product_id) as numero_veces_pedido
+		 
+		from case01.sales as s 
+		left join case01.menu as m 
+		 on s.product_id = m.product_id
+		group by s.product_id, m.product_name 
+		)as t
+	) as t2
+where ranking = 1;
