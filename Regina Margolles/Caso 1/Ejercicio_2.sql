@@ -33,8 +33,7 @@ Por último, dale un alias a la columna COUNT(DISTINCT (s.order_date)) y PERFECT
 
 select c.customer_id,
        COUNT(distinct(s.order_date)) as visit_days
-from 
-  case01.customers as c
+from  case01.customers as c
 left join case01.sales as s
    on c.customer_id = s.customer_id  
 	    
