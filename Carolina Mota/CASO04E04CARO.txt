@@ -51,3 +51,12 @@ SELECT DISTINCT
 	PERCENTILE_DISC(0.75) WITHIN GROUP (ORDER BY p_descuento)  OVER () AS PERCENTIL_75
 FROM 
 	ResumenIngresos
+
+/*********************************************************/
+/***************** COMENTARIO ÁNGEL *********************/
+/*********************************************************/
+/*
+
+Correcto!
+
+*/
