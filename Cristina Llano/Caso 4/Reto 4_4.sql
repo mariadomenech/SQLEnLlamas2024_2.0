@@ -24,3 +24,20 @@ SELECT DISTINCT
     , PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY imp_final) OVER () AS por_percentil_50
     , PERCENTILE_CONT (0.75) WITHIN GROUP (ORDER BY imp_final) OVER () AS por_percentil_75
 FROM tabla_base_importes;
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Genial Cristina, correcto!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Muy bien el control de duplicados.
+
+
+*/
