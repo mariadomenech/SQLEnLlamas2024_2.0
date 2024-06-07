@@ -27,3 +27,16 @@ GROUP BY c.customer_id;
 Por último, dale un alias a la columna COUNT(DISTINCT (s.order_date)) y PERFECTO!
 
 */
+/*********************************************************/
+/***************** CORRECIÓN *********************/
+/*********************************************************/
+
+select c.customer_id,
+       COUNT(distinct(s.order_date)) as visit_days
+from 
+  case01.customers as c
+left join case01.sales as s
+   on c.customer_id = s.customer_id  
+	    
+group by c.customer_id
+order by visit_days desc;
