@@ -64,3 +64,20 @@ SELECT * FROM SQL_EN_LLAMAS_ALUMNOS.dbo.CLN_Producto_Mas_Vendido (12, 6);
 SELECT * FROM SQL_EN_LLAMAS_ALUMNOS.dbo.CLN_Producto_Mas_Vendido (2, 66);
 -- Valores insertados correctos pero sin información 
 SELECT * FROM SQL_EN_LLAMAS_ALUMNOS.dbo.CLN_Producto_Mas_Vendido (2, 1);
+
+
+/*********************************************************/
+/***************** COMENTARIO BEA *********************/
+/*********************************************************/
+/*
+
+Muy bien Cristina, enhorabuena!!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+Muy bueno siempre el punto de dar ejemplos para ver la funcionalidad del procedimiento fácilmente.
+
+Enhorabuena por todos los casos, lo has hecho genial y se nota mucho el esfuerzo!!
+*/
