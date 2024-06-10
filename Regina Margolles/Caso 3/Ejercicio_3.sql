@@ -47,20 +47,23 @@ CREATE OR ALTER PROCEDURE RMC_Caso3_Ejercicio3
 @resultado varchar(max) OUTPUT
 AS
 BEGIN TRY
+	
 declare @total int
-if exists (Select customer_id from case03.customer_nodes where customer_id = @customer_id)
+if exists (Select customer_id 
+	   from case03.customer_nodes 
+	   where customer_id = @customer_id)
 begin
 
-Set @total  = (Select 
-					          SUM(txn_amount) as total
-					     from case03.customer_transactions
-				       where txn_type = 'purchase' and customer_id = @customer_id and MONTH(txn_date) = @mes) ;
-if (@total is null) begin set @total = 0 end
-SET @resultado = 'EL CLIENTE ' + cast(@customer_id as varchar) + 
-			 ' SE HA GASTADO UN TOTAL '+ cast(@total as varchar) + 
-			 ' EUR EN EL MES DE ' + (SELECT DateName(month, DateAdd(month, @mes, -1))) ;
+	Set @total  = (Select   SUM(txn_amount) as total
+		      from case03.customer_transactions
+		       where txn_type = 'purchase' and customer_id = @customer_id and MONTH(txn_date) = @mes) ;
+	
+	if (@total is null) begin set @total = 0 end
+	SET @resultado = 'EL CLIENTE ' + cast(@customer_id as varchar) + 
+				 ' SE HA GASTADO UN TOTAL '+ cast(@total as varchar) + 
+				 ' EUR EN EL MES DE ' + (SELECT DateName(month, DateAdd(month, @mes, -1))) ;
 end else
-SET @resultado = 'EL CLIENTE NO ESTA REGISTRADO EN EL SISTEMA';
+	SET @resultado = 'EL CLIENTE NO ESTA REGISTRADO EN EL SISTEMA';
 
 END TRY
 
@@ -70,6 +73,7 @@ BEGIN CATCH
 		ERROR_MESSAGE() as Error_Message;
 
 END CATCH
+	
 DECLARE
 @resultado varchar(max);
 EXEC [CIVICA\regina.margolles].RMC_Caso3_Ejercicio3 501,3,@resultado OUTPUT
