@@ -34,3 +34,22 @@ changed_nodes AS (
 SELECT
 	ROUND(AVG (CAST(cn.days_per_change AS FLOAT)),2) AS media_global
 FROM changed_nodes cn;
+
+/*********************************************************/
+/***************** COMENTARIO IRENE **********************/
+/*********************************************************/
+/*
+RESULTADO: Correcto. Te ha faltado añadir un texto diciendo "Los clientes se reasignan a un nodo diferente cada 17.87 días de media.", pero has hecho lo que pedía el ejercicio, así que bien.
+Para añadir el texto se hace de esta forma:
+    --- Añadimos en la parte final esto:
+    SELECT
+	ROUND(AVG (CAST(cn.days_per_change AS FLOAT)),2) AS media_global
+        ,CONCAT('Los clientes se reasignan a un nodo diferente cada ', ROUND(AVG (CAST(cn.days_per_change AS FLOAT)),2), ' días de media.') as texto
+    FROM changed_nodes cn;
+
+CÓDIGO: Correcto. Está resuelto con las lineas justas de código y de manera simple, me encanta!
+LEGIBILIDAD: Correcto. Muy limpio.
+
+Muy bien Miguel!!!
+
+*/
