@@ -118,3 +118,18 @@ GO
 
 -- Eliminación el procedimiento almacenado
 DROP PROCEDURE case04.PNG_countDeduplicates;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo perfecto! Poco te puedo decir muy original la forma de mostrar los resultados en las diferentes ventanas. 
+Estoy aprendiendo muchas cosas de sql server que nunca se me habrían ocurrido! jajaja.
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
