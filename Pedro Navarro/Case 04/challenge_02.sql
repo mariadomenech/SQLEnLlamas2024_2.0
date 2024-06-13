@@ -66,3 +66,18 @@ WITH
 
 SELECT *
 FROM MOST_REPEATED_PRODUCT_COMBINATION;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo perfecto!
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
