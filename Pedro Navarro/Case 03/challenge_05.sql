@@ -191,3 +191,18 @@ GO
 
 -- Eliminación el procedimiento almacenado
 DROP PROCEDURE case02.PNG_Ejercicio3_5_Procedimiento;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo perfecto! Genial el uso de la recurvisidad para no repetir código y quede más limpio. Una recurso en el que muy poca gente caería en usar.
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
