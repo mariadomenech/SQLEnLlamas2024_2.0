@@ -40,3 +40,17 @@ SET @resultado = 'SE HAN DETECTADO ' + CAST (@var AS varchar(12) )+ ' DUPLICADOS
 END
 END
 GO
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Bien planteado! Solo me queda incluyas la llamada al procedimiento con alguna variable de ejemplo.
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
