@@ -100,3 +100,19 @@ EXECUTE AMR_EJERCICIO_4_1_PROCEDURE 'SQL_EN_LLAMAS','CASE03','SALES';
 
 --BORRADO DEL PROCEDURE
 DROP PROCEDURE IF EXISTS AMR_EJERCICIO_4_1;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Bien planteado, pero inténtame lo que te digo a continuación.
+
+Código: OK, controlas todas casuísticas. Peeeeeeeeeeero, intenta reducirme el nivel de anidamiento de IFs. 
+Si consultamos las columnas de la tabla de sistema INFORMATION_SCHEMA.COLUMNS, puedes montar una sql dinámica única para mirar los duplicados de cualquier tabla.
+
+Legibilidad: OK
+Resultado: OK
+*/
