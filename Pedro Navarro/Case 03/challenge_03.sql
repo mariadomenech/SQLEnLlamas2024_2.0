@@ -120,3 +120,17 @@ EXECUTE case02.PNG_Ejercicio3_3_Procedimiento @customer_id = @check_customer_id,
 GO
 -- Eliminación el procedimiento almacenado
 DROP PROCEDURE case02.PNG_Ejercicio3_3_Procedimiento;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Me ha gustado mucho el tratamiento del cálculo nulo y los distintos parámetros, muy original!
+
+*/
