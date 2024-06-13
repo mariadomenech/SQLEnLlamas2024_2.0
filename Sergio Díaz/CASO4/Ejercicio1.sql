@@ -63,3 +63,17 @@ END
 ------EJECUCIONES DEL PROCEDURE-------
 EXEC SDF_CASO4_RETO1 'SQL_EN_LLAMAS_ALUMNOS.case04.sales'
 EXEC SDF_CASO4_RETO1 'SQL_EN_LLAMAS_ALUMNOS.case04.product_details'
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Bien planteado! Controlas todas las casuísticas! Buen uso de la tabla de sistema INFORMATION_SCHEMA.COLUMNS para montar una sql dinámica.
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
