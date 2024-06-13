@@ -175,3 +175,17 @@ EXECUTE case02.PNG_Ejercicio3_4_Procedimiento
 GO
 -- Eliminación el procedimiento almacenado
 DROP PROCEDURE case02.PNG_Ejercicio3_4_Procedimiento;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo perfecto!
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
