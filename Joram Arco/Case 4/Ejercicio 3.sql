@@ -64,3 +64,15 @@ JOIN case04.product_prices pp
 JOIN segment segment 
 	ON ph.parent_id = segment.segment_id
 WHERE level_name = 'Style';
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Sencillo, no?
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
