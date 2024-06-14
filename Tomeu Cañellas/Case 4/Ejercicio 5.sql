@@ -63,3 +63,19 @@ EXEC BestSellerProduct @CategoryID = 5, @SegmentID = 1;
 
 --Drop:
 DROP PROCEDURE BestSellerProduct; 
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+La lógica está perfecta, el control de los diferentes casos también y el feedback de aportar las opciones válidas en 
+casos en que el se sale de los registros está genial. 
+Sólo le veo un "pero" y es que en el ejercicio se pedía una función y has creado un procedimiento, con lo que habría 
+que cambiar algunas cosas para que funcionara igual. 
+Aún así has demostrado en casos anteriores que sabes tratar igual de bien con las funciones y los procedimientos, 
+has llevado los casos al día y has hecho un gran esfuerzo para terminar la edición sabiendo la cantidad de trabajo que tienes
+en tu proyecto. Así que muchas gracias por todo, ha sido un placer hacer estos retos contigo y aprender de tus scripts.
+Un abrazo y mucha suerte!! :)
+
+*/
