@@ -28,3 +28,14 @@ from(
 			) as t
 		group by txn_id
 		)as t2;
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+perfecto! Si no habías trabajado antes con percentiles, esperto que te haya servido de ayuda.
+
+Código: OK
+Legibilidad: Un poco mejorable.
+Resultado: OK
+*/
