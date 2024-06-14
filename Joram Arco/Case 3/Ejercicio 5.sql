@@ -81,3 +81,17 @@ DROP PROCEDURE IF EXISTS TotalMovimientosporMes;
 
 /* ELIMINACIÓN DE LAS FUNCIONES */
 DROP FUNCTION GetTotalImporte;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Enhorabuena!! Espero que hayas disfrutado el hecho de mejorar el código poco a poco
+
+Código: OK, controlas todas casuísticas
+Legibilidad: OK
+Resultado: Muy completo!
+
+*/
