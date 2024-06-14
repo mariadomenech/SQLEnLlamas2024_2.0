@@ -132,6 +132,22 @@ SELECT * FROM case04.PNG_getBestSellingProduct(2, 4);
 -- category_id, segment_id válidos y con resultado
 SELECT * FROM case04.PNG_getBestSellingProduct(1, 3);
 
-
 -- Eliminación de la UDF
 DROP FUNCTION IF EXISTS case04.PNG_getBestSellingProduct;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Perfecto Pedro! Enhorabuena por llevar al día el sql en llamas y por las soluciones aportadas a los distintos retos. 
+Se ha visto que tienes un gran dominio de SQL y he podido aprender bastante de cómo afrontar los retos desde otra perspectiva
+ya que ya también participé en el sql en llamas en la anterior edición. Te felicito por el trabajo realizado y la constancia!!!
+
+*/
