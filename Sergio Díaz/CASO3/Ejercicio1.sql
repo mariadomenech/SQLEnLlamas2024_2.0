@@ -35,3 +35,15 @@ FROM (
 	FROM CTE_FECHA_CAMBIO
 	WHERE end_date IS NOT NULL
 	) PRINCIPAL
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Prefecto!.
+
+Código: OK.
+Legibilidad: OK
+Resultado: OK
+*/
