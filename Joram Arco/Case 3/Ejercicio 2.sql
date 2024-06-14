@@ -30,3 +30,13 @@ GROUP BY anio
 	,mes
 ORDER BY 3 DESC --Para darle un orden por número de clientes en lugar de alfabéticamente por mes como aparece en la solución de la herramienta
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA *********************/
+/*********************************************************/
+/*
+
+Perfecto, sencillo. Te pongo un extra por tunearme los meses de la salida.
+
+*/
