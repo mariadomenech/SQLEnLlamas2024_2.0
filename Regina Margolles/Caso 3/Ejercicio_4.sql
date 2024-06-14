@@ -179,3 +179,18 @@ DECLARE
 EXEC [CIVICA\regina.margolles].RMC_Caso3_Ejercicio4 123,12,3,@resultado OUTPUT
 Select @resultado
 
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Enhorabuena!!
+
+Código: OK
+Legibilidad: OK
+Resultado: Muy completo!
+
+*/
+
