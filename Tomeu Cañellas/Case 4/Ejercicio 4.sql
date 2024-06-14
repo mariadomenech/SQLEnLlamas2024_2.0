@@ -26,3 +26,13 @@ SELECT TOP 1 'DISCRETE' AS type_pct,
 	     PERCENTILE_DISC(0.75) WITHIN GROUP (ORDER BY earnings) OVER () AS percentil_75 
 FROM operations
 ;
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Perfecto!
+
+*/
