@@ -79,8 +79,7 @@ JOIN case04.product_prices prices
 /*********************************************************/
 /*
 
-Me ha encantado la solución con recursividad, muy original. Es verdad que no es un caso muy complicado y se puede resolver
-con un select sin perder legibilidad, pero la solución de recursividad es mucho más orginal y casi nadie la ha planteado.
-Enhorabuena! me ha encantado :)
+Me gusta el uso de CTEs para hacer los pasos de una manera más clara a la hora de visualizar cómo se van creando los campos. Igualmente ambas soluciones están perfectas,
+Enhorabuena!
 
 */
