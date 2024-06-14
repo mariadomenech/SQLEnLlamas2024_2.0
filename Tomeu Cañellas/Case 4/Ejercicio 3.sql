@@ -19,3 +19,11 @@ INNER JOIN [SQL_EN_LLAMAS_ALUMNOS].[case04].[product_hierarchy] hiera
 	ON hier.parent_id = hiera.id
 ;
  
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Ejercicio correcto en todo.
+
+*/
