@@ -20,3 +20,17 @@ LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case04.product_hierarchy AS ph_segment
 -- Tercer JOIN con parent_id de ph_segment que equivale a category_id de product_retails
 LEFT JOIN SQL_EN_LLAMAS_ALUMNOS.case04.product_hierarchy AS ph_category
 	ON ph_segment.parent_id = ph_category.id;
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
