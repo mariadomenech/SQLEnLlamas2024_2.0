@@ -66,3 +66,17 @@ JOIN ESTILOS e
 ON s.id = e.parent_id
 JOIN case04.product_prices p 
 ON p.id = e.id;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Sencillo, no?
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
