@@ -119,3 +119,14 @@ DROP PROCEDURE IF EXISTS RETO_1
 DROP FUNCTION IF EXISTS dbo.dynamicValues
 
 --  El usuario puede introducir cualquier tabla para conocer sus duplicados al prescindir de sentencias hardcodeadas e intentar parametrizarlo al máximo.
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está perfecto, controla todas los posibles casos haciendo usos de las tablas de metadatos y hace su función
+perfectamente. Muy currado, genial!!
+
+*/
+
