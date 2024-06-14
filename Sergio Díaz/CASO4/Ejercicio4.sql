@@ -42,3 +42,16 @@ GROUP (
 		ORDER BY ingresos
 		) OVER () AS PERCENTIL_75
 FROM INGRESOS;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Si no habías trabajado antes con percentiles, esperto que te haya servido de ayuda.
+
+Código: No se ha eliminado los duplicados
+Legibilidad: OK
+Resultado: No se ha tenido en cuenta los duplicados, le bailan números
+*/
