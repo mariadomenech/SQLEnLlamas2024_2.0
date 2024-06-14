@@ -37,3 +37,15 @@ WHERE ( -- Filtros para cumplir con las condiciones del caso
 		)
 	OR (RETIROS > 1)
 GROUP BY ANIO_MES
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Prefecto!.
+
+Código: OK.
+Legibilidad: OK
+Resultado: OK
+*/
