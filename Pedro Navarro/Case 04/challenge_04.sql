@@ -42,3 +42,17 @@ WITH
 
 SELECT *
 FROM PERCENTILES;
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
