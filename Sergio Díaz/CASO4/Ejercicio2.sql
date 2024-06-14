@@ -23,3 +23,19 @@ JOIN lista_prod l
 ON t.txn_id = l.txn_id
 GROUP BY l.prod_list
 ORDER BY COUNT(l.prod_list) DESC;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Nice!
+
+Resultado: OK
+Código: OK. Aunque se te ah ido una errata al nombrar la tabla CTE
+Legibilidad: OK.
+
+
+*/
