@@ -149,3 +149,19 @@ EXEC SDF_CASO3_RETO4 308,'202103',2
 EXEC SDF_CASO3_RETO4 906,'202003',1
 
 EXEC SDF_CASO3_RETO4 315,'202004',7
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Enhorabuena!!
+
+Código: OK, controlas todas casuísticas
+Legibilidad: OK
+Resultado: Muy completo!
+
+*/
