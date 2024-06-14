@@ -99,3 +99,19 @@ SELECT
 	average_reassignment_days_between_different_nodes
 	,CONCAT('Los clientes se reasignan a un nodo diferente cada ', average_reassignment_days_between_different_nodes, ' días de media') AS texto
 FROM valor_solucion;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto! Nada que añadir, bien planteado al repensar el segundo código.
+
+Resultado: 100/10
+Código: Ok!
+Legibilidad: OK.
+
+
+*/
+
