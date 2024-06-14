@@ -25,3 +25,15 @@ FROM VENTAS)
 
 SELECT *
 FROM TABLA_PERCENTILES;
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+perfecto! Si no habías trabajado antes con percentiles, esperto que te haya servido de ayuda.
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
