@@ -74,3 +74,16 @@ SELECT * FROM getBestSellingProduct (1,3);
 
 -- Borrar función
 DROP FUNCTION getBestSellingProduct 
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Una vez más está perfecto, controlas las diferentes situaciones y da mensaje de todo, y está todo claro y limpio.
+
+Enhorabuena por haber completado todos los retos y por haberlos llevado tan bien.
+Y muchas gracias por dedicarle el tiempo, por llevarlos al día y sobre todo porque me ha servido también para seguir
+aprendiendo de ti, ha sido un placer seguir estos retos contigo. Mucha suerte en el ranking final!! :)
+
+*/
