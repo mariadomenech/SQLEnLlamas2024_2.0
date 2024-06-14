@@ -32,3 +32,19 @@ FROM (
 	FROM veces_repetida
 ) consulta
 WHERE ranking = 1;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto y gracias por los comentarios!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+
+*/
