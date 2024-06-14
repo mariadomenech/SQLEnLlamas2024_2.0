@@ -120,3 +120,17 @@ SELECT ROW_NUMBER() OVER ( --Select final para mostrar la solucion
 	,*
 FROM veces_toppings
 ORDER BY n_veces_total DESC
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!
+
+Resultado: OK
+Código: OK.
+Legibilidad: OK.
+
+
+*/
