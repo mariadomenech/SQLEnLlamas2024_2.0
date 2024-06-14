@@ -41,3 +41,11 @@ FROM (
 ) top1
 ; 
 
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Solución limpia y correcta, está genial, sólo añadiría tener en cuenta en caso de empates en la primera posición. Por lo demás está perfecto :)
+
+*/
