@@ -64,3 +64,15 @@ EXEC SDF_CASO3_RETO3 306, '202003'
 EXEC SDF_CASO3_RETO3 306, '202103'
 EXEC SDF_CASO3_RETO3 308, '202001'
 EXEC SDF_CASO3_RETO3 951, '202002'
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!!
+
+Guay que hagas un control de errores!
+
+*/
