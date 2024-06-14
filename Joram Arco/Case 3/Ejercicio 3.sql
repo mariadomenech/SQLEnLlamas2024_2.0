@@ -37,3 +37,15 @@ EXEC TotalComprasClienteMes @customerID = 123, @mes = 78;
 
 
 DROP PROCEDURE TotalComprasClienteMes;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto!!
+
+Guay que hagas un control de errores!
+
+*/
