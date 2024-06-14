@@ -86,3 +86,20 @@ Se hacen las comprobaciones de errores oportunas (en este orden):
 Si todo es correcto, se genera una consulta donde se le pasa el nombre completo de la tabla y el nombre de las columnas (obtenido con la función) y se obtiene
 el número de registros duplicados para esa tabla. Se inserta el valor obtenido en una variable.
 Una vez con esto, se genera el mensaje correspondiente. En caso de que hubiese algún error, también se genera el mensaje correspondiente al mismo. */
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Nice! Y como siempre me gusta que me expliques la lógica seguida.
+
+Resultado: OK
+Código: OK. Muy bien controladas todas las casuísticas.
+Legibilidad: OK.
+
+
+*/
