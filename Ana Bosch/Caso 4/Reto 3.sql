@@ -74,4 +74,13 @@ FROM CTE_STYLE STY
 JOIN case04.product_prices prices
 	ON STY.style_id = prices.id
 
-	
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Me ha encantado la solución con recursividad, muy original. Es verdad que no es un caso muy complicado y se puede resolver
+con un select sin perder legibilidad, pero la solución de recursividad es mucho más orginal y casi nadie la ha planteado.
+Enhorabuena! me ha encantado :)
+
+*/
