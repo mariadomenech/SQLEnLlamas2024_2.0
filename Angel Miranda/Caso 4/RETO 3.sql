@@ -12,3 +12,15 @@ FROM CASE04.PRODUCT_PRICES A
 JOIN CASE04.PRODUCT_HIERARCHY B ON A.ID = B.ID
 JOIN CASE04.PRODUCT_HIERARCHY C ON B.PARENT_ID = C.ID
 JOIN CASE04.PRODUCT_HIERARCHY D ON C.PARENT_ID = D.ID;
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Sencillo, no?
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
