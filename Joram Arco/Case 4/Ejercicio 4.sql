@@ -41,3 +41,16 @@ SELECT DISTINCT
 	,percentil_50
 	,percentil_75
 FROM continuo_discreto;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+perfecto! Habiais trabajado antes con funciones de percentil?
+
+Código: OK
+Legibilidad: OK
+Resultado: OK
+*/
