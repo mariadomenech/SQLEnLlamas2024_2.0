@@ -32,3 +32,19 @@ cross apply string_split (t4.list,',')
 left join case04.product_details as d
     on value=d.product_id
 group by repitions;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Nice!
+
+Resultado: OK
+Código: OK. 
+Legibilidad: OK.
+
+
+*/
