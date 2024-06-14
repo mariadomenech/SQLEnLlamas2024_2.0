@@ -193,3 +193,17 @@ EXEC TotalMovimientosporMes @customerID = 123, @mes = 3,  @movimiento = 5;
 
 /* ELIMINACIÓN DEL PROCEDIMIENTO */
 DROP PROCEDURE IF EXISTS TotalMovimientosporMes;
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Enhorabuena!!
+
+Código: OK, controlas todas casuísticas
+Legibilidad: OK
+Resultado: Muy completo!
+
+*/
