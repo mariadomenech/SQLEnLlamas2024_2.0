@@ -54,3 +54,14 @@ GROUP BY product_set
 ORDER BY 1 DESC
 
 /* Imagino que la solución correcta es la que devuelve un único registro, no obstante, por si no fuera así aquí tenéis la solución que lo tiene en cuenta */
+
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Perfecto, en principio la solución correcta es la primera, pero es lo que tú comentas, que dependería del caso concreto y de si se tomara en cuenta o no esa situación de eliminar duplicados.
+Tienes en cuenta las situaciones de empate en la primera posición así que todo genial, enhorabuena!
+
+*/
