@@ -55,3 +55,12 @@ EXEC dbo.CountDuplicates '[SQL_EN_LLAMAS_ALUMNOS].[case04].[salesssssssss]';
 --Drop:
 
 DROP PROCEDURE dbo.CountDuplicates;
+
+/*********************************************************/
+/***************** COMENTARIO ALEX *********************/
+/*********************************************************/
+/*
+
+Está genial, controla las diferentes situaciones haciendo uso de las tablas de metadatos con un código limpio y reutilizable.
+
+*/
