@@ -14,3 +14,16 @@ select distinct percentile_cont(0.25) WITHIN GROUP (ORDER BY Total) OVER () AS p
                 percentile_cont(0.50) WITHIN GROUP (ORDER BY Total) OVER () AS percentil_50,
                 percentile_cont(0.75) WITHIN GROUP (ORDER BY Total) OVER () AS percentil_75
 	   from IngresosNetosTransaccion 
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+La lógica es totalmente correcta, sin embargo no se ha tenido en cuenta 
+el control de duplicados en la tabla sales, por lo que el código no sería del todo correcto
+pues le faltaría ese detalle.
+
+*/
