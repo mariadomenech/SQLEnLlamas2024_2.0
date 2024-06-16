@@ -131,3 +131,17 @@ EXECUTE case02.PNG_Ejercicio3_5_Procedimiento
     @year = @year, 
     @month_name = @month_name, 
     @calculation_type = @calculation_type;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo perfecto!
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
