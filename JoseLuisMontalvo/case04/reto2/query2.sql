@@ -64,4 +64,18 @@ select Descripcion1 as Producto_1,
 	   repeticiones as Numero_txn_distintas
 from @combinaciones com 
      where repeticiones in (Select MAX(repeticiones) from @combinaciones)
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Poco se puede comentar, solución muy original y de un nivel muy avanzado.
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
                
