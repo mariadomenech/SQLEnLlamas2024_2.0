@@ -9,3 +9,18 @@ GROUP BY
     pt.topping_name
 ORDER BY 
     veces_usado DESC;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Genial, lo has hecho super simple, justo lo esperado!
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Perfecta.
+
+
+*/
