@@ -31,3 +31,17 @@ go;
 
 /* Ejemplo */
 select * from JLMG_Ejercicio4_4_ProductoTop (1,2)
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Perfecto!
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
