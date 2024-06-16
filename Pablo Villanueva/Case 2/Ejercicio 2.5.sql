@@ -90,3 +90,23 @@ FROM ing_total
 GROUP BY num_ingredientes_gen
 ORDER BY ranking;
 
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto.
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcta.
+
+Todo perfecto! Me ha gustado mucho cómo has ido construyendo la solución con distintas CTEs para
+hacerlo más legible.
+
+Genial cómo muestras la salida generando una lista con STRING_AGG para cada conteo de uso de 
+los toppings. 
+
+Estupenda solución!
+
+
+*/
