@@ -65,3 +65,18 @@ LEFT JOIN pizzas_delivered pd ON r.runner_id = pd.runner_id
 LEFT JOIN pizzas_with_mods pwm ON r.runner_id = pwm.runner_id
 GROUP BY r.runner_id, pd.total_pizzas_ok, pwm.total_pizzas_modificadas
 ORDER BY r.runner_id;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+
+Todo perfecto! Solución simple y legible, correcto control de nulos y redondeo.
+
+RESULTADO: OK
+CÓDIGO: OK
+LEGIBILIDAD: OK
+
+
+*/
