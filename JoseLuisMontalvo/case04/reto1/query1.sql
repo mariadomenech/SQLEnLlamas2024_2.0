@@ -32,3 +32,19 @@ BEGIN
 END;
 /*---- La ejecución de SP */
 exec JLMG_Ejercicio4_1_BuscarDuplicados '[SQL_EN_LLAMAS_ALUMNOS].[case04].[sales]';
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Genial solución usando los metadatos para encontrar las columnas. Como parte extra, por ejemplo, se podría
+construir una solución más general para cualquier tabla pasando base de datos, esquema y tabla para comprobar las distintas tablas de metadatos y
+realizar el mismo proceso.
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
+
