@@ -61,3 +61,19 @@ SELECT
     ) AS costes
 FROM 
     desglose_pizzas;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU *********************/
+/*********************************************************/
+/*
+
+Todo perfecto!
+
+RESULTADO: OK
+CÓDIGO: OK
+LEGIBILIDAD: OK
+
+
+*/
