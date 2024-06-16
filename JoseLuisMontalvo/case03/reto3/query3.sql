@@ -33,6 +33,8 @@ select @resultado;
 
 Justo lo que se pedía, totalmente correcto y bien contemplado que el cliente pueda no haber gastado nada ese mes.
 
+Faltaría eso sí, la declaración de los parametros y llamada al procedimiento para su prueba.
+
 RESULTADO: OK.
 CÓDIGO: OK.
 LEGIBILIDAD: OK.
