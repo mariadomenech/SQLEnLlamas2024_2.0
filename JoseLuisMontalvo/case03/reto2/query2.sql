@@ -15,3 +15,16 @@ select Anio,Mes,count(*) as N_Cliente from (select Anio,Mes,customer_id,sum(Depo
 			  		     group by Anio,Mes,customer_id) as Agf
 where (Deposito>1 and Compra>1) or Retiro>1
 group by Anio,Mes;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
