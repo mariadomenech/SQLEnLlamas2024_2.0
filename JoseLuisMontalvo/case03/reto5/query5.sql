@@ -128,3 +128,19 @@ if @tipo_calculo<1 or @tipo_calculo>4  --- Si nos pasan un tipo de cálculo no d
   end
 
 select @resultado;
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Genial solución, muy legible y fácil de seguir. Lógica totalmente correcta. Como en los ejercicios anteriores,
+se agradecería distintas llamadas al procedimiento cambiando parámetros.
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
+
