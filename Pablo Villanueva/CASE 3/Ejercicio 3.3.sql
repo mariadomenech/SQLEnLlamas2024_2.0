@@ -56,3 +56,17 @@ END;
 EXEC Reto_3 2, 8; 
 EXEC Reto_3 506, 13; 
 EXEC Reto_3 7, 11; 
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+Me ha gustado mucho el tratamiento de validación de los parámetros!
+
+*/
