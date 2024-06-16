@@ -51,3 +51,19 @@ deallocate cur
 
 --- Calculamos la media por cada cliente
 select cast(avg(dias) as decimal(10,2)) as Media_dias_cambio_nodo from @customer_changes where fin<>'9999-12-31' 
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Perfecto, solución original usando un cursor para recorrer las filas de la tabla customer_nodes 
+e ir guardando los nodos cada vez que se cambia de nodo y actualizando la tabla creada con la diferencia de dias nuevamente.
+
+RESULTADO: OK
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
