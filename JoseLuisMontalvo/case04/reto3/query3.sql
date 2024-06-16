@@ -11,3 +11,18 @@
               inner join [SQL_EN_LLAMAS_ALUMNOS].[case04].[product_hierarchy] ph on pp.id=ph.id
 			        inner join [SQL_EN_LLAMAS_ALUMNOS].[case04].[product_hierarchy] ph2 on ph.parent_id=ph2.id
 			        inner join [SQL_EN_LLAMAS_ALUMNOS].[case04].[product_hierarchy] ph3 on ph2.parent_id=ph3.id;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Correcto!
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
