@@ -73,3 +73,18 @@ EXECUTE case02.PNG_Ejercicio3_4_Procedimiento
 -- Resultado de TotalDepositado: 324.00
 -- Resultado de TotalCompras: 1276.00
 -- Resultado de TotalRetiros: 0.00
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Perfecto Pablo! Muy bien la lógica del cálculo de los resultados.
+Como extra se podría haber añadido control de parámetros inválidos.
+
+RESULTADO: Correcto
+CÓDIGO: Correcto.
+LEGIBILIDAD: Correcto.
+
+*/
+
