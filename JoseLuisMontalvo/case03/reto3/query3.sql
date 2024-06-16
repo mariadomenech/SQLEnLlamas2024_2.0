@@ -23,3 +23,18 @@ if (@total is null or @total=0)
    end
 
 select @resultado;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Justo lo que se pedía, totalmente correcto y bien contemplado que el cliente pueda no haber gastado nada ese mes.
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
