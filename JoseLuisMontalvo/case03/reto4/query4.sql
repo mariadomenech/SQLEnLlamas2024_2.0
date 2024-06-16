@@ -106,3 +106,18 @@ if @tipo_calculo<1 or @tipo_calculo>4  --- Si nos pasan un tipo de cálculo no d
   end
 
 select @resultado;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MANU **********************/
+/*********************************************************/
+/*
+
+Todo correcto, faltaría llamada al procedmiento con su respectiva asignación de parámetros.
+
+RESULTADO: OK.
+CÓDIGO: OK.
+LEGIBILIDAD: OK.
+
+*/
