@@ -62,3 +62,18 @@ SELECT * from ProductoMasVendido (3,6);
 
 /* ELIMINACIÓN DE LAS FUNCIONES */
 DROP FUNCTION ProductoMasVendido;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto Joram!
+
+
+Código: controlas todas las casuísticas
+Legibilidad: OK
+Resultado: OK
+*/
