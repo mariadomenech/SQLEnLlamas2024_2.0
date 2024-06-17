@@ -30,3 +30,18 @@ return
 	where row= 1
 	);
 go
+
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Tienes que revisarme bien el código, en concreto cuando sacas el producto más vendido por medio del ROW_NUMBER, no deberías ordernar por prod_id, 
+sino por la suma de cantidad vendida. Te recomiendo usar RANK() en vez de ROW_NUMBER(), para sacar todos los productos posibles en caso de empate.
+
+Reinténtalo :)
+
+*/
