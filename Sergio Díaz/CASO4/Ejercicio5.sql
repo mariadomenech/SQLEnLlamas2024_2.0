@@ -94,3 +94,17 @@ FROM dbo.SDF_PRODUCTO_MAS_VENDIDO(3, 6)
 
 --------Eliminamos la función-----------
 DROP FUNCTION SDF_PRODUCTO_MAS_VENDIDO
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto Sergio!
+
+
+Código: controlas todas las casuísticas
+Legibilidad: OK
+Resultado: OK
+*/
