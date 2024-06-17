@@ -82,3 +82,18 @@ SELECT * FROM AMR_FUNCION_MAS_VENDIDO(2,3);
 
 --BORRAMOS
 DROP FUNCTION IF EXISTS  AMR_FUNCION_MAS_VENDIDO;
+
+
+
+/*********************************************************/
+/***************** COMENTARIO MARÍA **********************/
+/*********************************************************/
+/*
+
+Perfecto Ángel!
+
+
+Código: controlas todas las casuísticas
+Legibilidad: OK
+Resultado: OK
+*/
