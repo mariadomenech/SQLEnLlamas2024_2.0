@@ -1,0 +1,357 @@
+Ejercicios SQL avanzados
+
+
+1.
+
+SELECT *
+INTO #wORDERS_AKMY
+FROM [dbo].[h_ventas]
+WHERE id_pais <> 45; 
+
+Tabla que ya no se enseña si me desconecto de la sesión
+
+
+ SELECT *
+INTO ##wORDERS_AKMY
+FROM [dbo].[h_ventas]
+WHERE id_pais <> 45; 
+
+Tabla que sigue funcionando si me desconecto de la sesión, excepto en dbeaver, cuando me desconecto, ya no aparece en ssms neither.
+
+ 
+
+ 
+
+
+ 
+       
+           
+WITH wORDERS_KMAY AS (
+SELECT [id_fecha]
+      ,[id_categoria]
+      ,[id_pais]
+      ,[id_tipo_tarjeta]
+      ,[ventas]
+  FROM [dbo].[h_ventas]
+where id_pais != 45
+)
+SELECT * FROM wORDERS_KMAY
+Enseña todas las liñas de h_ventas que no tenga el id_pais 45 (id de España), siempre funciona, después de desconectarme tb
+
+
+
+2.
+WITH wORDERS_KMAY AS (
+SELECT [id_fecha]
+	  ,[id_categoria]
+      ,[id_pais]
+      ,[id_tipo_tarjeta]
+      ,[ventas]
+  FROM [dbo].[h_ventas]
+where id_pais != 45 and convert(date, cast(id_fecha as char(8)), 112) < '2015-12-31' and convert(date, cast(id_fecha as char(8)), 112) > '2015-10-01'
+)
+SELECT * FROM wORDERS_KMAY
+
+
+
+
+3.
+WITH wORDERS_KMAY AS (
+SELECT convert(date, cast(id_fecha as char(8)), 112) as id_fecha
+	  ,[id_categoria]
+      ,[id_pais]
+      ,[id_tipo_tarjeta]
+      ,CAST([ventas] as int) as ventas
+  FROM [dbo].[h_ventas]
+where id_categoria = 20 and convert(date, cast(id_fecha as char(8)), 112) < '2015-12-31' and convert(date, cast(id_fecha as char(8)), 112) > '2015-10-01'
+)
+SELECT * FROM wORDERS_KMAY
+
+
+
+
+4.
+
+SELECT *
+, GETDATE() as exec_time, CURRENT_TIMESTAMP as exec_time2
+, SYSDATETIMEOFFSET() as exec_time_offs
+, datepart(dy, convert(date, cast(id_fecha as char(8)), 112)) as datepartdy
+, datename(dw, convert(date, cast(id_fecha as char(8)), 112)) as datenamedw
+, datediff(yy, convert(date, cast(id_fecha as char(8)), 112), GETDATE()) as datediff_to_today
+, dateadd(m, 3, convert(date, cast(id_fecha as char(8)), 112)) as fecha_mas_3_meses
+INTO ##wORDERS_AKMY
+FROM [dbo].[h_ventas]
+; 
+
+
+5.
+
+select datepart(qq, convert(date, cast(id_fecha as char(8)), 112)) as quarter
+, sum(ventas) as total_sales 
+from [dbo].[h_ventas]
+where id_categoria = 20 
+group by datepart(qq, convert(date, cast(id_fecha as char(8)), 112))
+
+
+
+6.
+select CONCAT(UPPER(LEFT('hola MUNDO', 1)), LOWER(SUBSTRING('hola MUNDO', 2, LEN('hola MUNDO'))))
+
+
+
+7.
+select CAST(TRANSLATE('123789,99&', ',&', '. ') as float)
+
+
+
+8.
+
+with CTE as (
+select ve.id_fecha
+, ve.id_categoria
+, ve.id_pais
+, ve.id_tipo_tarjeta
+, ve.ventas
+, LTRIM(RTRIM(ve.descuento)) as descuento
+,   CASE 
+	WHEN v.id_fecha is null then 'not exist'
+	else 'OK'
+	END as fecha_id_verif
+, CASE 
+	WHEN c.id_categoria is null then 'not exist'
+	else 'OK'
+	END as categ_id_verif
+, CASE 
+	WHEN p.id_pais is null then 'not exist'
+	else 'OK'
+	END as pais_id_verif
+, CASE 
+	WHEN t.id_tipo_tarjeta is null then 'not exist'
+	else 'OK'
+	END as tarj_id_verif
+,
+ROW_NUMBER() over (partition by 
+				ve.id_fecha, 
+                ve.id_categoria, 
+                ve.id_pais, 
+                ve.id_tipo_tarjeta, 
+                ve.ventas, 
+                ve.descuento order by (select null)) as row_num
+from AdventureWorks2022.ejVentas.H_VENTAS_EDIT ve
+left join ejVentas.d_fecha v on v.id_fecha=ve.id_fecha
+left join ejVentas.d_categoria c on c.id_categoria=ve.id_categoria
+left join ejVentas.d_pais p on p.id_pais=ve.id_pais
+left join ejVentas.d_tipo_tarjeta t on t.id_tipo_tarjeta=ve.id_tipo_tarjeta
+)
+
+select *,
+CASE
+	WHEN row_num>1 then 'duplicated'
+	ELSE 'unique'
+END
+from CTE
+
+
+
+
+9.
+DECLARE @num_registros_p int
+DECLARE @num_registros_c int
+DECLARE @num_registros_d int
+DECLARE @num_registros_t int
+DECLARE @duplicates int
+
+SET @num_registros_p = (select count(*) from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_pais p on ve.id_pais = p.id_pais where p.id_pais is null)
+
+SET @num_registros_c = (select count(*) from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_categoria c on ve.id_categoria = c.id_categoria where c.id_categoria is null)
+
+SET @num_registros_d = (select count(*) from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_fecha d on ve.id_fecha = d.id_fecha where d.id_fecha is null)
+
+SET @num_registros_t = (select count(*) from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_tipo_tarjeta t on ve.id_tipo_tarjeta = t.id_tipo_tarjeta where t.id_tipo_tarjeta is null);
+
+with CTE as (
+select ROW_NUMBER() over (partition by 
+				ve.id_fecha, 
+                ve.id_categoria, 
+                ve.id_pais, 
+                ve.id_tipo_tarjeta, 
+                ve.ventas, 
+                ve.descuento order by (select null)) as row_num from AdventureWorks2022.ejVentas.h_ventas_edit ve)
+
+
+SELECT @duplicates =  count(*) from CTE where row_num > 1;
+
+
+IF @num_registros_p > 0
+BEGIN
+	print 'registros no encontrado en la tabla d_pais'
+	select * from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+	AdventureWorks2022.ejVentas.d_pais p on ve.id_pais = p.id_pais where p.id_pais is null 
+END
+ELSE IF @num_registros_p = 0
+BEGIN  
+	print 'Coherencia correcta'
+END 
+
+
+IF @num_registros_c > 0
+BEGIN
+	print 'registros no encontrado en la tabla d_categoria'
+	select * from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_categoria c on ve.id_categoria = c.id_categoria where c.id_categoria is null 
+END
+ELSE IF @num_registros_c = 0
+BEGIN  
+	print 'Coherencia correcta'
+END 
+
+
+IF @num_registros_d > 0
+BEGIN
+	print 'registros no encontrado en la tabla d_fecha'
+	select * from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_fecha d on ve.id_fecha = d.id_fecha where d.id_fecha is null
+END
+ELSE IF @num_registros_d = 0
+BEGIN  
+	print 'Coherencia correcta'
+END 
+
+
+IF @num_registros_t > 0
+BEGIN
+	print 'registros no encontrado en la tabla d_tipo_tarjeta'
+	select * from AdventureWorks2022.ejVentas.h_ventas_edit ve left join 
+AdventureWorks2022.ejVentas.d_tipo_tarjeta t on ve.id_tipo_tarjeta = t.id_tipo_tarjeta where t.id_tipo_tarjeta is null 
+END
+ELSE IF @num_registros_t = 0
+BEGIN  
+	print 'Coherencia correcta'
+END
+
+
+IF @duplicates > 0
+BEGIN
+	print 'Hay duplicados';
+	with CTE as (
+	select ROW_NUMBER() over (partition by 
+				ve.id_fecha, 
+                ve.id_categoria, 
+                ve.id_pais, 
+                ve.id_tipo_tarjeta, 
+                ve.ventas, 
+                ve.descuento order by (select null)) as row_num from AdventureWorks2022.ejVentas.h_ventas_edit ve)
+	select * from CTE where row_num > 1;
+END
+
+ELSE IF @duplicates = 0
+BEGIN
+	print 'No hay duplicados'
+END
+
+
+
+
+
+10.
+select id_fecha, desc_categoria, sum(ventas) over (partition by 
+v.id_categoria) as ventas_total from AdventureWorks2022.dbo.h_ventas v
+join AdventureWorks2022.dbo.d_categoria c on v.id_categoria = c.id_categoria
+
+
+
+11.
+select id_fecha, desc_categoria, sum(ventas) over (partition by 
+v.id_categoria) as ventas_total, sum(ventas) over (partition by v.id_categoria, DATEPART(yy,convert(date, cast(id_fecha as char(8)), 112))) as ventas_por_categ_por_año
+from AdventureWorks2022.dbo.h_ventas v
+join AdventureWorks2022.dbo.d_categoria c on v.id_categoria = c.id_categoria
+
+
+
+
+12.
+with CTE as (
+select id_categoria
+, id_tipo_tarjeta
+, id_fecha
+, id_pais
+,row_number() over (partition by id_categoria, id_tipo_tarjeta, id_fecha, id_pais order by (select 0)) as row_num
+from AdventureWorks2022.ejVentas.h_ventas_edit)
+
+select * from CTE where row_num> 1
+
+
+
+
+
+Bonus : 
+
+WITH CTE AS ( SELECT id_categoria
+, id_tipo_tarjeta
+, id_fecha
+, id_pais
+, ROW_NUMBER() OVER (PARTITION BY id_categoria, id_tipo_tarjeta, id_fecha, id_pais ORDER BY (SELECT NULL)) AS row_num 
+FROM AdventureWorks2022.ejVentas.h_ventas_edit ) 
+DELETE FROM AdventureWorks2022.ejVentas.h_ventas_edit 
+WHERE (id_categoria, id_tipo_tarjeta, id_fecha, id_pais) 
+IN ( SELECT id_categoria,
+ id_tipo_tarjeta,
+ id_fecha,
+ id_pais FROM CTE 
+WHERE row_num > 1 );
+
+
+
+
+
+13.
+
+
+1.
+with CTEtemp as (
+select id_fecha
+, id_categoria
+, id_pais
+, id_tipo_tarjeta
+, ventas
+, CAST(TRANSLATE((LTRIM(RTRIM(descuento))), '%,',' .') as float) as descuento
+from AdventureWorks2022.ejVentas.h_ventas_edit)
+
+select *, (ventas - (ventas*descuento)) as beneficio from CTEtemp
+
+
+EXTRA : 
+
+
+1.
+select id_fecha
+,id_categoria
+,id_pais
+,id_tipo_tarjeta
+,descuento
+,avg( CAST(TRANSLATE((LTRIM(RTRIM(descuento))), '%,',' .') as float)) 
+over (partition by DATEPART(yy,convert(date, cast(id_fecha as char(8)), 112)), id_categoria) as descuento_avg_por_categ_año
+from AdventureWorks2022.ejVentas.h_ventas_edit
+
+
+
+
+2.
+with CTE as (
+select id_fecha
+,id_categoria
+,id_pais
+,id_tipo_tarjeta
+,descuento
+,avg( CAST(TRANSLATE((LTRIM(RTRIM(descuento))), '%,',' .') as float)) 
+over (partition by DATEPART(yy,convert(date, cast(id_fecha as char(8)), 112)), id_categoria) as descuento_avg_por_categ_año
+from AdventureWorks2022.ejVentas.h_ventas_edit )
+
+select id_categoria
+, descuento_avg_por_categ_año
+, rank() over (order by LTRIM(RTRIM(descuento_avg_por_categ_año)) desc) as ranking from CTE
+group by id_categoria, descuento_avg_por_categ_año
